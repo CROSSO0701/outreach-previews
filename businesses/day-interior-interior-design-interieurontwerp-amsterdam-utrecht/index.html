@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day Interior - Interior Design / Interieurontwerp Amsterdam &amp; Utrecht</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1a56db;
+      --primary-dark: #1e429f;
+      --accent: #f59e0b;
+      --text: #1f2937;
+      --text-light: #6b7280;
+      --bg: #f9fafb;
+      --white: #ffffff;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text);
+      font-weight: 500; font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: var(--primary); color: var(--white) !important;
+      padding: 0.5rem 1.2rem; border-radius: 8px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--primary-dark) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, #3b82f6 100%);
+      color: var(--white);
+      padding: 6rem 5% 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 0.3rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      opacity: 0.9;
+    }
+    .hero-buttons {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--accent); color: var(--text);
+      padding: 0.85rem 2rem; border-radius: var(--radius);
+      font-weight: 700; font-size: 1.05rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.6);
+      color: var(--white);
+      padding: 0.85rem 2rem; border-radius: var(--radius);
+      font-weight: 600; font-size: 1.05rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    /* ── USP STRIP ── */
+    .usp-strip {
+      background: var(--white);
+      padding: 1.5rem 5%;
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      box-shadow: var(--shadow);
+    }
+    .usp-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-weight: 600; font-size: 0.95rem; color: var(--text);
+    }
+    .usp-icon { font-size: 1.3rem; }
+
+    /* ── SECTION ── */
+    section { padding: 5rem 5%; }
+    .section-label {
+      display: inline-block;
+      color: var(--primary); font-weight: 700; font-size: 0.85rem;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+    .section-subtitle {
+      color: var(--text-light);
+      font-size: 1.05rem;
+      max-width: 560px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── SERVICES ── */
+    #diensten { background: var(--bg); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s;
+    }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--primary), #3b82f6);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .service-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .service-card p { color: var(--text-light); font-size: 0.95rem; }
+
+    /* ── ABOUT ── */
+    #over-ons {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) { #over-ons { grid-template-columns: 1fr; } }
+    .about-image {
+      border-radius: var(--radius);
+      overflow: hidden;
+      height: 380px;
+      background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+    }
+    .about-image img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .stats-row {
+      display: flex; gap: 2rem; flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    .stat { text-align: left; }
+    .stat-number {
+      font-size: 2.2rem; font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .stat-label { color: var(--text-light); font-size: 0.9rem; }
+
+    /* ── REVIEWS ── */
+    #reviews { background: var(--bg); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .stars { color: #f59e0b; font-size: 1.1rem; margin-bottom: 0.75rem; }
+    .review-text { color: var(--text); font-style: italic; margin-bottom: 1rem; line-height: 1.65; }
+    .review-author { font-weight: 600; color: var(--text-light); font-size: 0.9rem; }
+
+    /* ── CTA ── */
+    #contact {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: var(--white);
+      text-align: center;
+    }
+    #contact h2 { color: var(--white); }
+    #contact .section-subtitle { color: rgba(255,255,255,0.8); margin: 0 auto 2.5rem; }
+    .contact-options {
+      display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem;
+      min-width: 200px;
+      text-align: center;
+    }
+    .contact-card-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .contact-card-label { font-size: 0.85rem; opacity: 0.75; margin-bottom: 0.25rem; }
+    .contact-card-value { font-weight: 700; font-size: 1.1rem; }
+    .contact-card a { color: var(--white); text-decoration: none; }
+    .contact-card a:hover { text-decoration: underline; }
+    .btn-white {
+      background: var(--white);
+      color: var(--primary);
+      padding: 0.85rem 2.5rem;
+      border-radius: var(--radius);
+      font-weight: 700; font-size: 1.05rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111827;
+      color: rgba(255,255,255,0.5);
+      padding: 2rem 5%;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    footer strong { color: rgba(255,255,255,0.85); }
+
+    /* ── DEMO BANNER ── */
+    .demo-banner {
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+      color: white;
+      text-align: center;
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      position: sticky; top: 0; z-index: 200;
+    }
+    .demo-banner a { color: white; font-weight: 700; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .usp-strip { gap: 1.2rem; }
+      #over-ons { padding: 3rem 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Demo Banner -->
+<div class="demo-banner">
+  🎨 Dit is een gratis voorbeeldwebsite voor <strong>Day Interior - Interior Design / Interieurontwerp Amsterdam &amp; Utrecht</strong> — gemaakt door Solidmotion. <a href="mailto:michiel@solidmotion.nl">Interesse? Stuur ons een bericht →</a>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a class="nav-logo" href="#">Day Interior - Interior Design / Interieurontwerp Amsterdam &amp; Utrecht</a>
+  <ul class="nav-links">
+    <li><a href="#diensten">Diensten</a></li>
+    <li><a href="#over-ons">Over ons</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a class="nav-cta" href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <span class="hero-badge">Interieur · Amsterdam</span>
+  <h1>Jouw droominterieur in Amsterdam &amp; Utrecht</h1>
+  <p>Persoonlijk interieuradvies dat past bij jouw wensen, stijl en leefwereld.</p>
+  <div class="hero-buttons">
+    
+    <a class="btn-primary" href="tel:06 25235707">
+      📞 Bel direct: 06 25235707
+    </a>
+    
+    <a class="btn-outline" href="#diensten">Bekijk onze diensten</a>
+  </div>
+</header>
+
+<!-- USP Strip -->
+<div class="usp-strip">
+  
+  <div class="usp-item">
+    <span class="usp-icon">🎨</span>
+    <span>Persoonlijk advies</span>
+  </div>
+  
+  <div class="usp-item">
+    <span class="usp-icon">✨</span>
+    <span>Stijlvol resultaat</span>
+  </div>
+  
+  <div class="usp-item">
+    <span class="usp-icon">💡</span>
+    <span>Creatieve oplossingen</span>
+  </div>
+  
+  <div class="usp-item">
+    <span class="usp-icon">🏠</span>
+    <span>Compleet ontzorgd</span>
+  </div>
+  
+</div>
+
+<!-- Services -->
+<section id="diensten">
+  <div style="max-width:1100px;margin:0 auto;">
+    <span class="section-label">Wat wij doen</span>
+    <h2>Wat we voor je doen</h2>
+    <p class="section-subtitle">Van eerste idee tot perfect afgewerkt interieur — we begeleiden je bij elke stap.</p>
+    <div class="services-grid">
+      
+      <div class="service-card">
+        <div class="service-icon">🛋️</div>
+        <h3>Meubels</h3>
+        <p>We selecteren meubels die perfect passen bij jouw stijl en ruimte, met oog voor kwaliteit en comfort.</p>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h3>Kleur</h3>
+        <p>Met de juiste kleurkeuzes brengen we sfeer, karakter en harmonie in elke kamer van je huis.</p>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon">💡</div>
+        <h3>Ontwerp</h3>
+        <p>We vertalen jouw wensen naar een doordacht en creatief interieurontwerp dat écht bij je past.</p>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon">🪟</div>
+        <h3>Vloer</h3>
+        <p>De vloer vormt de basis van elk interieur — we helpen je de perfecte keuze maken voor elk vertrek.</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="over-ons">
+  <div class="about-image">
+    
+    <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEELrNMiNbbL6-o4GzFOYO_wGWO8IPie4COpCBze1Ry0Em7C6uF16KbZtKlIQnSqlQ1KMaQqX_Ck-QNYWk2w1zGoQIKf1D3tW_IDmIVTDar5Cn_2k6oUmiak4InjfigmEpaqyiQgnBBnyFwSPKNJ5mp5aDztq3809kNOmEjgPxMgQBLw1n_ByruzhRBOQjlQEa2tWdtA0FEB2QhCAj2fH3Ae3kdsrKrx98joxlRtyRsebPpE9jzImc5tDBG9COj8ilPRKi7_X4kMbFpvZIlCfodtHaOaJcwcHwnIh8rTWMMtZg&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Day Interior - Interior Design / Interieurontwerp Amsterdam &amp; Utrecht" />
+    
+  </div>
+  <div>
+    <span class="section-label">Ons verhaal</span>
+    <h2>Hallo, ik ben Dayane van Day Interior</h2>
+    <p style="color:var(--text-light);margin-bottom:1.5rem;">Als interieurontwerper in Amsterdam help ik mensen hun huis te transformeren tot een plek die écht van hen is. Ik luister goed naar jouw wensen, denk creatief mee en zorg dat het eindresultaat meer dan je verwacht. Met een persoonlijke aanpak en oog voor detail maak ik van elk project iets om trots op te zijn — in Amsterdam én Utrecht.</p>
+    <div class="stats-row">
+      
+      <div class="stat">
+        <div class="stat-number">100+</div>
+        <div class="stat-label">Tevreden klanten</div>
+      </div>
+      
+      <div class="stat">
+        <div class="stat-number">5★</div>
+        <div class="stat-label">Google beoordeling</div>
+      </div>
+      
+      <div class="stat">
+        <div class="stat-number">8+</div>
+        <div class="stat-label">Jaar ervaring</div>
+      </div>
+      
+    </div>
+    
+    <a class="btn-primary" href="tel:06 25235707" style="color:var(--text);">📞 06 25235707</a>
+    
+  </div>
+</section>
+
+<!-- Reviews -->
+
+<section id="reviews">
+  <div style="max-width:1100px;margin:0 auto;">
+    <span class="section-label">Wat klanten zeggen</span>
+    <h2>Wat klanten over ons zeggen</h2>
+    <p class="section-subtitle">Gemiddeld 5⭐ op basis van 16 beoordelingen</p>
+    <div class="reviews-grid">
+      
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Zeer professioneel en creatief interieur ontwerpster. Denkt “out of the box”, luistert goed naar de wensen van de klant en combineert dat uitstekend met haar eigen talentvolle inzi..."</p>
+        <span class="review-author">— Laurens Canté</span>
+      </div>
+      
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Het was een waar genoegen om met Day Interior samen te werken. Dayane heeft mijn man en mij succesvol geholpen onze ideeën te combineren, en we zijn ontzettend blij met het eindres..."</p>
+        <span class="review-author">— Jane Boogaard</span>
+      </div>
+      
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Ik kan Day Interior van harte aanbevelen. Ik ben erg blij met het resultaat. Dayane was altijd bereikbaar en nam de tijd om mijn stijl te begrijpen. Ze hield zich aan mijn budget z..."</p>
+        <span class="review-author">— Florencia Cavallin</span>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA / Contact -->
+<section id="contact">
+  <span class="section-label" style="color:rgba(255,255,255,0.7);">Neem contact op</span>
+  <h2>Klaar om jouw interieur te transformeren?</h2>
+  <p class="section-subtitle">Neem vrijblijvend contact op en ontdek wat Day Interior voor jouw ruimte kan betekenen.</p>
+  <div class="contact-options">
+    
+    <div class="contact-card">
+      <div class="contact-card-icon">📞</div>
+      <div class="contact-card-label">Bel ons</div>
+      <div class="contact-card-value"><a href="tel:06 25235707">06 25235707</a></div>
+    </div>
+    
+    
+    
+    <div class="contact-card">
+      <div class="contact-card-icon">📍</div>
+      <div class="contact-card-label">Adres</div>
+      <div class="contact-card-value">Bos en Lommerweg 280, 1071 BC Amsterdam, Nederland</div>
+    </div>
+    
+  </div>
+  
+  <a class="btn-white" href="tel:06 25235707">📞 Direct bellen</a>
+  
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 <strong>Day Interior - Interior Design / Interieurontwerp Amsterdam &amp; Utrecht</strong> · Amsterdam
+   · <a href="tel:06 25235707" style="color:rgba(255,255,255,0.6);">06 25235707</a>
+  </p>
+  <p style="margin-top:0.5rem;font-size:0.8rem;">
+    Website concept gemaakt door <strong>Solidmotion</strong> · <a href="mailto:michiel@solidmotion.nl" style="color:rgba(255,255,255,0.5);">michiel@solidmotion.nl</a>
+  </p>
+</footer>
+
+</body>
+</html>
