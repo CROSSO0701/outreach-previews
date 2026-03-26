@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bezoek District Barber en ga naar buiten met een look waar je trots op bent." />
+  <title>District Barber💈 — Barbershop Amsterdam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS — DARK BARBERSHOP THEME
+    ═══════════════════════════════════════════ */
+    :root {
+      --primary:      #1f8900;
+      --primary-dark: #176600;
+      --primary-rgb:  31,137,0;
+      --accent:       #E8C97A;
+      --bg:           #0C0C0C;
+      --surface:      #181818;
+      --surface-2:    #222222;
+      --text:         #F2EDE4;
+      --text-muted:   #8A8680;
+      --border:       rgba(255,255,255,0.08);
+      --gold:         #C9A84C;
+      --gold-light:   #E8C97A;
+      --white:        #FFFFFF;
+      --shadow-gold:  0 8px 32px rgba(201,168,76,0.25);
+      --radius-sm:    6px;
+      --radius-md:    12px;
+      --radius-lg:    20px;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+      --transition:   0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ═══════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════ */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      background: rgba(12,12,12,0.88);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(20px, 5vw, 80px);
+      height: 70px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo-mark {
+      width: 36px; height: 36px;
+      background: var(--gold);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-logo-mark svg { width: 20px; height: 20px; color: #0C0C0C; }
+    .nav-logo-text {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+    }
+    .nav-logo-text span {
+      display: block;
+      font-size: 0.65rem; font-weight: 400;
+      color: var(--gold); letter-spacing: 0.15em;
+      text-transform: uppercase; font-family: var(--font-body);
+    }
+    .nav-links {
+      display: flex; gap: 28px; list-style: none; align-items: center;
+    }
+    .nav-links a {
+      font-size: 13px; font-weight: 500;
+      color: var(--text-muted); letter-spacing: 0.02em;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold) !important;
+      color: #0C0C0C !important;
+      padding: 10px 22px;
+      border-radius: var(--radius-sm);
+      font-weight: 700 !important; font-size: 13px !important;
+      letter-spacing: 0.02em;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition) !important;
+    }
+    .nav-cta:hover {
+      background: var(--gold-light) !important;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-gold) !important;
+    }
+    .nav-hamburger { display: none; }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 96vh;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AU_ZVEG06B1JMPPTfxCK3tgHoZBFMcmzUGm_9cwoWDNI_e86u0bB1lU-3onhNwZfE1LqFd8dUWnsamN5sP3MyhVW2w_6I_Y5QgoVzQyNU-Q5lOmDICA4nh-zqpPDCuLbEhdaELHbGv3kwlgyfS8-pInqNL9g5ykholnKwtvcgwLmrihzlq6CTZHG0W1WPIuT6gKf3qE6ZRXJ2nKG64LFXQcwm7WcbS2LYSgMxRmR9BU7IawSaqm2LAmE6XUi5U4NtNHNvf22atYkUG4Vdh8NgJKvhTHQpXu7HRiAW5EY9--YYZOzSA&key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14);
+      background-size: cover; background-position: center 30%;
+      transform: scale(1.05);
+      transition: transform 8s ease;
+    }
+    .hero:hover .hero-bg { transform: scale(1.0); }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(8,6,4,0.97) 0%,
+        rgba(8,6,4,0.72) 45%,
+        rgba(8,6,4,0.35) 75%,
+        rgba(8,6,4,0.15) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: clamp(60px, 8vw, 100px) clamp(24px, 6vw, 100px);
+      max-width: 800px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-badge svg { width: 12px; height: 12px; }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      color: rgba(242,237,228,0.75);
+      max-width: 480px; line-height: 1.7;
+      margin-bottom: 40px; font-weight: 300;
+    }
+    .hero-actions {
+      display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+    }
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold);
+      color: #0C0C0C;
+      padding: 16px 32px;
+      border-radius: var(--radius-sm);
+      font-weight: 700; font-size: 15px;
+      letter-spacing: 0.02em;
+      box-shadow: var(--shadow-gold);
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(201,168,76,0.4);
+    }
+    .btn-gold svg { width: 18px; height: 18px; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 2px solid rgba(242,237,228,0.4);
+      color: var(--text);
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-weight: 500; font-size: 15px;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .btn-outline svg { width: 18px; height: 18px; }
+    .hero-scroll {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(242,237,228,0.4); font-size: 11px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    /* ═══════════════════════════════════════════
+       USP STRIP
+    ═══════════════════════════════════════════ */
+    .usp-strip {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 22px clamp(20px, 5vw, 80px);
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 0;
+    }
+    .usp-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 32px;
+      border-right: 1px solid var(--border);
+    }
+    .usp-item:last-child { border-right: none; }
+    .usp-icon {
+      width: 38px; height: 38px;
+      background: rgba(201,168,76,0.12);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .usp-icon svg { width: 18px; height: 18px; color: var(--gold); }
+    .usp-text { font-weight: 500; font-size: 14px; color: var(--text); }
+
+    /* ═══════════════════════════════════════════
+       SHARED SECTION STYLES
+    ═══════════════════════════════════════════ */
+    section { padding: clamp(70px, 9vw, 110px) clamp(20px, 5vw, 80px); }
+    .container { max-width: 1160px; margin: 0 auto; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--gold); font-weight: 600; font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      margin-bottom: 14px;
+    }
+    .section-tag::before {
+      content: ''; width: 24px; height: 1px;
+      background: var(--gold);
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700; color: var(--white);
+      letter-spacing: -0.02em; line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    h2 em { font-style: italic; color: var(--gold); }
+    .section-sub {
+      font-size: 17px; color: var(--text-muted);
+      max-width: 520px; line-height: 1.7; margin-bottom: 56px;
+    }
+
+    /* ═══════════════════════════════════════════
+       DIENSTEN & PRIJZEN
+    ═══════════════════════════════════════════ */
+    #diensten { background: var(--bg); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .service-card {
+      background: var(--surface);
+      padding: 32px;
+      display: flex; flex-direction: column;
+      transition: background var(--transition);
+      position: relative;
+    }
+    .service-card:hover { background: var(--surface-2); }
+    .service-card-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 16px; margin-bottom: 14px;
+    }
+    .service-card-icon {
+      width: 48px; height: 48px;
+      background: rgba(201,168,76,0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .service-card-icon svg { width: 24px; height: 24px; color: var(--gold); }
+    .service-card-price {
+      font-family: var(--font-display);
+      font-size: 1.6rem; font-weight: 700;
+      color: var(--gold); line-height: 1;
+      white-space: nowrap;
+    }
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem; font-weight: 600;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .service-card p { color: var(--text-muted); font-size: 14px; line-height: 1.6; flex: 1; }
+    .service-card-action {
+      margin-top: 20px;
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--gold); font-size: 13px; font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: gap var(--transition);
+    }
+    .service-card-action svg { width: 14px; height: 14px; }
+    .service-card:hover .service-card-action { gap: 10px; }
+
+    /* ═══════════════════════════════════════════
+       RESERVEER SECTION
+    ═══════════════════════════════════════════ */
+    #reserveer {
+      background: var(--surface);
+      padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 80px);
+    }
+    .booking-inner {
+      max-width: 1160px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .booking-left {}
+    .booking-ctas {
+      display: flex; flex-direction: column; gap: 14px; margin-top: 40px;
+    }
+    .booking-cta-btn {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 28px;
+      border-radius: var(--radius-md);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+    .booking-cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    }
+    .booking-cta-btn.phone {
+      background: var(--gold);
+      color: #0C0C0C;
+    }
+    .booking-cta-btn.whatsapp {
+      background: #25D366;
+      color: #0C0C0C;
+    }
+    .booking-cta-btn-icon {
+      width: 48px; height: 48px;
+      background: rgba(0,0,0,0.18);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .booking-cta-btn-icon svg { width: 24px; height: 24px; }
+    .booking-cta-btn-text { flex: 1; }
+    .booking-cta-btn-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      opacity: 0.7; margin-bottom: 3px;
+    }
+    .booking-cta-btn-value {
+      font-size: 18px; font-weight: 700;
+      font-family: var(--font-display);
+    }
+    .booking-right {}
+    .hours-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .hours-card-header {
+      background: var(--gold);
+      padding: 18px 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hours-card-header svg { width: 20px; height: 20px; color: #0C0C0C; }
+    .hours-card-header span {
+      font-weight: 700; font-size: 14px;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: #0C0C0C;
+    }
+    .hours-table { padding: 8px 0; }
+    .hours-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 24px;
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row:hover { background: rgba(255,255,255,0.03); }
+    .hours-day { font-weight: 500; font-size: 14px; color: var(--text-muted); }
+    .hours-time { font-weight: 600; font-size: 14px; color: var(--text); }
+    .hours-time.closed { color: var(--text-muted); font-weight: 400; font-style: italic; }
+
+    /* ═══════════════════════════════════════════
+       GALLERY
+    ═══════════════════════════════════════════ */
+    #gallery { background: var(--bg); padding: 0; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      height: 480px;
+      gap: 3px;
+    }
+    .gallery-item {
+      overflow: hidden; position: relative;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(8,6,4,0.2);
+      transition: opacity var(--transition);
+    }
+    .gallery-item:hover::after { opacity: 0; }
+
+    /* ═══════════════════════════════════════════
+       OVER ONS
+    ═══════════════════════════════════════════ */
+    #over-ons { background: var(--surface); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .about-image {
+      position: relative; border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .about-image img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .about-image-placeholder {
+      width: 100%; height: 100%;
+      background: var(--surface-2);
+      display: flex; align-items: center; justify-content: center;
+      min-height: 400px;
+    }
+    .about-image-placeholder svg {
+      width: 80px; height: 80px;
+      color: var(--gold); opacity: 0.3;
+    }
+    .about-badge {
+      position: absolute; bottom: 28px; right: 28px;
+      background: var(--gold);
+      color: #0C0C0C;
+      padding: 14px 20px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .about-badge-value {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 700; line-height: 1;
+    }
+    .about-badge-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      opacity: 0.8; margin-top: 4px;
+    }
+    .about-content {}
+    .about-text {
+      color: var(--text-muted); font-size: 16px;
+      line-height: 1.8; margin-bottom: 36px;
+    }
+    .stats-row {
+      display: flex; gap: 40px; margin-bottom: 40px;
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+    }
+    .stat-item {}
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.4rem; font-weight: 700;
+      color: var(--gold); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+
+    /* ═══════════════════════════════════════════
+       REVIEWS
+    ═══════════════════════════════════════════ */
+    #reviews { background: var(--bg); }
+    .reviews-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 48px; gap: 20px; flex-wrap: wrap;
+    }
+    .rating-badge {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 14px 22px; border-radius: var(--radius-md);
+    }
+    .rating-stars svg { width: 20px; height: 20px; color: var(--gold); fill: var(--gold); }
+    .rating-number {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 700; color: var(--white);
+    }
+    .rating-count { color: var(--text-muted); font-size: 13px; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: relative; overflow: hidden;
+    }
+    .review-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .review-stars {
+      display: flex; gap: 3px; margin-bottom: 16px;
+    }
+    .review-stars svg { width: 16px; height: 16px; color: var(--gold); fill: var(--gold); }
+    .review-text {
+      color: var(--text-muted); font-size: 15px;
+      line-height: 1.7; margin-bottom: 20px;
+      font-style: italic;
+    }
+    .review-author {
+      color: var(--text); font-weight: 600; font-size: 14px;
+    }
+
+    /* ═══════════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════════ */
+    #contact {
+      background: var(--surface);
+      padding: clamp(70px, 9vw, 110px) clamp(20px, 5vw, 80px);
+    }
+    .contact-inner {
+      max-width: 1160px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    }
+    .contact-info {}
+    .contact-info h2 { margin-bottom: 12px; }
+    .contact-info p { color: var(--text-muted); margin-bottom: 36px; line-height: 1.7; }
+    .contact-details { display: flex; flex-direction: column; gap: 18px; }
+    .contact-detail {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .contact-detail-icon {
+      width: 44px; height: 44px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-detail-icon svg { width: 20px; height: 20px; color: var(--gold); }
+    .contact-detail-label {
+      font-size: 11px; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 3px;
+    }
+    .contact-detail-value {
+      font-size: 16px; font-weight: 600; color: var(--text);
+    }
+    .contact-detail-value a { color: var(--gold); transition: color var(--transition); }
+    .contact-detail-value a:hover { color: var(--gold-light); }
+    .contact-map {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 360px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .contact-map-placeholder {
+      text-align: center; color: var(--text-muted);
+    }
+    .contact-map-placeholder svg {
+      width: 48px; height: 48px; color: var(--gold);
+      margin: 0 auto 14px; opacity: 0.5;
+    }
+    .contact-map-address {
+      font-size: 15px; font-weight: 500; color: var(--text); margin-top: 6px;
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    footer {
+      background: #080808;
+      border-top: 1px solid var(--border);
+      padding: 28px clamp(20px, 5vw, 80px);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-brand {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .footer-brand-mark {
+      width: 28px; height: 28px;
+      background: var(--gold);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-brand-mark svg { width: 14px; height: 14px; color: #0C0C0C; }
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 1rem; color: var(--text);
+    }
+    .footer-copy {
+      font-size: 12px; color: var(--text-muted);
+    }
+    .footer-copy a { color: var(--gold); transition: color var(--transition); }
+    .footer-copy a:hover { color: var(--gold-light); }
+
+    /* ═══════════════════════════════════════════
+       SCROLL REVEAL
+    ═══════════════════════════════════════════ */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+    .reveal-delay-5 { transition-delay: 0.40s; }
+    .reveal-delay-6 { transition-delay: 0.48s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .booking-inner { grid-template-columns: 1fr; gap: 48px; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger {
+        display: flex; align-items: center; justify-content: center;
+        width: 40px; height: 40px;
+        background: var(--surface); border-radius: 8px;
+        border: 1px solid var(--border); cursor: pointer;
+      }
+      .nav-hamburger svg { width: 20px; height: 20px; color: var(--text); }
+      .gallery-grid { grid-template-columns: 1fr 1fr; height: 360px; }
+      .gallery-grid .gallery-item:nth-child(3) { display: none; }
+      .usp-item { padding: 12px 16px; }
+      .usp-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .usp-item:last-child { border-bottom: none; }
+      .usp-strip { flex-direction: column; gap: 0; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; height: auto; }
+      .gallery-grid .gallery-item { height: 260px; }
+      .gallery-grid .gallery-item:nth-child(n+2) { display: none; }
+      .hero-actions { flex-direction: column; }
+      .btn-gold, .btn-outline { width: 100%; justify-content: center; }
+      .booking-ctas { gap: 10px; }
+      .stats-row { gap: 24px; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+    </div>
+    <div class="nav-logo-text">
+      District Barber💈
+      <span>Barbershop &bull; Amsterdam</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#diensten">Diensten</a></li>
+    <li><a href="#reserveer">Prijzen</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#over-ons">Over ons</a></li>
+    <li><a href="#contact">Contact</a></li>
+    
+    <li><a href="tel:020 772 9064" class="nav-cta">Reserveer &rarr;</a></li>
+    
+  </ul>
+  <button class="nav-hamburger" aria-label="Menu">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Premium Barbershop &bull; Amsterdam
+    </div>
+    <h1>Jouw Baard in de Beste Handen van Amsterdam</h1>
+    <p class="hero-sub">Bezoek District Barber en ga naar buiten met een look waar je trots op bent.</p>
+    <div class="hero-actions">
+      
+      <a class="btn-gold" href="tel:020 772 9064">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.19-1.16a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        Bel voor een afspraak
+      </a>
+      
+      <a class="btn-outline" href="#reserveer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Bekijk prijzen
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</header>
+
+<!-- USP Strip -->
+<div class="usp-strip">
+  
+  <div class="usp-item reveal reveal-delay-1">
+    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
+    <span class="usp-text">Ervaren barbiers</span>
+  </div>
+  
+  <div class="usp-item reveal reveal-delay-2">
+    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+    <span class="usp-text">Premium producten</span>
+  </div>
+  
+  <div class="usp-item reveal reveal-delay-3">
+    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+    <span class="usp-text">Online afspraak</span>
+  </div>
+  
+  <div class="usp-item reveal reveal-delay-4">
+    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+    <span class="usp-text">Klassiek vakmanschap</span>
+  </div>
+  
+</div>
+
+<!-- Diensten & Prijzen -->
+<section id="diensten">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">Wat wij bieden</span>
+      <h2>Onze Diensten</h2>
+      <p class="section-sub">Vakmanschap dat je ziet en voelt — bij elke stoel, bij elke klant.</p>
+    </div>
+    <div class="services-grid">
+      
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-card-header">
+          <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
+          
+          <div class="service-card-price">vanaf €15</div>
+          
+        </div>
+        <h3>Baard</h3>
+        <p>Van strak bijgewerkt tot volledig verzorgd: onze barbers geven jouw baard de aandacht die het verdient. Met precisie, de juiste producten en een goed gesprek.</p>
+        <a class="service-card-action" href="#reserveer">
+          Reserveer
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Reserveer -->
+<section id="reserveer">
+  <div class="booking-inner">
+    <div class="booking-left reveal">
+      <span class="section-tag">Maak een afspraak</span>
+      <h2>Klaar voor een Frisse Look?</h2>
+      <p class="section-sub">Maak nu een afspraak bij District Barber en ervaar het verschil van een echte vakbarber in Amsterdam.</p>
+      <div class="booking-ctas">
+        
+        <a class="booking-cta-btn phone" href="tel:020 772 9064">
+          <div class="booking-cta-btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.19-1.16a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="booking-cta-btn-text">
+            <div class="booking-cta-btn-label">Bel ons direct</div>
+            <div class="booking-cta-btn-value">020 772 9064</div>
+          </div>
+        </a>
+        <a class="booking-cta-btn whatsapp" href="https://wa.me/0207729064">
+          <div class="booking-cta-btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div class="booking-cta-btn-text">
+            <div class="booking-cta-btn-label">WhatsApp ons</div>
+            <div class="booking-cta-btn-value">Stuur een berichtje</div>
+          </div>
+        </a>
+        
+      </div>
+    </div>
+    <div class="booking-right reveal reveal-delay-2">
+      <div class="hours-card">
+        <div class="hours-card-header">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Openingstijden</span>
+        </div>
+        <div class="hours-table">
+          
+            
+            <div class="hours-row">
+              <span class="hours-day">maandag</span>
+              <span class="hours-time ">10:00–18:00</span>
+            </div>
+            
+            <div class="hours-row">
+              <span class="hours-day">dinsdag</span>
+              <span class="hours-time ">10:00–18:00</span>
+            </div>
+            
+            <div class="hours-row">
+              <span class="hours-day">woensdag</span>
+              <span class="hours-time ">10:00–18:00</span>
+            </div>
+            
+            <div class="hours-row">
+              <span class="hours-day">donderdag</span>
+              <span class="hours-time ">11:00–19:00</span>
+            </div>
+            
+            <div class="hours-row">
+              <span class="hours-day">vrijdag</span>
+              <span class="hours-time ">11:00–19:00</span>
+            </div>
+            
+            <div class="hours-row">
+              <span class="hours-day">zaterdag</span>
+              <span class="hours-time ">11:00–19:00</span>
+            </div>
+            
+            <div class="hours-row">
+              <span class="hours-day">zondag</span>
+              <span class="hours-time ">11:00–18:00</span>
+            </div>
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1000&auto=format&fit=crop" alt="Vakkundige kapper aan het werk" loading="lazy" width="1000" height="667" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&auto=format&fit=crop" alt="Barbershop sfeer" loading="lazy" width="600" height="480" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&auto=format&fit=crop" alt="Baard trimmen" loading="lazy" width="600" height="480" />
+    </div>
+  </div>
+</section>
+
+<!-- Over ons -->
+<section id="over-ons">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image reveal">
+        
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEG2qXM4mBl0jM63MN3QZAXXFaR2N1wPmUEHMbpyrVujyFcac7rdTi7YeH_QmY4rqp6pQKkiQvQQUCfTsaBEZzad1UqU_v4PaDlghu87x2UzoNUVGBghzBNTBihXsQC5nEPFoOcCp4Vb07_m_faLSsIP3Ew-gFHH4QTrwF_2ejciNFNmBRYpJ7q22csRAxEBI_tMZ6R6R_9foAJq2luJAm_LLJoCdcNyIDvBiOMNpM3WkvI4qSrjkh70IjImlF0xJZrz6XfDm0P3ZbrFUhI9CUaMqjvtd0SY7pEvj6MDT_V-9Q&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="District Barber💈" loading="lazy" width="600" height="750" />
+        
+        
+        <div class="about-badge">
+          <div class="about-badge-value">4.7</div>
+          <div class="about-badge-label">Google rating</div>
+        </div>
+        
+      </div>
+      <div class="about-content reveal reveal-delay-2">
+        <span class="section-tag">Ons verhaal</span>
+        <h2>District Barber — Meer Dan Een Knipbeurt</h2>
+        <p class="about-text">In het hart van Amsterdam vind je District Barber: een plek waar vakmanschap, sfeer en persoonlijke aandacht samenkomen. Ons vriendelijke en ervaren team staat klaar voor iedereen — of je nu een vaste klant bent of voor het eerst binnenstapt. Met een breed assortiment aan haarverzorgingsproducten en een 4.7-ster beoordeling van meer dan 380 tevreden klanten, weet je dat je bij ons in goede handen bent.</p>
+        <div class="stats-row">
+          
+          <div class="stat-item">
+            <div class="stat-number">4.7★</div>
+            <div class="stat-label">Google Beoordeling</div>
+          </div>
+          
+          <div class="stat-item">
+            <div class="stat-number">381+</div>
+            <div class="stat-label">Tevreden Klanten</div>
+          </div>
+          
+          <div class="stat-item">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Jaar Vakmanschap</div>
+          </div>
+          
+        </div>
+        
+        <a class="btn-gold" href="tel:020 772 9064" style="display:inline-flex;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.19-1.16a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Direct bellen
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+
+<section id="reviews">
+  <div class="container">
+    <div class="reviews-header reveal">
+      <div>
+        <span class="section-tag">Klantbeoordelingen</span>
+        <h2>Wat Onze Klanten Zeggen</h2>
+      </div>
+      
+      <div class="rating-badge">
+        <div class="rating-stars">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span class="rating-number">4.7</span>
+        <span class="rating-count">(381 reviews)</span>
+      </div>
+      
+    </div>
+    <div class="reviews-grid">
+      
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+        </div>
+        <p class="review-text">"Geknipt door een Russische kapster die vooral goed met de tondeuse was. Mijn kapsel zag er niet uit: links bakkenbaard weggeschoren, rechts laten zitten. De koffie was prima."</p>
+        <div class="review-author">Henk Kelderman</div>
+      </div>
+      
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+        </div>
+        <p class="review-text">"Mijn vaste kapper had helaas lekkage en daarom heb ik een bezoek gebracht aan Barber District. Ik ben geknipt door een kapper uit Griekenland die gebrekkig Engels sprak. Helaas snapte ze hierdoor ook "</p>
+        <div class="review-author">Stef</div>
+      </div>
+      
+      <div class="review-card reveal reveal-delay-3">
+        <div class="review-stars">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          
+        </div>
+        <p class="review-text">"Eerste barbier waar ik heen ben geweest als transgender man (24). Vriendelijk ontvangen, mijn haar is nauwkeurig en goed geknipt. Niet ver van station Amsterdam Centraal, een aanrader."</p>
+        <div class="review-author">John van Dijk</div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<!-- Contact -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-info reveal">
+      <span class="section-tag">Kom langs</span>
+      <h2>Wij staan voor<br/><em>jullie klaar</em></h2>
+      <p>Loop gerust binnen of plan een afspraak. Wij verwelkomen je graag in onze barbershop in Amsterdam.</p>
+      <div class="contact-details">
+        
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.19-1.16a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Telefoon</div>
+            <div class="contact-detail-value"><a href="tel:020 772 9064">020 772 9064</a></div>
+          </div>
+        </div>
+        
+        
+        
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Adres</div>
+            <div class="contact-detail-value">Oudezijds Achterburgwal 80 B, 1012 DR Amsterdam, Nederland</div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="contact-map reveal reveal-delay-2">
+      <div class="contact-map-placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>Bekijk op Google Maps</div>
+        
+        <div class="contact-map-address">Oudezijds Achterburgwal 80 B, 1012 DR Amsterdam, Nederland</div>
+        
+        
+        <br/>
+        <a class="btn-gold" href="https://maps.google.com/?q=Oudezijds%20Achterburgwal%2080%20B%2C%201012%20DR%20Amsterdam%2C%20Nederland" target="_blank" rel="noopener" style="display:inline-flex;margin-top:16px;font-size:14px;padding:12px 24px;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Route plannen
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-brand-mark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+    </div>
+    <span class="footer-brand-name">District Barber💈</span>
+  </div>
+  <span class="footer-copy">
+    Website concept door <a href="mailto:michiel@solidmotion.nl">Solidmotion</a>
+  </span>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
