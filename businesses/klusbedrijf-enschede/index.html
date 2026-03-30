@@ -4,35 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Betrouwbaar, vakkundig en altijd persoonlijk." />
-  <title>Klusbedrijf Enschede — Enschede</title>
+  <title>Klusbedrijf Enschede | Aannemer Enschede</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    /* ═══════════════════════════════════════════
-       DESIGN TOKENS
-    ═══════════════════════════════════════════ */
     :root {
-      --primary:       #ff00ff;
-      --primary-dark:  #bf00bf;
-      --primary-rgb:   255,0,255;
-      --accent:        #F59E0B;
-      --bg:            #F9FAFB;
-      --text:          #111827;
-      --text-muted:    #6B7280;
-      --white:         #FFFFFF;
-      --surface:       #FFFFFF;
-      --border:        rgba(0,0,0,0.08);
-      --shadow-sm:     0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-      --shadow-md:     0 4px 16px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
-      --shadow-lg:     0 20px 40px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.08);
-      --radius-sm:     8px;
-      --radius-md:     14px;
-      --radius-lg:     20px;
-      --radius-xl:     28px;
-      --font-display:  'Bodoni Moda', Georgia, serif;
-      --font-body:     'Jost', system-ui, sans-serif;
-      --transition:    0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      --primary: #ff00ff;
+      --primary-dark: #bf00bf;
+      --primary-rgb: 255,0,255;
+      --accent: #F59E0B;
+      --bg: #F9FAFB;
+      --text: #111827;
+      --amber: #D97706;
+      --amber-light: #FEF3C7;
+      --charcoal: #1a1a1a;
+      --charcoal-mid: #2a2a2a;
+      --concrete: #F5F5F4;
+      --concrete-dark: #E7E5E4;
+      --white: #FFFFFF;
+      --text-muted: #78716C;
+      --border: rgba(0,0,0,0.08);
+      --border-light: rgba(255,255,255,0.1);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+      --shadow-lg: 0 20px 40px rgba(0,0,0,0.16);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --font-display: 'Bebas Neue', Impact, sans-serif;
+      --font-body: 'Work Sans', system-ui, sans-serif;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,366 +52,629 @@
     img { max-width: 100%; height: auto; display: block; }
     a { color: inherit; text-decoration: none; }
 
-    /* ═══════════════════════════════════════════
-       ANNOUNCEMENT BANNER
-    ═══════════════════════════════════════════ */
-    .banner {
-      background: var(--primary-dark);
-      color: rgba(255,255,255,0.92);
+    /* ANNOUNCEMENT BAR */
+    .announce-bar {
+      background: var(--amber);
+      color: var(--charcoal);
       text-align: center;
-      padding: 10px 20px;
+      padding: 8px 20px;
       font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
-    .banner a { color: var(--accent); font-weight: 600; }
+    .announce-bar a {
+      color: var(--charcoal);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
 
-    /* ═══════════════════════════════════════════
-       NAVIGATION
-    ═══════════════════════════════════════════ */
+    /* NAVIGATION */
     .nav {
-      position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      background: rgba(255,255,255,0.82);
-      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(26,26,26,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
       padding: 0 clamp(20px, 5vw, 80px);
-      height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+    }
+    .nav-logo-text {
       font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-      letter-spacing: -0.01em;
+      font-size: 1.6rem;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
     .nav-links {
-      display: flex; gap: 32px; list-style: none;
+      display: flex;
+      gap: 28px;
+      list-style: none;
       align-items: center;
     }
     .nav-links a {
-      font-size: 14px; font-weight: 500;
-      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       transition: color var(--transition);
     }
-    .nav-links a:hover { color: var(--primary); }
-    .nav-cta {
-      background: var(--primary) !important;
-      color: var(--white) !important;
-      padding: 10px 22px;
+    .nav-links a:hover { color: var(--amber); }
+    .nav-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--amber) !important;
+      color: var(--charcoal) !important;
+      padding: 10px 20px;
       border-radius: var(--radius-sm);
-      font-weight: 600 !important;
-      font-size: 14px !important;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition) !important;
-      box-shadow: 0 2px 8px rgba(var(--primary-rgb),0.3);
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.04em !important;
+      transition: background var(--transition), transform var(--transition) !important;
     }
-    .nav-cta:hover {
-      background: var(--primary-dark) !important;
+    .nav-cta-btn:hover {
+      background: #B45309 !important;
+      color: var(--white) !important;
       transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(var(--primary-rgb),0.35) !important;
+    }
+    .nav-cta-btn svg { width: 15px; height: 15px; }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 200;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 1px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 150;
+      background: var(--charcoal);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .mobile-menu a:hover { color: var(--amber); }
+    .mobile-menu-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: var(--white);
+      cursor: pointer;
     }
 
-    /* ═══════════════════════════════════════════
-       HERO
-    ═══════════════════════════════════════════ */
+    /* HERO - FULL BLEED */
     .hero {
       position: relative;
-      min-height: 92vh;
-      display: flex; align-items: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
       overflow: hidden;
     }
     .hero-bg {
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background-size: cover;
       background-position: center;
-      background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AU_ZVEF_Ni0GoGudx0fkluLBT9lH6FHYQ6-8J-J482tvFnELWp8aqDqD37ZobVJkOtEr98D5lddYKmdg_mRCJYxOIYywvOnOnGjPgvfD1osy5GTpoOx6lKlNvr-Y7egXWesNpgv8ENCm8J6lnI6TxIDeO7HzpB9UuJW1xPZIY2XoQqJfGN2w7-WX802A0hrJT0DLC_QwW2ZvKVR7_Qn0UBbZpxlOnfVUOQIEXtjpR1-G5Su5pAnsjdZUu6_YvmQV2BjBkvIkF3VcRFMC6-BevFPO0ZcZFwbjbiP8EHMEwti7ZFCdoA&key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14);
-      transform: scale(1.04);
-      transition: transform 8s ease;
+      transform: scale(1.03);
+      transition: transform 10s ease;
     }
     .hero-bg::after {
       content: '';
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background: rgba(127,0,127,0.65);
     }
     .hero:hover .hero-bg { transform: scale(1.0); }
-
     .hero-content {
-      position: relative; z-index: 2;
-      max-width: 760px;
-      padding: clamp(40px, 8vw, 100px) clamp(20px, 6vw, 100px);
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 0 clamp(20px, 6vw, 100px) clamp(60px, 10vw, 120px);
     }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25);
-      backdrop-filter: blur(8px);
-      color: rgba(255,255,255,0.92);
-      padding: 6px 16px;
-      border-radius: 100px;
-      font-size: 13px; font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 28px;
-    }
-    .hero-eyebrow svg { width: 14px; height: 14px; }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--amber);
+      font-family: var(--font-body);
       font-weight: 700;
-      color: var(--white);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
       margin-bottom: 20px;
     }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
+    .hero-tag::before {
+      content: '';
+      width: 40px;
+      height: 3px;
+      background: var(--amber);
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      color: var(--white);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      max-width: 900px;
+    }
+    .hero h1 span {
+      display: block;
+      color: var(--amber);
     }
     .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(255,255,255,0.82);
-      max-width: 520px;
-      line-height: 1.65;
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      color: rgba(255,255,255,0.7);
+      max-width: 540px;
+      line-height: 1.7;
       margin-bottom: 40px;
-      font-weight: 300;
+      font-weight: 400;
     }
     .hero-actions {
-      display: flex; gap: 14px; flex-wrap: wrap;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
     }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--accent);
-      color: var(--text) !important;
+    .btn-amber {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--amber);
+      color: var(--white) !important;
       padding: 16px 32px;
-      border-radius: var(--radius-md);
-      font-weight: 700; font-size: 15px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-      transition: transform var(--transition), box-shadow var(--transition);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      box-shadow: 0 4px 20px rgba(217,119,6,0.4);
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
       cursor: pointer;
+      border: none;
     }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    .btn-amber:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(217,119,6,0.5);
+      background: #B45309;
     }
     .btn-ghost {
-      display: inline-flex; align-items: center; gap: 10px;
-      border: 2px solid rgba(255,255,255,0.55);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid rgba(255,255,255,0.4);
       color: var(--white);
       padding: 14px 28px;
-      border-radius: var(--radius-md);
-      font-weight: 600; font-size: 15px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
       transition: border-color var(--transition), background var(--transition);
     }
     .btn-ghost:hover {
-      border-color: rgba(255,255,255,0.9);
-      background: rgba(255,255,255,0.1);
+      border-color: var(--amber);
+      background: rgba(217,119,6,0.1);
     }
-    .btn-primary svg, .btn-ghost svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .btn-amber svg, .btn-ghost svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-    /* ═══════════════════════════════════════════
-       USP STRIP
-    ═══════════════════════════════════════════ */
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--charcoal);
+      border-bottom: 3px solid var(--amber);
+      padding: 0 clamp(20px, 5vw, 80px);
+    }
+    .stats-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .stat-bar-item {
+      padding: 28px 40px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      flex: 1;
+      min-width: 150px;
+    }
+    .stat-bar-item:last-child { border-right: none; }
+    .stat-bar-value {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      color: var(--amber);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .stat-bar-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    /* USP STRIP */
     .usp-strip {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 20px clamp(20px, 5vw, 80px);
-      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+      background: var(--concrete);
+      padding: 0 clamp(20px, 5vw, 80px);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
     }
     .usp-item {
-      display: flex; align-items: center; gap: 10px;
-      padding: 12px 28px;
-      border-right: 1px solid var(--border);
-      font-weight: 500; font-size: 14px; color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 32px;
+      border-right: 1px solid var(--concrete-dark);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--charcoal);
     }
     .usp-item:last-child { border-right: none; }
     .usp-icon {
-      width: 36px; height: 36px;
-      background: rgba(var(--primary-rgb),0.1);
+      width: 40px;
+      height: 40px;
+      background: var(--charcoal);
       border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
+      clip-path: polygon(0 0, 100% 0, 100% 75%, 85% 100%, 0 100%);
     }
-    .usp-icon svg { width: 18px; height: 18px; color: var(--primary); }
+    .usp-icon svg { width: 18px; height: 18px; color: var(--amber); }
 
-    /* ═══════════════════════════════════════════
-       SECTION SHARED
-    ═══════════════════════════════════════════ */
+    /* SECTIONS */
     section { padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 80px); }
-    .container { max-width: 1160px; margin: 0 auto; }
+    .container { max-width: 1200px; margin: 0 auto; }
     .section-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      color: var(--primary); font-weight: 700; font-size: 12px;
-      text-transform: uppercase; letter-spacing: 0.1em;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--amber);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
       margin-bottom: 12px;
     }
     .section-tag::before {
       content: '';
-      width: 20px; height: 2px;
-      background: var(--primary); border-radius: 2px;
+      width: 32px;
+      height: 3px;
+      background: var(--amber);
     }
     h2 {
       font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.18;
-      color: var(--text);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      letter-spacing: 0.02em;
+      line-height: 0.95;
+      color: var(--charcoal);
+      text-transform: uppercase;
       margin-bottom: 14px;
     }
-    .section-sub {
-      font-size: 17px; color: var(--text-muted);
-      max-width: 520px; line-height: 1.7;
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.7;
       margin-bottom: 52px;
     }
 
-    /* ═══════════════════════════════════════════
-       SERVICES
-    ═══════════════════════════════════════════ */
-    #diensten { background: var(--bg); }
+    /* SERVICES - DARK CARDS */
+    #diensten { background: var(--charcoal); }
+    #diensten h2 { color: var(--white); }
+    #diensten .section-desc { color: rgba(255,255,255,0.5); }
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
     }
     .service-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
+      background: var(--charcoal-mid);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-left: 4px solid var(--amber);
+      border-radius: var(--radius-md);
       padding: 32px;
-      transition: transform var(--transition), box-shadow var(--transition);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
       position: relative;
       overflow: hidden;
     }
-    .service-card::before {
+    .service-card::after {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(135deg, #111827 0%, #374151 60%, #6B7280 100%);
-      opacity: 0;
-      transition: opacity var(--transition);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      background: linear-gradient(0deg, rgba(217,119,6,0.08) 0%, transparent 100%);
+      transition: height 0.3s ease;
     }
-    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-    .service-card:hover::before { opacity: 1; }
-    .service-card-icon {
-      width: 52px; height: 52px;
-      background: rgba(var(--primary-rgb),0.1);
-      border-radius: var(--radius-md);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
     }
-    .service-card-icon svg { width: 26px; height: 26px; color: var(--primary); }
+    .service-card:hover::after { height: 60%; }
+    .service-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
     .service-card h3 {
       font-family: var(--font-display);
-      font-size: 1.2rem; font-weight: 600;
-      margin-bottom: 10px; color: var(--text);
+      font-size: 1.5rem;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
     }
-    .service-card p { color: var(--text-muted); font-size: 15px; line-height: 1.6; }
+    .service-price-tag {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--amber);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .service-card p {
+      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+      line-height: 1.65;
+      position: relative;
+      z-index: 1;
+    }
 
-    /* ═══════════════════════════════════════════
-       ABOUT
-    ═══════════════════════════════════════════ */
-    #over-ons { background: var(--white); }
+    /* FULL-WIDTH PHOTO BREAK */
+    .photo-break {
+      width: 100%;
+      height: 50vh;
+      min-height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+    .photo-break img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .photo-break-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(26,26,26,0.7) 0%, transparent 40%, transparent 60%, rgba(26,26,26,0.3) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 40px clamp(20px, 5vw, 80px);
+    }
+    .photo-break-text {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1;
+    }
+    .photo-break-text span { color: var(--amber); }
+
+    /* ABOUT */
+    #over-ons { background: var(--concrete); }
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      gap: 72px;
       align-items: center;
     }
-    .about-image {
-      border-radius: var(--radius-xl);
+    .about-image-wrap {
+      position: relative;
       overflow: hidden;
       aspect-ratio: 4/5;
-      position: relative;
-      box-shadow: var(--shadow-lg);
+      clip-path: polygon(0 0, 100% 0, 100% 92%, 88% 100%, 0 100%);
     }
-    .about-image img {
-      width: 100%; height: 100%;
+    .about-image-wrap img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
     .about-image-placeholder {
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, #111827 0%, #374151 60%, #6B7280 100%);
-      display: flex; align-items: center; justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-mid) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .about-image-placeholder svg {
-      width: 80px; height: 80px;
-      color: rgba(255,255,255,0.5);
+      width: 80px;
+      height: 80px;
+      color: rgba(255,255,255,0.2);
     }
-    .about-image-badge {
-      position: absolute; bottom: 24px; left: 24px;
-      background: var(--white);
-      border-radius: var(--radius-md);
+    .about-rating-badge {
+      position: absolute;
+      bottom: 48px;
+      left: 20px;
+      background: var(--charcoal);
+      border-left: 3px solid var(--amber);
       padding: 14px 20px;
-      box-shadow: var(--shadow-md);
-      display: flex; align-items: center; gap: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-    .badge-icon {
-      width: 40px; height: 40px;
-      background: rgba(var(--primary-rgb),0.1);
+    .about-rating-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(217,119,6,0.15);
       border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .badge-icon svg { width: 22px; height: 22px; color: var(--primary); }
-    .badge-text { font-size: 12px; color: var(--text-muted); font-weight: 500; }
-    .badge-value { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1; }
-
-    .about-content h2 { margin-bottom: 20px; }
-    .about-content p { color: var(--text-muted); font-size: 16px; line-height: 1.75; margin-bottom: 24px; }
-    .stats-row {
-      display: flex; gap: 32px; flex-wrap: wrap;
-      margin: 32px 0;
-      padding: 28px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .stat-item { }
-    .stat-number {
+    .about-rating-icon svg { width: 20px; height: 20px; color: #F59E0B; }
+    .about-rating-val {
       font-family: var(--font-display);
-      font-size: 2.4rem; font-weight: 700;
-      color: var(--primary); line-height: 1;
-      margin-bottom: 4px;
-    }
-    .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-    .about-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--primary);
+      font-size: 1.3rem;
       color: var(--white);
-      padding: 15px 30px;
-      border-radius: var(--radius-md);
-      font-weight: 600; font-size: 15px;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-      box-shadow: 0 4px 16px rgba(var(--primary-rgb),0.3);
+      line-height: 1;
+    }
+    .about-rating-count { font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 500; }
+    .about-content h2 { margin-bottom: 18px; }
+    .about-content p { color: var(--text-muted); font-size: 15px; line-height: 1.75; margin-bottom: 24px; }
+    .about-stats {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin: 28px 0;
+      padding: 24px 0;
+      border-top: 2px solid var(--concrete-dark);
+      border-bottom: 2px solid var(--concrete-dark);
+    }
+    .about-stat-number {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      color: var(--amber);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .about-stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .about-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--charcoal);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      transition: background var(--transition), transform var(--transition);
     }
     .about-cta:hover {
-      background: var(--primary-dark);
+      background: var(--amber);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(var(--primary-rgb),0.4);
     }
     .about-cta svg { width: 18px; height: 18px; }
 
-    /* ═══════════════════════════════════════════
-       REVIEWS
-    ═══════════════════════════════════════════ */
-    #reviews { background: var(--bg); }
+    /* PHOTOS GALLERY */
+    .gallery-section {
+      background: var(--white);
+      padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 80px);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 48px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+    .gallery-item:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(26,26,26,0.5) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-item:hover::after { opacity: 1; }
+
+    /* REVIEWS */
+    #reviews { background: var(--concrete); }
     .reviews-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 48px; flex-wrap: wrap; gap: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 20px;
     }
     .rating-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 12px 20px;
-      box-shadow: var(--shadow-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--charcoal);
+      border-radius: var(--radius-sm);
+      padding: 10px 18px;
     }
     .rating-stars svg { width: 18px; height: 18px; color: #F59E0B; }
     .rating-number {
       font-family: var(--font-display);
-      font-size: 1.6rem; font-weight: 700; color: var(--text);
+      font-size: 1.5rem;
+      color: var(--white);
     }
-    .rating-count { font-size: 13px; color: var(--text-muted); }
+    .rating-count { font-size: 13px; color: rgba(255,255,255,0.5); }
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -418,110 +683,169 @@
     .review-card {
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-md);
       padding: 28px;
-      box-shadow: var(--shadow-sm);
       transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
     }
-    .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .review-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--amber);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.3s ease;
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .review-card:hover::before { transform: scaleY(1); }
     .review-header {
-      display: flex; justify-content: space-between;
-      align-items: center; margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
     }
     .review-stars { display: flex; gap: 2px; }
     .review-stars svg { width: 16px; height: 16px; color: #F59E0B; }
-    .review-quote-icon { color: rgba(var(--primary-rgb),0.15); }
+    .review-quote-icon { color: rgba(217,119,6,0.15); }
     .review-quote-icon svg { width: 28px; height: 28px; }
     .review-text {
-      font-size: 15px; line-height: 1.7;
-      color: var(--text); margin-bottom: 20px;
-      font-style: italic;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--charcoal);
+      margin-bottom: 18px;
     }
     .review-author {
-      font-weight: 600; font-size: 13px; color: var(--text-muted);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
-    /* ═══════════════════════════════════════════
-       CONTACT / CTA
-    ═══════════════════════════════════════════ */
+    /* CONTACT / CTA */
     #contact {
-      background: var(--primary-dark);
+      background: var(--charcoal);
       position: relative;
       overflow: hidden;
     }
     #contact::before {
       content: '';
-      position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='2' fill='rgba(255,255,255,0.05)'/%3E%3C/g%3E%3C/svg%3E");
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 60px,
+        rgba(255,255,255,0.015) 60px,
+        rgba(255,255,255,0.015) 61px
+      );
     }
     .contact-inner {
-      position: relative; z-index: 2;
+      position: relative;
+      z-index: 2;
       text-align: center;
-      max-width: 700px; margin: 0 auto;
+      max-width: 720px;
+      margin: 0 auto;
     }
-    #contact .section-tag { color: var(--accent); }
-    #contact .section-tag::before { background: var(--accent); }
-    #contact h2 { color: var(--white); margin-bottom: 16px; }
-    #contact .section-sub { color: rgba(255,255,255,0.7); margin: 0 auto 48px; }
+    #contact .section-tag { color: var(--amber); }
+    #contact .section-tag::before { background: var(--amber); }
+    #contact h2 { color: var(--white); margin-bottom: 14px; }
+    #contact .section-desc { color: rgba(255,255,255,0.5); margin: 0 auto 48px; }
     .contact-cards {
-      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
       margin-bottom: 40px;
     }
     .contact-card {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
-      backdrop-filter: blur(12px);
-      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
       padding: 24px 28px;
       min-width: 180px;
       text-align: center;
-      transition: background var(--transition), transform var(--transition);
+      transition: background var(--transition), transform var(--transition), border-color var(--transition);
     }
     .contact-card:hover {
-      background: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.08);
       transform: translateY(-3px);
+      border-color: var(--amber);
     }
     .contact-card-icon {
-      width: 44px; height: 44px;
-      background: rgba(255,255,255,0.12);
+      width: 44px;
+      height: 44px;
+      background: rgba(217,119,6,0.1);
       border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
     }
-    .contact-card-icon svg { width: 22px; height: 22px; color: var(--accent); }
-    .contact-card-label { font-size: 12px; color: rgba(255,255,255,0.55); font-weight: 500; margin-bottom: 4px; }
-    .contact-card-value { font-size: 15px; font-weight: 600; color: var(--white); }
+    .contact-card-icon svg { width: 20px; height: 20px; color: var(--amber); }
+    .contact-card-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .contact-card-value {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+    }
     .contact-card-value a { color: var(--white); }
     .btn-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--white);
-      color: var(--primary-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--amber);
+      color: var(--white);
       padding: 18px 40px;
-      border-radius: var(--radius-md);
-      font-weight: 700; font-size: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-      transition: transform var(--transition), box-shadow var(--transition);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 8px 32px rgba(217,119,6,0.35);
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
     }
-    .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
+    .btn-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(217,119,6,0.4);
+      background: #B45309;
+    }
     .btn-cta svg { width: 20px; height: 20px; }
 
-    /* ═══════════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════════ */
+    /* FOOTER */
     footer {
-      background: #0A0A0A;
-      color: rgba(255,255,255,0.4);
-      padding: 28px clamp(20px, 5vw, 80px);
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      background: #111111;
+      color: rgba(255,255,255,0.35);
+      padding: 24px clamp(20px, 5vw, 80px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
       font-size: 13px;
+      border-top: 3px solid var(--amber);
     }
-    footer strong { color: rgba(255,255,255,0.7); }
-    footer a { color: rgba(255,255,255,0.4); transition: color var(--transition); }
-    footer a:hover { color: rgba(255,255,255,0.7); }
+    footer strong { color: rgba(255,255,255,0.6); }
+    footer a { color: rgba(255,255,255,0.35); transition: color var(--transition); }
+    footer a:hover { color: var(--amber); }
 
-    /* ═══════════════════════════════════════════
-       SCROLL REVEAL ANIMATION
-    ═══════════════════════════════════════════ */
+    /* SCROLL REVEAL */
     .reveal {
       opacity: 0;
       transform: translateY(24px);
@@ -534,24 +858,32 @@
     .reveal-delay-4 { transition-delay: 0.32s; }
     .reveal-delay-5 { transition-delay: 0.40s; }
 
-    /* ═══════════════════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════════════════ */
+    /* RESPONSIVE */
     @media (max-width: 1024px) {
       .about-grid { grid-template-columns: 1fr; gap: 48px; }
-      .about-image { aspect-ratio: 16/9; }
+      .about-image-wrap { aspect-ratio: 16/9; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:first-child { grid-column: span 2; grid-row: span 1; aspect-ratio: 21/9; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .usp-item { padding: 10px 16px; border-right: none; border-bottom: 1px solid var(--border); }
+      .hamburger { display: flex; }
+      .hero h1 { font-size: 3rem; }
+      .usp-strip { flex-direction: column; align-items: stretch; padding: 0; }
+      .usp-item { border-right: none; border-bottom: 1px solid var(--concrete-dark); justify-content: center; }
       .usp-item:last-child { border-bottom: none; }
-      .usp-strip { flex-direction: column; align-items: center; padding: 12px 20px; }
+      .stat-bar-item { padding: 20px 24px; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item:first-child { grid-column: span 1; aspect-ratio: 16/9; }
       footer { flex-direction: column; text-align: center; }
     }
     @media (max-width: 480px) {
-      .hero h1 { font-size: 2rem; }
+      .hero h1 { font-size: 2.4rem; }
       .hero-actions { flex-direction: column; }
-      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+      .btn-amber, .btn-ghost { width: 100%; justify-content: center; }
+      .stats-bar-inner { flex-direction: column; }
+      .stat-bar-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 16px; }
+      .stat-bar-item:last-child { border-bottom: none; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -561,51 +893,95 @@
 </head>
 <body>
 
-<!-- Announcement Banner -->
-<div class="banner">
-  Dit is een gratis website concept voor <strong>Klusbedrijf Enschede</strong> — gemaakt door Solidmotion.
-  Interesse? <a href="mailto:michiel@solidmotion.nl">Stuur ons een bericht</a>
+<!-- Announcement Bar -->
+<div class="announce-bar">
+  Gratis website concept voor <strong>Klusbedrijf Enschede</strong> door Solidmotion.
+  <a href="mailto:michiel@solidmotion.nl">Neem contact op</a>
 </div>
 
 <!-- Navigation -->
 <nav class="nav">
-  <a class="nav-logo" href="#">Klusbedrijf Enschede</a>
+  <a class="nav-logo" href="#">
+    
+    <span class="nav-logo-text">Klusbedrijf Enschede</span>
+    
+  </a>
   <ul class="nav-links">
     <li><a href="#diensten">Diensten</a></li>
     <li><a href="#over-ons">Over ons</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li>
-      <a class="nav-cta" href="#contact">
-        Bel 06 51831146
+      <a class="nav-cta-btn" href="#contact">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
+        06 51831146
       </a>
     </li>
   </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.add('active')" aria-label="Menu openen">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- Hero -->
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+  <button class="mobile-menu-close" onclick="this.parentElement.classList.remove('active')" aria-label="Menu sluiten">&times;</button>
+  <a href="#diensten" onclick="this.parentElement.classList.remove('active')">Diensten</a>
+  <a href="#over-ons" onclick="this.parentElement.classList.remove('active')">Over ons</a>
+  <a href="#reviews" onclick="this.parentElement.classList.remove('active')">Reviews</a>
+  <a href="#contact" onclick="this.parentElement.classList.remove('active')">Contact</a>
+  
+  <a href="tel:06 51831146" onclick="this.parentElement.classList.remove('active')" style="color: var(--amber);">06 51831146</a>
+  
+</div>
+
+<!-- Hero - Full Bleed -->
 <header class="hero">
-  <div class="hero-bg" style="background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEF_Ni0GoGudx0fkluLBT9lH6FHYQ6-8J-J482tvFnELWp8aqDqD37ZobVJkOtEr98D5lddYKmdg_mRCJYxOIYywvOnOnGjPgvfD1osy5GTpoOx6lKlNvr-Y7egXWesNpgv8ENCm8J6lnI6TxIDeO7HzpB9UuJW1xPZIY2XoQqJfGN2w7-WX802A0hrJT0DLC_QwW2ZvKVR7_Qn0UBbZpxlOnfVUOQIEXtjpR1-G5Su5pAnsjdZUu6_YvmQV2BjBkvIkF3VcRFMC6-BevFPO0ZcZFwbjbiP8EHMEwti7ZFCdoA&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14);"></div>
+  <div class="hero-bg" style="background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AU_ZVEF_Ni0GoGudx0fkluLBT9lH6FHYQ6-8J-J482tvFnELWp8aqDqD37ZobVJkOtEr98D5lddYKmdg_mRCJYxOIYywvOnOnGjPgvfD1osy5GTpoOx6lKlNvr-Y7egXWesNpgv8ENCm8J6lnI6TxIDeO7HzpB9UuJW1xPZIY2XoQqJfGN2w7-WX802A0hrJT0DLC_QwW2ZvKVR7_Qn0UBbZpxlOnfVUOQIEXtjpR1-G5Su5pAnsjdZUu6_YvmQV2BjBkvIkF3VcRFMC6-BevFPO0ZcZFwbjbiP8EHMEwti7ZFCdoA&key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14);"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Aannemer &middot; Enschede
+    <div class="hero-tag">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Aannemer in Enschede
     </div>
     <h1>De aannemer van Enschede</h1>
     <p class="hero-sub">Betrouwbaar, vakkundig en altijd persoonlijk.</p>
     <div class="hero-actions">
       
-      <a class="btn-primary" href="tel:06 51831146">
+      <a class="btn-amber" href="tel:06 51831146">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-        06 51831146
+        Bel 06 51831146
       </a>
       
       <a class="btn-ghost" href="#diensten">
-        Bekijk diensten
+        Bekijk projecten
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
   </div>
 </header>
+
+<!-- Stats Bar -->
+
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    
+    <div class="stat-bar-item">
+      <div class="stat-bar-value">10+</div>
+      <div class="stat-bar-label">Jaar ervaring</div>
+    </div>
+    
+    <div class="stat-bar-item">
+      <div class="stat-bar-value">500+</div>
+      <div class="stat-bar-label">Tevreden klanten</div>
+    </div>
+    
+    <div class="stat-bar-item">
+      <div class="stat-bar-value">100%</div>
+      <div class="stat-bar-label">Kwaliteitsgarantie</div>
+    </div>
+    
+  </div>
+</div>
+
 
 <!-- USP Strip -->
 <div class="usp-strip">
@@ -636,45 +1012,57 @@
 <section id="diensten">
   <div class="container">
     <div class="reveal">
-      <span class="section-tag">Wat wij doen</span>
+      <span class="section-tag">Onze diensten</span>
       <h2>Onze diensten</h2>
-      <p class="section-sub">Wat kunnen we voor u betekenen?</p>
+      <p class="section-desc">Wat kunnen we voor u betekenen?</p>
     </div>
     <div class="services-grid">
       
       <div class="service-card reveal reveal-delay-1">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-        <h3>Verbouwing</h3>
+        <div class="service-card-header">
+          <h3>Verbouwing</h3>
+          <span class="service-price-tag"></span>
+        </div>
         <p>Professioneel verbouwing uitgevoerd met oog voor kwaliteit en detail.</p>
       </div>
       
       <div class="service-card reveal reveal-delay-2">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
-        <h3>Renovatie</h3>
+        <div class="service-card-header">
+          <h3>Renovatie</h3>
+          <span class="service-price-tag"></span>
+        </div>
         <p>Professioneel renovatie uitgevoerd met oog voor kwaliteit en detail.</p>
       </div>
       
       <div class="service-card reveal reveal-delay-3">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
-        <h3>Aanbouw</h3>
+        <div class="service-card-header">
+          <h3>Aanbouw</h3>
+          <span class="service-price-tag"></span>
+        </div>
         <p>Professioneel aanbouw uitgevoerd met oog voor kwaliteit en detail.</p>
       </div>
       
       <div class="service-card reveal reveal-delay-4">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
-        <h3>Badkamer</h3>
+        <div class="service-card-header">
+          <h3>Badkamer</h3>
+          <span class="service-price-tag"></span>
+        </div>
         <p>Professioneel badkamer uitgevoerd met oog voor kwaliteit en detail.</p>
       </div>
       
       <div class="service-card reveal reveal-delay-5">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
-        <h3>Keuken</h3>
+        <div class="service-card-header">
+          <h3>Keuken</h3>
+          <span class="service-price-tag"></span>
+        </div>
         <p>Professioneel keuken uitgevoerd met oog voor kwaliteit en detail.</p>
       </div>
       
       <div class="service-card reveal reveal-delay-6">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h3>Dakkapel</h3>
+        <div class="service-card-header">
+          <h3>Dakkapel</h3>
+          <span class="service-price-tag"></span>
+        </div>
         <p>Professioneel dakkapel uitgevoerd met oog voor kwaliteit en detail.</p>
       </div>
       
@@ -682,45 +1070,55 @@
   </div>
 </section>
 
+<!-- Full-width Photo Break -->
+
+<div class="photo-break">
+  <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEHcf0Fav-uGF1mkApQ7Sq_iFW6q0DhEW8fiiO_iSSkqLMi4G-w8E7V0HIc02R0qDtAdT5nvjliP7BYGUliVplazCpdalKpf5gdSacDEN0ID8dr62rr0X3o0E6x68ecoIpsJE-bVSTo3Cm88CjQU5LxdOqX2mVvAiGiT6n0uH0-jxOHVpLK3BR9glwWa50xDIMMj7ybpx_0fHK0ZnFg8q38fG6QPPQlO7X85KJXNSMtRrQXyUVGkMSYeIw10hd1tvOFva4OWqiR39h5-ZPzBKLt1qAtX3QhlPuvPa1gGoqA-8g&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Klusbedrijf Enschede project" loading="lazy" />
+  <div class="photo-break-overlay">
+    <div class="photo-break-text">Vakmanschap <span>op maat</span></div>
+  </div>
+</div>
+
+
 <!-- About -->
 <section id="over-ons">
   <div class="container">
     <div class="about-grid">
-      <div class="about-image reveal">
+      <div class="about-image-wrap reveal">
         
-        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEHcf0Fav-uGF1mkApQ7Sq_iFW6q0DhEW8fiiO_iSSkqLMi4G-w8E7V0HIc02R0qDtAdT5nvjliP7BYGUliVplazCpdalKpf5gdSacDEN0ID8dr62rr0X3o0E6x68ecoIpsJE-bVSTo3Cm88CjQU5LxdOqX2mVvAiGiT6n0uH0-jxOHVpLK3BR9glwWa50xDIMMj7ybpx_0fHK0ZnFg8q38fG6QPPQlO7X85KJXNSMtRrQXyUVGkMSYeIw10hd1tvOFva4OWqiR39h5-ZPzBKLt1qAtX3QhlPuvPa1gGoqA-8g&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Klusbedrijf Enschede — Enschede" loading="lazy" width="600" height="750" />
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEF_Ni0GoGudx0fkluLBT9lH6FHYQ6-8J-J482tvFnELWp8aqDqD37ZobVJkOtEr98D5lddYKmdg_mRCJYxOIYywvOnOnGjPgvfD1osy5GTpoOx6lKlNvr-Y7egXWesNpgv8ENCm8J6lnI6TxIDeO7HzpB9UuJW1xPZIY2XoQqJfGN2w7-WX802A0hrJT0DLC_QwW2ZvKVR7_Qn0UBbZpxlOnfVUOQIEXtjpR1-G5Su5pAnsjdZUu6_YvmQV2BjBkvIkF3VcRFMC6-BevFPO0ZcZFwbjbiP8EHMEwti7ZFCdoA&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Klusbedrijf Enschede - Enschede" loading="lazy" width="600" height="750" />
         
         
-        <div class="about-image-badge">
-          <div class="badge-icon">
+        <div class="about-rating-badge">
+          <div class="about-rating-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
           </div>
           <div>
-            <div class="badge-value">5</div>
-            <div class="badge-text">16 beoordelingen</div>
+            <div class="about-rating-val">5</div>
+            <div class="about-rating-count">16 beoordelingen</div>
           </div>
         </div>
         
       </div>
       <div class="about-content reveal reveal-delay-2">
-        <span class="section-tag">Ons verhaal</span>
+        <span class="section-tag">Over ons</span>
         <h2>Over Klusbedrijf Enschede</h2>
         <p></p>
-        <div class="stats-row">
+        <div class="about-stats">
           
-          <div class="stat-item">
-            <div class="stat-number">10+</div>
-            <div class="stat-label">Jaar ervaring</div>
+          <div>
+            <div class="about-stat-number">10+</div>
+            <div class="about-stat-label">Jaar ervaring</div>
           </div>
           
-          <div class="stat-item">
-            <div class="stat-number">500+</div>
-            <div class="stat-label">Tevreden klanten</div>
+          <div>
+            <div class="about-stat-number">500+</div>
+            <div class="about-stat-label">Tevreden klanten</div>
           </div>
           
-          <div class="stat-item">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Kwaliteitsgarantie</div>
+          <div>
+            <div class="about-stat-number">100%</div>
+            <div class="about-stat-label">Kwaliteitsgarantie</div>
           </div>
           
         </div>
@@ -734,6 +1132,37 @@
     </div>
   </div>
 </section>
+
+<!-- Photos Gallery -->
+
+<section class="gallery-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">Projecten</span>
+      <h2>Ons werk spreekt voor zich</h2>
+    </div>
+    <div class="gallery-grid">
+      
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEF_Ni0GoGudx0fkluLBT9lH6FHYQ6-8J-J482tvFnELWp8aqDqD37ZobVJkOtEr98D5lddYKmdg_mRCJYxOIYywvOnOnGjPgvfD1osy5GTpoOx6lKlNvr-Y7egXWesNpgv8ENCm8J6lnI6TxIDeO7HzpB9UuJW1xPZIY2XoQqJfGN2w7-WX802A0hrJT0DLC_QwW2ZvKVR7_Qn0UBbZpxlOnfVUOQIEXtjpR1-G5Su5pAnsjdZUu6_YvmQV2BjBkvIkF3VcRFMC6-BevFPO0ZcZFwbjbiP8EHMEwti7ZFCdoA&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Klusbedrijf Enschede project 1" loading="lazy" width="400" height="300" />
+      </div>
+      
+      <div class="gallery-item reveal reveal-delay-2">
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEHcf0Fav-uGF1mkApQ7Sq_iFW6q0DhEW8fiiO_iSSkqLMi4G-w8E7V0HIc02R0qDtAdT5nvjliP7BYGUliVplazCpdalKpf5gdSacDEN0ID8dr62rr0X3o0E6x68ecoIpsJE-bVSTo3Cm88CjQU5LxdOqX2mVvAiGiT6n0uH0-jxOHVpLK3BR9glwWa50xDIMMj7ybpx_0fHK0ZnFg8q38fG6QPPQlO7X85KJXNSMtRrQXyUVGkMSYeIw10hd1tvOFva4OWqiR39h5-ZPzBKLt1qAtX3QhlPuvPa1gGoqA-8g&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Klusbedrijf Enschede project 2" loading="lazy" width="400" height="300" />
+      </div>
+      
+      <div class="gallery-item reveal reveal-delay-3">
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEHOfGCELqqfLkuWnC-XVFJsN5r5uEEStQUXQa0FH_t4kblq9XyIjYNZKrjvPo7gpY-cGMxizvhBoLEBitm9doPH_Mg1QZY4-0cJ2ATe9tas0vp5fBo53siUGBo7X2siC0KRIkFbdNPxpnE2YiAgscpcJNLNJ6xd0MzLaXghs2O16jOV_6JUqt2zqbOlTfPrx5KMHo87QcTaKhn5PX0nFiwXe7UPD0yF7Y1yW0GTtNM4I6es72Lx1GngR0fhTiq7eU3H5B_9rkkrGwiCFnflcYf6PgQYk9StZDW30CIYnMyfSg&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Klusbedrijf Enschede project 3" loading="lazy" width="400" height="300" />
+      </div>
+      
+      <div class="gallery-item reveal reveal-delay-4">
+        <img src="http://www.klusbedrijfenschede.nl/" alt="Klusbedrijf Enschede project 4" loading="lazy" width="400" height="300" />
+      </div>
+      
+    </div>
+  </div>
+</section>
+
 
 <!-- Reviews -->
 
@@ -776,7 +1205,7 @@
           </div>
         </div>
         <p class="review-text">"Martijn heeft onze badkamer opgeknapt door het kitwerk te vervangen en een nieuw toilet en douchekraan te plaatsen. Hij werkt zorgvuldig, vakkundig, en communiceert duidelijk over "</p>
-        <div class="review-author">— Wouter</div>
+        <div class="review-author">Wouter</div>
       </div>
       
       <div class="review-card reveal reveal-delay-2">
@@ -800,7 +1229,7 @@
         </div>
         <p class="review-text">"Geweldig geholpen door Martijn.  Zaterdagsmorgens langsgekomen om te kijken en een prijsopgaaf te doen en zaterdagmiddag had hij het al gerepareerd.  Ik zou deze zeker aanbevelen.
 "</p>
-        <div class="review-author">— lange hond</div>
+        <div class="review-author">lange hond</div>
       </div>
       
       <div class="review-card reveal reveal-delay-3">
@@ -823,7 +1252,7 @@
           </div>
         </div>
         <p class="review-text">"Dit klussenbedrijf luistert goed naar je wensen, geeft vakkundig advies en werkt nauwkeurig en opgeruimd! De badkamer is precies geworden zoals het moodboard en de 3D tekening liet"</p>
-        <div class="review-author">— Selma van Ree</div>
+        <div class="review-author">Selma van Ree</div>
       </div>
       
     </div>
@@ -836,7 +1265,7 @@
   <div class="contact-inner">
     <span class="section-tag">Neem contact op</span>
     <h2>Klaar om te beginnen?</h2>
-    <p class="section-sub">Neem vandaag nog contact op voor een vrijblijvend gesprek.</p>
+    <p class="section-desc">Neem vandaag nog contact op voor een vrijblijvend gesprek.</p>
     <div class="contact-cards">
       
       <div class="contact-card">
@@ -869,7 +1298,7 @@
     
     <a class="btn-cta" href="tel:06 51831146">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-      Nu bellen: 06 51831146
+      Bel nu: 06 51831146
     </a>
     
   </div>
@@ -877,15 +1306,14 @@
 
 <!-- Footer -->
 <footer>
-  <span>&copy; 2025 <strong>Klusbedrijf Enschede</strong> &mdash; Enschede</span>
-  <span>Website concept door <strong>Solidmotion</strong> &middot; <a href="mailto:michiel@solidmotion.nl">michiel@solidmotion.nl</a></span>
+  <span>&copy; 2025 <strong>Klusbedrijf Enschede</strong> &middot; Enschede</span>
+  <span>Website ontworpen door <strong>Solidmotion</strong> &middot; <a href="mailto:michiel@solidmotion.nl">michiel@solidmotion.nl</a></span>
 </footer>
 
 <script>
-// Scroll reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
