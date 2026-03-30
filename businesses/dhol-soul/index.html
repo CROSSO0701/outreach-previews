@@ -3,1394 +3,1151 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Proef de échte smaken van India – dineren, afhalen of laten bezorgen." />
-  <title>Dhol &amp; Soul — Restaurant Eindhoven</title>
+  <meta name="description" content="Betrouwbaar, vakkundig en altijd persoonlijk." />
+  <title>Dhol &amp; Soul — Restaurant in Eindhoven</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet" />
   <style>
-    /* ═══════════════════════════════════════════
-       DESIGN TOKENS — WARM ITALIAN TRATTORIA
-    ═══════════════════════════════════════════ */
     :root {
-      --primary:       #0077b5;
-      --primary-dark:  #005987;
-      --primary-rgb:   0,119,181;
-      --accent:        #FBBF24;
-      --bg:            #FFF8F8;
-      --text:          #1C0404;
-      --white:         #FFFFFF;
-      --cream:         #FAF6F1;
-      --cream-dark:    #F0E9DF;
-      --warm-black:    #1A1412;
-      --warm-dark:     #2C2420;
-      --surface:       #FFFFFF;
-      --text-muted:    #7A6E65;
-      --border:        rgba(42,30,22,0.10);
-      --border-warm:   rgba(42,30,22,0.15);
-      --gold:          #C8A96E;
-      --gold-light:    #E2CFA0;
-      --shadow-sm:     0 1px 4px rgba(26,20,18,0.06);
-      --shadow-md:     0 6px 20px rgba(26,20,18,0.08);
-      --shadow-lg:     0 20px 50px rgba(26,20,18,0.12);
-      --shadow-warm:   0 12px 40px rgba(var(--primary-rgb),0.15);
-      --radius-sm:     6px;
-      --radius-md:     12px;
-      --radius-lg:     18px;
-      --radius-xl:     24px;
-      --font-display:  'Playfair Display', Georgia, 'Times New Roman', serif;
-      --font-body:     'DM Sans', system-ui, -apple-system, sans-serif;
-      --transition:    0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --primary:      #0077b5;
+      --primary-dark: #005987;
+      --primary-rgb:  0,119,181;
+      --accent:       #FBBF24;
+      --bg:           #FFF8F8;
+      --text:         #1C0404;
+      --cream:        #FAF6F1;
+      --warm-black:   #1A1412;
+      --text-muted:   #6B5E54;
+      --border:       rgba(26,20,18,0.12);
+      --gold:         #C8A96E;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+      --ease:         cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font-body);
       font-size: 16px;
-      color: var(--text);
+      color: var(--warm-black);
       background: var(--cream);
-      line-height: 1.65;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     img { max-width: 100%; height: auto; display: block; }
     a { color: inherit; text-decoration: none; }
 
-    /* ═══════════════════════════════════════════
-       DECORATIVE ELEMENTS
-    ═══════════════════════════════════════════ */
-    .ornament {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 20px;
+    /* ——— REVEAL ANIMATION ——— */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
     }
-    .ornament::before,
-    .ornament::after {
-      content: '';
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
-    }
-    .ornament svg {
-      width: 20px;
-      height: 20px;
-      color: var(--gold);
-      flex-shrink: 0;
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* ═══════════════════════════════════════════
-       ANNOUNCEMENT BANNER
-    ═══════════════════════════════════════════ */
-    .banner {
-      background: var(--warm-black);
-      color: rgba(255,255,255,0.85);
-      text-align: center;
-      padding: 10px 20px;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.03em;
-    }
-    .banner strong { color: var(--gold-light); }
-    .banner a {
-      color: var(--gold-light);
-      font-weight: 600;
-      border-bottom: 1px solid rgba(200,169,110,0.3);
-      transition: border-color var(--transition);
-    }
-    .banner a:hover { border-color: var(--gold-light); }
-
-    /* ═══════════════════════════════════════════
-       NAVIGATION
-    ═══════════════════════════════════════════ */
+    /* ——— NAVIGATION ——— */
     .nav {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      background: rgba(250,246,241,0.88);
-      border-bottom: 1px solid var(--border);
-      padding: 0 clamp(20px, 5vw, 80px);
+      padding: 0 48px;
       height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease);
     }
-    .nav-logo {
+    .nav--solid {
+      background: #fff;
+      box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+    }
+    .nav__logo {
       font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--warm-black);
-      letter-spacing: -0.01em;
+      font-size: 22px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.02em;
+      transition: color 0.4s var(--ease);
     }
-    .nav-links {
+    .nav--solid .nav__logo { color: var(--warm-black); }
+
+    .nav__links {
       display: flex;
       gap: 36px;
       list-style: none;
-      align-items: center;
     }
-    .nav-links a {
+    .nav__links a {
       font-size: 14px;
       font-weight: 500;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
-      transition: color var(--transition);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s var(--ease);
       position: relative;
     }
-    .nav-links a:not(.nav-cta)::after {
+    .nav__links a::after {
       content: '';
       position: absolute;
       bottom: -4px;
       left: 0;
       width: 0;
       height: 1.5px;
-      background: var(--primary);
-      transition: width var(--transition);
+      background: var(--accent);
+      transition: width 0.3s var(--ease);
     }
-    .nav-links a:not(.nav-cta):hover::after { width: 100%; }
-    .nav-links a:hover { color: var(--primary); }
-    .nav-cta {
-      background: var(--primary) !important;
-      color: var(--white) !important;
-      padding: 10px 24px;
-      border-radius: var(--radius-sm);
-      font-weight: 600 !important;
-      font-size: 14px !important;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition) !important;
-      box-shadow: 0 2px 8px rgba(var(--primary-rgb),0.25);
-    }
-    .nav-cta:hover {
-      background: var(--primary-dark) !important;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(var(--primary-rgb),0.35) !important;
-    }
-    .nav-cta::after { display: none !important; }
+    .nav__links a:hover::after { width: 100%; }
+    .nav--solid .nav__links a { color: var(--warm-black); }
 
-    /* Mobile menu toggle */
-    .nav-toggle {
+    .nav__cta {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 28px;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      color: #fff;
+      transition: all 0.3s var(--ease);
+    }
+    .nav__cta:hover {
+      background: #fff;
+      color: var(--warm-black);
+      border-color: #fff;
+    }
+    .nav--solid .nav__cta {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .nav--solid .nav__cta:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Hamburger */
+    .nav__hamburger {
       display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
       background: none;
       border: none;
-      cursor: pointer;
-      padding: 8px;
+      padding: 4px;
+      z-index: 110;
     }
-    .nav-toggle span {
+    .nav__hamburger span {
       display: block;
-      width: 22px;
+      width: 24px;
       height: 2px;
-      background: var(--warm-black);
-      margin: 5px 0;
-      transition: var(--transition);
-      border-radius: 2px;
+      background: #fff;
+      transition: all 0.3s var(--ease);
     }
+    .nav--solid .nav__hamburger span { background: var(--warm-black); }
+    .nav__hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav__hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav__hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-    /* ═══════════════════════════════════════════
-       HERO — Full-bleed cinematic
-    ═══════════════════════════════════════════ */
+    .nav__mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26,20,18,0.97);
+      z-index: 105;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: #fff;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+    .nav__mobile a:hover { color: var(--accent); }
+
+    /* ——— HERO ——— */
     .hero {
       position: relative;
-      min-height: 100vh;
+      height: 100vh;
+      min-height: 600px;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
       text-align: center;
+      background: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AU_ZVEGEXi0XcrVJybD2MOaUPIx-PjcTL4uHg9SoO9eNnCOG7jRqI7RqsNacU_ZgoiUKLFI1dxO7lOfXcz0_WEX2gC91b6JshX9iQ7zRm-XSQn30eHyQeyZqZr7KLwiomBq-Nyi4shS7vRP0XuIKS9hMOpCqJODZemvv1Oxy-T2zUvYhVUdQoSINksyVlx6a-hNh5MLkXStaZ2sqMy30NUoh8Vw9sHTOw3fdbqqVuNcNCpCEEgrn4OwsvjNj6HihklAHP66VBVaN2fwpgcBF46RXkTcvPq6JhW3eYRfHEaSiuhnojg&key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14) center/cover no-repeat;
+      overflow: hidden;
     }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AU_ZVEGEXi0XcrVJybD2MOaUPIx-PjcTL4uHg9SoO9eNnCOG7jRqI7RqsNacU_ZgoiUKLFI1dxO7lOfXcz0_WEX2gC91b6JshX9iQ7zRm-XSQn30eHyQeyZqZr7KLwiomBq-Nyi4shS7vRP0XuIKS9hMOpCqJODZemvv1Oxy-T2zUvYhVUdQoSINksyVlx6a-hNh5MLkXStaZ2sqMy30NUoh8Vw9sHTOw3fdbqqVuNcNCpCEEgrn4OwsvjNj6HihklAHP66VBVaN2fwpgcBF46RXkTcvPq6JhW3eYRfHEaSiuhnojg&key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14);
-      transform: scale(1.05);
-      transition: transform 12s cubic-bezier(0.25, 0.1, 0.25, 1);
-    }
-    .hero-bg::after {
+    .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0,59,90,0.65);
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.35) 0%,
+        rgba(0,0,0,0.55) 50%,
+        rgba(0,0,0,0.7) 100%
+      );
     }
-    .hero:hover .hero-bg { transform: scale(1.0); }
-
-    .hero-content {
+    .hero__content {
       position: relative;
       z-index: 2;
-      max-width: 820px;
-      padding: clamp(40px, 8vw, 100px) clamp(24px, 6vw, 60px);
+      max-width: 720px;
+      padding: 0 24px;
     }
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--gold-light);
-      font-family: var(--font-body);
-      font-size: 13px;
+    .hero__tag {
+      display: inline-block;
+      font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 32px;
-    }
-    .hero-eyebrow::before,
-    .hero-eyebrow::after {
-      content: '';
-      width: 32px;
-      height: 1px;
-      background: var(--gold);
-      opacity: 0.6;
-    }
-
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.6rem, 6vw, 5rem);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.08;
-      letter-spacing: -0.02em;
+      color: var(--accent);
       margin-bottom: 24px;
-      text-shadow: 0 4px 30px rgba(0,0,0,0.35);
     }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-    .hero-sub {
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-      color: rgba(255,255,255,0.78);
-      max-width: 540px;
-      margin: 0 auto 44px;
-      line-height: 1.7;
-      font-weight: 300;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.2);
-    }
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--primary);
-      color: var(--white) !important;
-      padding: 17px 36px;
-      border-radius: var(--radius-sm);
-      font-weight: 600;
-      font-size: 15px;
-      letter-spacing: 0.02em;
-      box-shadow: 0 8px 28px rgba(var(--primary-rgb),0.4);
-      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
-      cursor: pointer;
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 40px rgba(var(--primary-rgb),0.5);
-      background: var(--primary-dark);
-    }
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border: 1.5px solid rgba(255,255,255,0.4);
-      color: var(--white);
-      padding: 16px 32px;
-      border-radius: var(--radius-sm);
-      font-weight: 500;
-      font-size: 15px;
-      letter-spacing: 0.02em;
-      transition: border-color var(--transition), background var(--transition);
-    }
-    .btn-ghost:hover {
-      border-color: rgba(255,255,255,0.8);
-      background: rgba(255,255,255,0.1);
-    }
-    .btn-primary svg, .btn-ghost svg { width: 18px; height: 18px; flex-shrink: 0; }
-
-    /* ═══════════════════════════════════════════
-       USP STRIP
-    ═══════════════════════════════════════════ */
-    .usp-strip {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 0 clamp(20px, 5vw, 80px);
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .usp-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 22px 32px;
-      border-right: 1px solid var(--border);
-      font-weight: 500;
-      font-size: 14px;
-      color: var(--text);
-    }
-    .usp-item:last-child { border-right: none; }
-    .usp-icon {
-      width: 38px;
-      height: 38px;
-      background: var(--cream);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .usp-icon svg { width: 18px; height: 18px; color: var(--primary); }
-
-    /* ═══════════════════════════════════════════
-       SECTION SHARED
-    ═══════════════════════════════════════════ */
-    section {
-      padding: clamp(70px, 10vw, 120px) clamp(20px, 5vw, 80px);
-    }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .section-header {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 56px;
-    }
-    h2 {
+    .hero__title {
       font-family: var(--font-display);
-      font-size: clamp(1.9rem, 3.8vw, 2.8rem);
-      font-weight: 700;
-      letter-spacing: -0.015em;
-      line-height: 1.15;
-      color: var(--warm-black);
-      margin-bottom: 14px;
+      font-size: clamp(42px, 6vw, 80px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 20px;
     }
-    h2 em {
+    .hero__title em {
       font-style: italic;
-      color: var(--primary);
+      font-weight: 400;
     }
-    .section-sub {
+    .hero__sub {
       font-size: 17px;
-      color: var(--text-muted);
-      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+    .hero__btn {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 16px 48px;
+      background: var(--accent);
+      color: #fff;
+      transition: all 0.3s var(--ease);
+    }
+    .hero__btn:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+    .hero__scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero__scroll span {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .hero__scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; transform: scaleY(1); }
+      50% { opacity: 0.4; transform: scaleY(0.6); }
     }
 
-    /* ═══════════════════════════════════════════
-       MENU / SERVICES — Real menu card style
-    ═══════════════════════════════════════════ */
-    #menu {
-      background: var(--cream);
+    /* ——— SECTION UTILITIES ——— */
+    .section {
+      padding: 100px 24px;
     }
-    .menu-card {
-      background: var(--white);
-      border: 1px solid var(--border-warm);
-      border-radius: var(--radius-lg);
-      padding: clamp(36px, 5vw, 64px);
-      max-width: 780px;
+    .section--cream { background: var(--cream); }
+    .section--white { background: #fff; }
+    .section--dark {
+      background: var(--warm-black);
+      color: rgba(255,255,255,0.85);
+    }
+    .container {
+      max-width: 1120px;
       margin: 0 auto;
-      box-shadow: var(--shadow-md);
+    }
+    .section__label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .section__title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .section--dark .section__title { color: #fff; }
+    .section__divider {
+      width: 48px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    /* ——— ABOUT (Asymmetric) ——— */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about__image-wrap {
+      position: relative;
+    }
+    .about__image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+    }
+    .about__badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 110px;
+      height: 110px;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    .about__badge-value {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .about__badge-label {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    .about__text p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+    .about__signature {
+      margin-top: 32px;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-style: italic;
+      color: var(--warm-black);
+    }
+
+    /* ——— STATS BAR ——— */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat {
+      background: #fff;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .stat__value {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat__label {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ——— MENU CARD ——— */
+    .menu-card {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 56px 48px;
+      background: #fff;
+      border: 1px solid var(--border);
       position: relative;
     }
     .menu-card::before {
       content: '';
       position: absolute;
-      inset: 8px;
-      border: 1px solid var(--border);
-      border-radius: calc(var(--radius-lg) - 4px);
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      border: 1px solid rgba(200,169,110,0.25);
       pointer-events: none;
     }
-    .menu-card-header {
+    .menu-card__header {
       text-align: center;
       margin-bottom: 40px;
-      padding-bottom: 32px;
-      border-bottom: 1px solid var(--border);
     }
-    .menu-card-header h2 {
+    .menu-card__title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
       margin-bottom: 8px;
     }
-    .menu-card-header .section-sub {
-      max-width: 420px;
-      margin: 0 auto;
+    .menu-card__sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-style: italic;
     }
-
-    .menu-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(42,30,22,0.06);
-      transition: background var(--transition);
-    }
-    .menu-item:last-child { border-bottom: none; }
-    .menu-item:hover {
-      background: var(--cream);
-      margin: 0 -16px;
-      padding-left: 16px;
-      padding-right: 16px;
-      border-radius: var(--radius-sm);
-    }
-    .menu-item-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--cream);
-      border-radius: 50%;
+    .menu-card__ornament {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
+      gap: 14px;
+      margin-top: 20px;
     }
-    .menu-item-icon svg {
-      width: 20px;
-      height: 20px;
-      color: var(--primary);
+    .menu-card__ornament::before,
+    .menu-card__ornament::after {
+      content: '';
+      width: 50px;
+      height: 1px;
+      background: var(--gold);
     }
-    .menu-item-body {
-      flex: 1;
-      min-width: 0;
+    .menu-card__ornament-dot {
+      width: 6px;
+      height: 6px;
+      border: 1px solid var(--gold);
+      transform: rotate(45deg);
     }
-    .menu-item-top {
+
+    .menu-item {
       display: flex;
       align-items: baseline;
       gap: 8px;
-      margin-bottom: 6px;
+      padding: 14px 0;
     }
-    .menu-item-name {
+    .menu-item + .menu-item {
+      border-top: none;
+    }
+    .menu-item__name {
       font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--warm-black);
-      white-space: nowrap;
-    }
-    .menu-item-dots {
-      flex: 1;
-      border-bottom: 2px dotted var(--border-warm);
-      min-width: 20px;
-      margin-bottom: 4px;
-    }
-    .menu-item-price {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--primary);
-      white-space: nowrap;
-    }
-    .menu-item-desc {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-
-    /* ═══════════════════════════════════════════
-       ABOUT — Split layout with warm bg
-    ═══════════════════════════════════════════ */
-    #over-ons {
-      background: var(--white);
-      position: relative;
-      overflow: hidden;
-    }
-    #over-ons::before {
-      content: '';
-      position: absolute;
-      top: -200px;
-      right: -200px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(var(--primary-rgb),0.04) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .about-image-wrap {
-      position: relative;
-    }
-    .about-image {
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      aspect-ratio: 4/5;
-      position: relative;
-      box-shadow: var(--shadow-lg);
-    }
-    .about-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 6s ease;
-    }
-    .about-image:hover img { transform: scale(1.05); }
-    .about-image-placeholder {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #7F1D1D 0%, #9A2020 60%, #DC2626 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .about-image-placeholder svg {
-      width: 80px;
-      height: 80px;
-      color: rgba(255,255,255,0.4);
-    }
-    .about-badge {
-      position: absolute;
-      bottom: -20px;
-      right: -20px;
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 20px 24px;
-      box-shadow: var(--shadow-lg);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      z-index: 2;
-    }
-    .about-badge-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(var(--primary-rgb),0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .about-badge-icon svg { width: 24px; height: 24px; color: var(--primary); }
-    .about-badge-value {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--warm-black);
-      line-height: 1;
-    }
-    .about-badge-label {
-      font-size: 12px;
-      color: var(--text-muted);
+      font-size: 19px;
       font-weight: 500;
+      white-space: nowrap;
+      color: var(--warm-black);
     }
-
-    .about-content { position: relative; z-index: 1; }
-    .about-tag {
-      display: inline-block;
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 16px;
+    .menu-item__dots {
+      flex: 1;
+      border-bottom: 1.5px dotted rgba(26,20,18,0.2);
+      min-width: 30px;
+      margin-bottom: 5px;
     }
-    .about-content h2 { margin-bottom: 24px; }
-    .about-content p {
-      color: var(--text-muted);
-      font-size: 16px;
-      line-height: 1.8;
-      margin-bottom: 28px;
-    }
-    .stats-row {
-      display: flex;
-      gap: 36px;
-      flex-wrap: wrap;
-      margin: 36px 0;
-      padding: 28px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .stat-item { }
-    .stat-number {
+    .menu-item__price {
       font-family: var(--font-display);
-      font-size: 2.2rem;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: 500;
       color: var(--primary);
-      line-height: 1;
-      margin-bottom: 4px;
+      white-space: nowrap;
     }
-    .stat-label {
+    .menu-item__desc {
+      display: block;
       font-size: 13px;
       color: var(--text-muted);
-      font-weight: 500;
+      font-style: italic;
+      padding-bottom: 4px;
+      line-height: 1.5;
     }
-    .about-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--primary);
-      color: var(--white);
-      padding: 15px 32px;
-      border-radius: var(--radius-sm);
-      font-weight: 600;
-      font-size: 15px;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-      box-shadow: 0 4px 16px rgba(var(--primary-rgb),0.3);
-    }
-    .about-cta:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(var(--primary-rgb),0.4);
-    }
-    .about-cta svg { width: 18px; height: 18px; }
 
-    /* ═══════════════════════════════════════════
-       OPENING HOURS — Warm sidebar feel
-    ═══════════════════════════════════════════ */
-    .hours-section {
-      background: var(--cream);
-      padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 80px);
-    }
-    .hours-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      max-width: 900px;
-      margin: 0 auto;
-      align-items: center;
-    }
-    .hours-content { }
-    .hours-content .about-tag { margin-bottom: 16px; }
-    .hours-content h2 { margin-bottom: 12px; }
-    .hours-content p {
-      color: var(--text-muted);
-      font-size: 16px;
-      line-height: 1.7;
-      margin-bottom: 32px;
-    }
-    .hours-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      box-shadow: var(--shadow-sm);
-    }
-    .hours-card-title {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--warm-black);
-      margin-bottom: 20px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .hours-card-title svg {
-      width: 20px;
-      height: 20px;
-      color: var(--primary);
-    }
-    .hours-list {
-      list-style: none;
-    }
-    .hours-list li {
-      font-size: 15px;
-      color: var(--text);
-      padding: 8px 0;
-      border-bottom: 1px dashed var(--border);
-      display: flex;
-      justify-content: space-between;
-    }
-    .hours-list li:last-child { border-bottom: none; }
-
-    /* ═══════════════════════════════════════════
-       REVIEWS — Elegant quote cards
-    ═══════════════════════════════════════════ */
-    #reviews {
-      background: var(--white);
-    }
-    .reviews-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 48px;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .rating-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 14px 22px;
-    }
-    .rating-stars { display: flex; gap: 2px; }
-    .rating-stars svg { width: 18px; height: 18px; color: #E8A838; }
-    .rating-number {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--warm-black);
-    }
-    .rating-count { font-size: 13px; color: var(--text-muted); }
-
-    .reviews-grid {
+    /* ——— REVIEWS ——— */
+    .reviews__grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
+      gap: 32px;
     }
     .review-card {
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      transition: transform var(--transition), box-shadow var(--transition);
+      padding: 40px 36px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
       position: relative;
     }
-    .review-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-    .review-card::before {
-      content: '';
+    .review-card__quote {
       position: absolute;
-      top: 0;
-      left: 32px;
-      right: 32px;
-      height: 2px;
-      background: linear-gradient(135deg, #7F1D1D 0%, #9A2020 60%, #DC2626 100%);
-      border-radius: 0 0 2px 2px;
-      opacity: 0;
-      transition: opacity var(--transition);
-    }
-    .review-card:hover::before { opacity: 1; }
-
-    .review-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 18px;
-    }
-    .review-stars { display: flex; gap: 2px; }
-    .review-stars svg { width: 15px; height: 15px; color: #E8A838; }
-    .review-quote-icon { color: rgba(var(--primary-rgb),0.12); }
-    .review-quote-icon svg { width: 32px; height: 32px; }
-    .review-text {
+      top: 20px;
+      left: 28px;
       font-family: var(--font-display);
+      font-size: 64px;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.3;
+    }
+    .review-card__stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+    .review-card__star {
+      width: 16px;
+      height: 16px;
+      color: var(--gold);
+    }
+    .review-card__text {
       font-size: 15px;
-      line-height: 1.75;
-      color: var(--warm-black);
-      margin-bottom: 24px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 20px;
       font-style: italic;
-      font-weight: 400;
     }
-    .review-author {
-      font-weight: 600;
+    .review-card__author {
       font-size: 13px;
-      color: var(--text-muted);
-      letter-spacing: 0.03em;
-    }
-    .review-author::before {
-      content: '\2014\00a0';
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
     }
 
-    /* ═══════════════════════════════════════════
-       CTA — Dark atmospheric section
-    ═══════════════════════════════════════════ */
-    #contact {
-      background: var(--warm-black);
+    /* ——— USPs ——— */
+    .usps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+      margin-top: 48px;
+    }
+    .usp {
+      text-align: center;
+    }
+    .usp__icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 16px;
+      color: var(--accent);
+    }
+    .usp__text {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ——— CTA SECTION ——— */
+    .cta {
+      text-align: center;
+      padding: 100px 24px;
+      background: var(--primary);
+      color: #fff;
       position: relative;
       overflow: hidden;
     }
-    #contact::before {
+    .cta::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 20% 50%, rgba(var(--primary-rgb),0.12) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(200,169,110,0.08) 0%, transparent 50%);
-      pointer-events: none;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
     }
-    #contact::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(255,255,255,0.025)'/%3E%3C/g%3E%3C/svg%3E");
-      pointer-events: none;
-    }
-    .contact-inner {
+    .cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 400;
       position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto;
+      margin-bottom: 12px;
     }
-    .contact-ornament {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
+    .cta__sub {
+      font-size: 16px;
+      opacity: 0.75;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .cta__btn {
+      display: inline-block;
+      position: relative;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 16px 52px;
+      background: #fff;
+      color: var(--primary);
+      transition: all 0.3s var(--ease);
+    }
+    .cta__btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    }
+
+    /* ——— CONTACT / HOURS ——— */
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+    .contact__title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 400;
       margin-bottom: 24px;
     }
-    .contact-ornament::before,
-    .contact-ornament::after {
-      content: '';
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
-      opacity: 0.4;
-    }
-    .contact-ornament svg {
-      width: 20px;
-      height: 20px;
-      color: var(--gold);
-    }
-    #contact h2 {
-      color: var(--white);
-      margin-bottom: 16px;
-    }
-    #contact .section-sub {
-      color: rgba(255,255,255,0.6);
-      margin: 0 auto 48px;
-    }
-    .contact-cards {
+    .contact__info {
+      list-style: none;
       display: flex;
+      flex-direction: column;
       gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
     }
-    .contact-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      backdrop-filter: blur(12px);
-      border-radius: var(--radius-md);
-      padding: 24px 28px;
-      min-width: 180px;
-      text-align: center;
-      transition: background var(--transition), transform var(--transition), border-color var(--transition);
-    }
-    .contact-card:hover {
-      background: rgba(255,255,255,0.1);
-      transform: translateY(-3px);
-      border-color: rgba(255,255,255,0.2);
-    }
-    .contact-card-icon {
-      width: 44px;
-      height: 44px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50%;
+    .contact__info li {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 14px;
-    }
-    .contact-card-icon svg { width: 20px; height: 20px; color: var(--gold-light); }
-    .contact-card-label {
-      font-size: 11px;
-      color: rgba(255,255,255,0.4);
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 6px;
-    }
-    .contact-card-value {
+      align-items: flex-start;
+      gap: 14px;
       font-size: 15px;
-      font-weight: 600;
-      color: var(--white);
+      color: var(--text-muted);
     }
-    .contact-card-value a { color: var(--white); }
+    .contact__info svg {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
 
-    .btn-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--primary);
-      color: var(--white);
-      padding: 18px 40px;
-      border-radius: var(--radius-sm);
-      font-weight: 700;
-      font-size: 16px;
-      letter-spacing: 0.02em;
-      box-shadow: 0 8px 32px rgba(var(--primary-rgb),0.4);
-      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
     }
-    .btn-cta:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 48px rgba(var(--primary-rgb),0.5);
-      background: var(--primary-dark);
+    .hours-table td {
+      padding: 10px 0;
+      font-size: 15px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
     }
-    .btn-cta svg { width: 20px; height: 20px; }
+    .hours-table td:last-child {
+      text-align: right;
+      font-weight: 500;
+      color: var(--warm-black);
+    }
 
-    /* ═══════════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════════ */
-    footer {
-      background: #110E0C;
-      color: rgba(255,255,255,0.35);
-      padding: 28px clamp(20px, 5vw, 80px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
+    /* ——— FOOTER ——— */
+    .footer {
+      background: var(--warm-black);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 40px 24px;
       font-size: 13px;
     }
-    footer strong { color: rgba(255,255,255,0.6); }
-    footer a {
-      color: rgba(255,255,255,0.35);
-      transition: color var(--transition);
+    .footer a {
+      color: rgba(255,255,255,0.6);
+      transition: color 0.3s var(--ease);
     }
-    footer a:hover { color: rgba(255,255,255,0.65); }
-
-    /* ═══════════════════════════════════════════
-       SCROLL REVEAL
-    ═══════════════════════════════════════════ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-    .reveal-delay-1 { transition-delay: 0.08s; }
-    .reveal-delay-2 { transition-delay: 0.16s; }
-    .reveal-delay-3 { transition-delay: 0.24s; }
-    .reveal-delay-4 { transition-delay: 0.32s; }
-    .reveal-delay-5 { transition-delay: 0.40s; }
-
-    /* Stagger children in menu */
-    .menu-item {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-    .menu-item.visible {
-      opacity: 1;
-      transform: none;
+    .footer a:hover { color: #fff; }
+    .footer__credit {
+      margin-top: 8px;
     }
 
-    /* ═══════════════════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════════════════ */
-    @media (max-width: 1024px) {
-      .about-grid { grid-template-columns: 1fr; gap: 48px; }
-      .about-image { aspect-ratio: 16/10; }
-      .about-badge { bottom: 16px; right: 16px; }
-      .hours-grid { grid-template-columns: 1fr; gap: 40px; }
+    /* ——— PHOTO BREAK ——— */
+    .photo-break {
+      width: 100%;
+      height: 50vh;
+      min-height: 320px;
+      object-fit: cover;
     }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-toggle { display: block; }
-      .usp-item {
-        padding: 12px 16px;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-        width: 100%;
-        justify-content: center;
+
+    /* ——— RESPONSIVE ——— */
+    @media (max-width: 900px) {
+      .nav { padding: 0 24px; }
+      .nav__links,
+      .nav__cta { display: none; }
+      .nav__hamburger { display: flex; }
+
+      .section { padding: 72px 24px; }
+
+      .about__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
       }
-      .usp-item:last-child { border-bottom: none; }
-      .usp-strip {
-        flex-direction: column;
-        align-items: center;
-        padding: 8px 20px;
+      .about__badge {
+        bottom: auto;
+        top: -16px;
+        right: 16px;
+        width: 90px;
+        height: 90px;
       }
-      .reviews-header {
-        flex-direction: column;
-        align-items: flex-start;
+      .about__badge-value { font-size: 26px; }
+
+      .menu-card {
+        padding: 40px 24px;
       }
-      .menu-card { padding: 24px 20px; }
-      .menu-card::before { inset: 4px; }
-      .menu-item-name { font-size: 1rem; }
-      .menu-item-price { font-size: 1rem; }
-      footer {
-        flex-direction: column;
-        text-align: center;
+      .menu-card::before {
+        top: 8px; left: 8px; right: 8px; bottom: 8px;
       }
-      .contact-cards { flex-direction: column; align-items: center; }
-      .contact-card { width: 100%; max-width: 300px; }
+
+      .contact__grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .reviews__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
+
     @media (max-width: 480px) {
-      .hero h1 { font-size: 2.1rem; }
-      .hero-actions { flex-direction: column; align-items: center; }
-      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
-      .menu-item-icon { display: none; }
-      .about-badge { display: none; }
-      .stats-row { gap: 24px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-      .hero-bg { transform: none !important; }
-      .reveal, .menu-item { opacity: 1; transform: none; }
+      .hero__title { font-size: 36px; }
+      .hero__sub { font-size: 15px; }
+      .menu-item__name { font-size: 16px; }
+      .menu-item__price { font-size: 16px; }
+      .stats { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- Announcement Banner -->
-<div class="banner">
-  Dit is een gratis website concept voor <strong>Dhol &amp; Soul</strong> — gemaakt door Solidmotion.
-  Interesse? <a href="mailto:michiel@solidmotion.nl">Stuur ons een bericht</a>
-</div>
+  <!-- ——— NAVIGATION ——— -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav__logo"> Dhol &amp; Soul</a>
+    <ul class="nav__links">
+      <li><a href="#over-ons">Over ons</a></li>
+      <li><a href="#menukaart">Menukaart</a></li>
+      <li><a href="#reviews">Recensies</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="tel:085 060 8272" class="nav__cta">Reserveer</a>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu openen">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-<!-- Navigation -->
-<nav class="nav">
-  <a class="nav-logo" href="#">Dhol &amp; Soul</a>
-  <button class="nav-toggle" aria-label="Menu openen">
-    <span></span><span></span><span></span>
-  </button>
-  <ul class="nav-links">
-    <li><a href="#menu">Menu</a></li>
-    <li><a href="#over-ons">Over ons</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li>
-      <a class="nav-cta" href="#contact">
-        Reserveer
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<!-- Hero -->
-<header class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Restaurant &middot; Eindhoven</div>
-    <h1>Het beste Indiaase restaurant van Eindhoven</h1>
-    <p class="hero-sub">Proef de échte smaken van India – dineren, afhalen of laten bezorgen.</p>
-    <div class="hero-actions">
-      
-      <a class="btn-primary" href="tel:085 060 8272">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-        085 060 8272
-      </a>
-      
-      <a class="btn-ghost" href="#menu">
-        Bekijk het menu
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-      </a>
-    </div>
+  <!-- Mobile menu -->
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="#over-ons" onclick="closeMobile()">Over ons</a>
+    <a href="#menukaart" onclick="closeMobile()">Menukaart</a>
+    <a href="#reviews" onclick="closeMobile()">Recensies</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <a href="tel:085 060 8272" onclick="closeMobile()">Reserveer</a>
   </div>
-</header>
 
-<!-- USP Strip -->
-<div class="usp-strip">
+  <!-- ——— HERO ——— -->
+  <section class="hero">
+    <div class="hero__content">
+      <span class="hero__tag">Restaurant in Eindhoven</span>
+      <h1 class="hero__title">De restaurant van Eindhoven</h1>
+      <p class="hero__sub">Betrouwbaar, vakkundig en altijd persoonlijk.</p>
+      <a href="tel:085 060 8272" class="hero__btn">Reserveer een tafel</a>
+    </div>
+    <div class="hero__scroll">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ——— STATS ——— -->
   
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-    <span>Verse ingredienten</span>
-  </div>
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
-    <span>Top beoordelingen</span>
-  </div>
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-    <span>Online reserveren</span>
-  </div>
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-    <span>Groepen welkom</span>
-  </div>
-  
-</div>
-
-<!-- Menu / Services -->
-<section id="menu">
-  <div class="container">
-    <div class="menu-card reveal">
-      <div class="menu-card-header">
-        <div class="ornament">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-        </div>
-        <h2>Hoe wil jij genieten?</h2>
-        <p class="section-sub">Of je nu gezellig komt dineren, snel iets wil afhalen of liever thuis geniet – bij Dhol &amp; Soul zit je altijd goed.</p>
-      </div>
-
-      
-      <div class="menu-item" style="transition-delay: 0.06s;">
-        <div class="menu-item-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20M21 15V2s-5 3-5 9 5 6 5 6z"/></svg></div>
-        <div class="menu-item-body">
-          <div class="menu-item-top">
-            <span class="menu-item-name">Reserveren</span>
-            <span class="menu-item-dots"></span>
-            
-          </div>
-          <p class="menu-item-desc">Reserveer eenvoudig je tafel en geniet van een onvergetelijke avond in onze sfeervolle eetruimte. Wij zorgen voor een warme ontvangst en een heerlijke Indiaase beleving.</p>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-<!-- About -->
-<section id="over-ons">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-image-wrap reveal">
-        <div class="about-image">
-          
-          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEFjTa1H3rW7W3SAvLDZU7sBE6G54pyyOaiBLsPprwAl1sOnvK-w2S0oqMZAC6L1F0e2h3YJktT4jMYuaEINDcEw7FxTXvWF_6KUqtqpOJk9I2Ae8COhwAJFAOCgzBbvAUqmHNI2xZWhTx1mNDDS76ViUcLQLUi5rxmkDB-tld0hq1NLTCen9GgATuFxFLBxMY1xtx8qPzSNFv4gIXpeM0ViYdlEPu0FDz5cBOtHRINHs70IyfRoKM1TZcyJ_1PHrdvfZZblVHjZcYfYxXe5Aqr34DlFSol8XdG-GAVdD-l0QgO4ycEvWlkq2ZPIaieH2-gbttEGWy4muKyeNq0-4b4LMnPyr87V47UJGDG3iv0WvPj_l1iyyBPDZNbBWKoAUTDPIw2TKdN4tw2lYIwwKMFW5qG9Jgc9ISPzQVJP2dwbQdLnBsSHO9GHUzc8aQ&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Dhol &amp; Soul — Eindhoven" loading="lazy" width="600" height="750" />
-          
-        </div>
-        
-        <div class="about-badge">
-          <div class="about-badge-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-          </div>
-          <div>
-            <div class="about-badge-value">4.8</div>
-            <div class="about-badge-label">1764 beoordelingen</div>
-          </div>
-        </div>
-        
-      </div>
-      <div class="about-content reveal reveal-delay-2">
-        <span class="about-tag">Ons verhaal</span>
-        <h2>Dhol &amp; Soul – Hartverwarmende Indiaase keuken in Eindhoven</h2>
-        <p>Bij Dhol &amp; Soul geloven we dat goed eten mensen samenbrengt. Met authentieke Indiaase gerechten, bereid met verse kruiden en eeuwenoude recepten, nemen wij je mee op een culinaire reis. Ons vriendelijke team verwelkomt je in een warm en sfeervol restaurant, midden in Eindhoven. Met een Google-beoordeling van 4,8 op basis van meer dan 1.700 reviews weten onze gasten waarom ze steeds terugkomen. Kom proeven – je bent van harte welkom!</p>
-        <div class="stats-row">
-          
-          <div class="stat-item">
-            <div class="stat-number">4.8★</div>
-            <div class="stat-label">Google beoordeling</div>
-          </div>
-          
-          <div class="stat-item">
-            <div class="stat-number">1.764+</div>
-            <div class="stat-label">Tevreden gasten</div>
-          </div>
-          
-          <div class="stat-item">
-            <div class="stat-number">10+</div>
-            <div class="stat-label">Jaar Indiaase passie</div>
-          </div>
-          
-        </div>
-        
-        <a class="about-cta" href="tel:085 060 8272">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-          Reserveer nu
-        </a>
-        
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Opening Hours -->
-
-<div class="hours-section">
-  <div class="hours-grid">
-    <div class="hours-content reveal">
-      <span class="about-tag">Openingstijden</span>
-      <h2>Wanneer bent u <em>welkom</em>?</h2>
-      <p>Wij ontvangen u graag. Reserveren wordt aanbevolen, vooral in het weekend.</p>
-      
-      <a class="about-cta" href="tel:085 060 8272">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-        Bel voor reserveringen
-      </a>
-      
-    </div>
-    <div class="hours-card reveal reveal-delay-2">
-      <div class="hours-card-title">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Openingstijden
-      </div>
-      <ul class="hours-list">
-        
-        <li>maandag: 16:00–21:30</li>
-        
-        <li>dinsdag: 16:00–21:30</li>
-        
-        <li>woensdag: 16:00–21:30</li>
-        
-        <li>donderdag: 16:00–21:30</li>
-        
-        <li>vrijdag: 15:00–22:30</li>
-        
-        <li>zaterdag: 12:30–22:30</li>
-        
-        <li>zondag: 12:30–21:30</li>
-        
-      </ul>
-    </div>
-  </div>
-</div>
-
-
-<!-- Reviews -->
-
-<section id="reviews">
-  <div class="container">
-    <div class="reviews-header reveal">
-      <div>
-        <span class="about-tag">Wat onze gasten zeggen</span>
-        <h2>Dit zeggen onze gasten</h2>
-      </div>
-      
-      <div class="rating-badge">
-        <div class="rating-stars">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        </div>
-        <span class="rating-number">4.8</span>
-        <span class="rating-count">(1764 reviews)</span>
-      </div>
-      
-    </div>
-    <div class="reviews-grid">
-      
-      <div class="review-card reveal reveal-delay-1">
-        <div class="review-header">
-          <div class="review-stars">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-          </div>
-          <div class="review-quote-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          </div>
-        </div>
-        <p class="review-text">"We hebben echt heerlijk gegeten bij Dhol &amp; Soul. Vriendelijk personeel, prachtige inrichting en fijne sfeer. We hadden een sharing voorgerecht besteld met 2 soorten naanbrood en daarna het hoofdgerech"</p>
-        <div class="review-author">Anne van der heijden</div>
-      </div>
-      
-      <div class="review-card reveal reveal-delay-2">
-        <div class="review-header">
-          <div class="review-stars">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-          </div>
-          <div class="review-quote-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          </div>
-        </div>
-        <p class="review-text">"Fantastisch eten, geweldige service en heerlijke cocktails. Het restaurant zat behoorlijk vol, dus ik zou zeker van te voren reserveren.
-Het eten was echt spot on en er werd zo goed meegedacht met de "</p>
-        <div class="review-author">Rosalie Moerlie</div>
-      </div>
-      
-      <div class="review-card reveal reveal-delay-3">
-        <div class="review-header">
-          <div class="review-stars">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-          </div>
-          <div class="review-quote-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          </div>
-        </div>
-        <p class="review-text">"Heerlijk eten en super vriendelijk personeel. Zeker een aanrader en wij gaan zeker nog eens terug maar dan met onze vrienden zodat we nog meer lekkernijen kunnen proeven"</p>
-        <div class="review-author">Michelle Boom</div>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-
-<!-- Contact / CTA -->
-<section id="contact">
-  <div class="contact-inner">
-    <div class="contact-ornament">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-    </div>
-    <h2>Klaar voor een heerlijke Indiaase avond?</h2>
-    <p class="section-sub">Reserveer vandaag nog je tafel bij Dhol &amp; Soul en ontdek waarom Eindhoven zo dol op ons is.</p>
-    <div class="contact-cards">
-      
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-        </div>
-        <div class="contact-card-label">Telefoon</div>
-        <div class="contact-card-value"><a href="tel:085 060 8272">085 060 8272</a></div>
-      </div>
-      
-      
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <div class="contact-card-label">E-mail</div>
-        <div class="contact-card-value"><a href="mailto:info@dholandsoul.com">info@dholandsoul.com</a></div>
-      </div>
-      
-      
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div class="contact-card-label">Adres</div>
-        <div class="contact-card-value">Willemstraat 61, 5611 HC Eindhoven, Nederland</div>
-      </div>
-      
+  <div class="stats reveal">
+    
+    <div class="stat">
+      <div class="stat__value">10+</div>
+      <div class="stat__label">Jaar ervaring</div>
     </div>
     
-    <a class="btn-cta" href="tel:085 060 8272">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-      Reserveer: 085 060 8272
-    </a>
+    <div class="stat">
+      <div class="stat__value">500+</div>
+      <div class="stat__label">Tevreden klanten</div>
+    </div>
+    
+    <div class="stat">
+      <div class="stat__value">100%</div>
+      <div class="stat__label">Kwaliteitsgarantie</div>
+    </div>
     
   </div>
-</section>
+  
 
-<!-- Footer -->
-<footer>
-  <span>&copy; 2025 <strong>Dhol &amp; Soul</strong> &mdash; Eindhoven</span>
-  <span>Website ontworpen door <strong>Solidmotion</strong> &middot; <a href="mailto:michiel@solidmotion.nl">michiel@solidmotion.nl</a></span>
-</footer>
+  <!-- ——— ABOUT ——— -->
+  <section class="section section--cream" id="over-ons">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__image-wrap reveal">
+          
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEFjTa1H3rW7W3SAvLDZU7sBE6G54pyyOaiBLsPprwAl1sOnvK-w2S0oqMZAC6L1F0e2h3YJktT4jMYuaEINDcEw7FxTXvWF_6KUqtqpOJk9I2Ae8COhwAJFAOCgzBbvAUqmHNI2xZWhTx1mNDDS76ViUcLQLUi5rxmkDB-tld0hq1NLTCen9GgATuFxFLBxMY1xtx8qPzSNFv4gIXpeM0ViYdlEPu0FDz5cBOtHRINHs70IyfRoKM1TZcyJ_1PHrdvfZZblVHjZcYfYxXe5Aqr34DlFSol8XdG-GAVdD-l0QgO4ycEvWlkq2ZPIaieH2-gbttEGWy4muKyeNq0-4b4LMnPyr87V47UJGDG3iv0WvPj_l1iyyBPDZNbBWKoAUTDPIw2TKdN4tw2lYIwwKMFW5qG9Jgc9ISPzQVJP2dwbQdLnBsSHO9GHUzc8aQ&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Dhol &amp; Soul" class="about__image" />
+          
+          
+          <div class="about__badge">
+            <span class="about__badge-value">4.8</span>
+            <span class="about__badge-label">1764 reviews</span>
+          </div>
+          
+        </div>
+        <div class="about__text reveal">
+          <span class="section__label">Ons verhaal</span>
+          <h2 class="section__title">Over Dhol &amp; Soul</h2>
+          <div class="section__divider"></div>
+          <p>Craving Indian food? Visit Dhol and Soul – our top-rated Indiaas Restaurant near you. Dine-in, takeaways, and delivery available. Reserve your table &amp; Order your favourite dishes.</p>
+          <div class="about__signature">— Dhol &amp; Soul</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script>
-// Scroll reveal with IntersectionObserver
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
+  <!-- ——— USPs ——— -->
+  
+  <section class="section section--white">
+    <div class="container">
+      <div class="usps reveal">
+        
+        <div class="usp">
+          <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <p class="usp__text">Verse ingredienten</p>
+        </div>
+        
+        <div class="usp">
+          <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+          <p class="usp__text">Top beoordelingen</p>
+        </div>
+        
+        <div class="usp">
+          <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <p class="usp__text">Online reserveren</p>
+        </div>
+        
+        <div class="usp">
+          <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <p class="usp__text">Groepen welkom</p>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- ——— PHOTO BREAK ——— -->
+  
+  <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEFjTa1H3rW7W3SAvLDZU7sBE6G54pyyOaiBLsPprwAl1sOnvK-w2S0oqMZAC6L1F0e2h3YJktT4jMYuaEINDcEw7FxTXvWF_6KUqtqpOJk9I2Ae8COhwAJFAOCgzBbvAUqmHNI2xZWhTx1mNDDS76ViUcLQLUi5rxmkDB-tld0hq1NLTCen9GgATuFxFLBxMY1xtx8qPzSNFv4gIXpeM0ViYdlEPu0FDz5cBOtHRINHs70IyfRoKM1TZcyJ_1PHrdvfZZblVHjZcYfYxXe5Aqr34DlFSol8XdG-GAVdD-l0QgO4ycEvWlkq2ZPIaieH2-gbttEGWy4muKyeNq0-4b4LMnPyr87V47UJGDG3iv0WvPj_l1iyyBPDZNbBWKoAUTDPIw2TKdN4tw2lYIwwKMFW5qG9Jgc9ISPzQVJP2dwbQdLnBsSHO9GHUzc8aQ&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Dhol &amp; Soul sfeer" class="photo-break" />
+  
+
+  <!-- ——— MENU ——— -->
+  <section class="section section--cream" id="menukaart">
+    <div class="container reveal">
+      <div class="menu-card">
+        <div class="menu-card__header">
+          <h2 class="menu-card__title">Onze diensten</h2>
+          
+          <p class="menu-card__sub">Wat kunnen we voor u betekenen?</p>
+          
+          <div class="menu-card__ornament">
+            <div class="menu-card__ornament-dot"></div>
+          </div>
+        </div>
+
+        
+        <div>
+          
+          <span class="menu-item__desc">Professioneel reserveren uitgevoerd met oog voor kwaliteit en detail.</span>
+          
+          <div class="menu-item">
+            <span class="menu-item__name">Reserveren</span>
+            <span class="menu-item__dots"></span>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- ——— PHOTOS ——— -->
+  
+  <section class="section" style="background:var(--cream);padding-top:60px;padding-bottom:60px;">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+        
+        <div style="aspect-ratio:1;overflow:hidden;border-radius:8px;grid-column:span 2;grid-row:span 2;aspect-ratio:auto;">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEGEXi0XcrVJybD2MOaUPIx-PjcTL4uHg9SoO9eNnCOG7jRqI7RqsNacU_ZgoiUKLFI1dxO7lOfXcz0_WEX2gC91b6JshX9iQ7zRm-XSQn30eHyQeyZqZr7KLwiomBq-Nyi4shS7vRP0XuIKS9hMOpCqJODZemvv1Oxy-T2zUvYhVUdQoSINksyVlx6a-hNh5MLkXStaZ2sqMy30NUoh8Vw9sHTOw3fdbqqVuNcNCpCEEgrn4OwsvjNj6HihklAHP66VBVaN2fwpgcBF46RXkTcvPq6JhW3eYRfHEaSiuhnojg&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Dhol &amp; Soul" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+        
+        <div style="aspect-ratio:1;overflow:hidden;border-radius:8px;">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEFjTa1H3rW7W3SAvLDZU7sBE6G54pyyOaiBLsPprwAl1sOnvK-w2S0oqMZAC6L1F0e2h3YJktT4jMYuaEINDcEw7FxTXvWF_6KUqtqpOJk9I2Ae8COhwAJFAOCgzBbvAUqmHNI2xZWhTx1mNDDS76ViUcLQLUi5rxmkDB-tld0hq1NLTCen9GgATuFxFLBxMY1xtx8qPzSNFv4gIXpeM0ViYdlEPu0FDz5cBOtHRINHs70IyfRoKM1TZcyJ_1PHrdvfZZblVHjZcYfYxXe5Aqr34DlFSol8XdG-GAVdD-l0QgO4ycEvWlkq2ZPIaieH2-gbttEGWy4muKyeNq0-4b4LMnPyr87V47UJGDG3iv0WvPj_l1iyyBPDZNbBWKoAUTDPIw2TKdN4tw2lYIwwKMFW5qG9Jgc9ISPzQVJP2dwbQdLnBsSHO9GHUzc8aQ&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Dhol &amp; Soul" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+        
+        <div style="aspect-ratio:1;overflow:hidden;border-radius:8px;">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEFgUI87Gsjo8vybNAt9hsxejijoXJYJrykrNIrpnsFvZDFLRJlUqZdJuoIO4LXGNnIGXYPxfMxrEQlbfO_QeLXKOLBj3GegAhYpDBbQ_1ZgNo03VLpXC-lqt_D5g6yNRs9GCqUqsBPFyTKnq0YvGYrErcJKTG7m9dibC5Bys8venNBrZVFblvTpqmFPdSP52kuAFkwp38itTTDqXqnkXZretrBL5jSdoLzWbt3F5l-8_mFxKtkvmBAOy4OMUhpCuQ4BFqZDspBybnl5jywUzT0aeA5sLgjRHIte_zRM1fA_wQ&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Dhol &amp; Soul" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- ——— REVIEWS ——— -->
+  
+  <section class="section section--dark" id="reviews">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:56px;" class="reveal">
+        <span class="section__label">Wat onze gasten zeggen</span>
+        <h2 class="section__title">Wat onze klanten zeggen</h2>
+        <div class="section__divider" style="margin-left:auto;margin-right:auto;"></div>
+      </div>
+      <div class="reviews__grid">
+        
+        <div class="review-card reveal">
+          <span class="review-card__quote">&ldquo;</span>
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+          </div>
+          <p class="review-card__text">We hebben echt heerlijk gegeten bij Dhol &amp; Soul. Vriendelijk personeel, prachtige inrichting en fijne sfeer. We hadden een sharing voorgerecht besteld met 2 soorten naanbrood en daarna het hoofdgerecht. De Butter Chicken is echt een aanrader en het heerlijke drankje Pind di Lassi ook!
+
+Kom hier graag nog een keer.</p>
+          <span class="review-card__author">Anne van der heijden</span>
+        </div>
+        
+        <div class="review-card reveal">
+          <span class="review-card__quote">&ldquo;</span>
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+          </div>
+          <p class="review-card__text">Fantastisch eten, geweldige service en heerlijke cocktails. Het restaurant zat behoorlijk vol, dus ik zou zeker van te voren reserveren.
+Het eten was echt spot on en er werd zo goed meegedacht met de keuzes.
+Iedereen was zo lief en de sfeer is gemoedelijk en feelgood. ❤️❤️❤️</p>
+          <span class="review-card__author">Rosalie Moerlie</span>
+        </div>
+        
+        <div class="review-card reveal">
+          <span class="review-card__quote">&ldquo;</span>
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+          </div>
+          <p class="review-card__text">Heerlijk eten en super vriendelijk personeel. Zeker een aanrader en wij gaan zeker nog eens terug maar dan met onze vrienden zodat we nog meer lekkernijen kunnen proeven</p>
+          <span class="review-card__author">Michelle Boom</span>
+        </div>
+        
+        <div class="review-card reveal">
+          <span class="review-card__quote">&ldquo;</span>
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+          </div>
+          <p class="review-card__text">Vorige week heerlijk gegeten bij Dhol and Soul. De ontvangst was goed, de inrichting is erg leuk en de bediening oprecht gastvriendelijk. Een absolute aanrader is de Kesari chai met pistache topping, echt heerlijk! Wat betreft het eten: de porties vis en vlees waren prima (niet super ruim, maar oké) en fijn dat er standaard rijst bij zit.
+Wel een puntje van kritiek op het brood: de knoflook naan was erg dun en leek meer op een chapatti, die hebben we laten staan. Ook de Peshwari naan was lekker van smaak, maar aan de dunne kant voor de prijs die je betaalt. Er zijn veel Indiase restaurants in Eindhoven; Dhol and Soul scoort zeker goed op service en sfeer, al zijn er qua prijs-kwaliteit voor het brood nog betere opties.</p>
+          <span class="review-card__author">Nita S-M</span>
+        </div>
+        
+        <div class="review-card reveal">
+          <span class="review-card__quote">&ldquo;</span>
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+          </div>
+          <p class="review-card__text">Heerlijk eten, goede bediening door vakmensen, kan ik wel waarderen. Paar keer geweest inmiddels. Eén gerecht was wat te pittig, dat is pro actief omgewisseld voor een milder gerecht, dank Marco. Sfeer is Indiaas, licht is wat te fel en muziek soms wat hard. Prijs kwaliteit is prima. Gerechten hebben het perfecte formaat, niet te veel.</p>
+          <span class="review-card__author">Miftasd Jerotarlst</span>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- ——— CTA ——— -->
+  <section class="cta reveal">
+    <h2 class="cta__title">Klaar om te beginnen?</h2>
+    <p class="cta__sub">Neem vandaag nog contact op voor een vrijblijvend gesprek.</p>
+    <a href="tel:085 060 8272" class="cta__btn">Bel 085 060 8272</a>
+  </section>
+
+  <!-- ——— CONTACT & HOURS ——— -->
+  <section class="section section--white" id="contact">
+    <div class="container">
+      <div class="contact__grid reveal">
+        <div>
+          <h3 class="contact__title">Bezoek ons</h3>
+          <ul class="contact__info">
+            
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Willemstraat 61, 5611 HC Eindhoven, Nederland</span>
+            </li>
+            
+            
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <a href="tel:085 060 8272">085 060 8272</a>
+            </li>
+            
+            
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:info@dholandsoul.com">info@dholandsoul.com</a>
+            </li>
+            
+          </ul>
+        </div>
+        <div>
+          
+          <h3 class="contact__title">Openingstijden</h3>
+          <table class="hours-table">
+            
+            <tr>
+              <td colspan="2">maandag: 16:00–21:30</td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">dinsdag: 16:00–21:30</td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">woensdag: 16:00–21:30</td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">donderdag: 16:00–21:30</td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">vrijdag: 15:00–22:30</td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">zaterdag: 12:30–22:30</td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">zondag: 12:30–21:30</td>
+            </tr>
+            
+          </table>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ——— FOOTER ——— -->
+  <footer class="footer">
+    <p>&copy; Dhol &amp; Soul &middot; Eindhoven</p>
+    <p class="footer__credit">Website ontworpen door <a href="mailto:michiel@solidmotion.nl">Solidmotion</a></p>
+  </footer>
+
+  <script>
+    /* ——— Transparent-to-solid nav ——— */
+    (function() {
+      var nav = document.getElementById('nav');
+      var hero = document.querySelector('.hero');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            nav.classList.remove('nav--solid');
+          } else {
+            nav.classList.add('nav--solid');
+          }
+        });
+      }, { threshold: 0.05 });
+      observer.observe(hero);
+    })();
+
+    /* ——— Scroll reveal ——— */
+    (function() {
+      var reveals = document.querySelectorAll('.reveal');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(function(el) { observer.observe(el); });
+    })();
+
+    /* ——— Mobile menu ——— */
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    function closeMobile() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
     }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Menu items staggered reveal
-const menuObserver = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      menuObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
-document.querySelectorAll('.menu-item').forEach(el => menuObserver.observe(el));
-</script>
+  </script>
 </body>
 </html>
