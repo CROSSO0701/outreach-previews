@@ -1,899 +1,1213 @@
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ontdek Bistro Cannelle en geniet van eerlijk, smaakvol eten met een warm welkom." />
-  <title>Bistro Cannelle — Roosendaal</title>
+  <meta name="description" content="Betrouwbaar, vakkundig en altijd persoonlijk." />
+  <title>Bistro Cannelle — Restaurant in Roosendaal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet" />
   <style>
-    /* ═══════════════════════════════════════════
-       DESIGN TOKENS
-    ═══════════════════════════════════════════ */
     :root {
-      --primary:       #9A2020;
-      --primary-dark:  #7F1D1D;
-      --primary-rgb:   154,32,32;
-      --accent:        #FBBF24;
-      --bg:            #FFF8F8;
-      --text:          #1C0404;
-      --text-muted:    #6B7280;
-      --white:         #FFFFFF;
-      --surface:       #FFFFFF;
-      --border:        rgba(0,0,0,0.08);
-      --shadow-sm:     0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-      --shadow-md:     0 4px 16px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
-      --shadow-lg:     0 20px 40px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.08);
-      --radius-sm:     8px;
-      --radius-md:     14px;
-      --radius-lg:     20px;
-      --radius-xl:     28px;
-      --font-display:  'Bodoni Moda', Georgia, serif;
-      --font-body:     'Jost', system-ui, sans-serif;
-      --transition:    0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      --primary:      #f0ad4e;
+      --primary-dark: #b4813a;
+      --primary-rgb:  240,173,78;
+      --accent:       #FBBF24;
+      --bg:           #FFF8F8;
+      --text:         #1C0404;
+      --cream:        #FAF6F1;
+      --warm-black:   #1A1412;
+      --text-muted:   #6B5E54;
+      --border:       rgba(26,20,18,0.12);
+      --gold:         #C8A96E;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+      --ease:         cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font-body);
       font-size: 16px;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.65;
+      color: var(--warm-black);
+      background: var(--cream);
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
 
     img { max-width: 100%; height: auto; display: block; }
     a { color: inherit; text-decoration: none; }
 
-    /* ═══════════════════════════════════════════
-       ANNOUNCEMENT BANNER
-    ═══════════════════════════════════════════ */
-    .banner {
-      background: var(--primary-dark);
-      color: rgba(255,255,255,0.92);
-      text-align: center;
-      padding: 10px 20px;
+    /* ——— REVEAL ANIMATION ——— */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ——— NAVIGATION ——— */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 48px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+    .nav--solid {
+      background: #fff;
+      box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+    }
+    .nav__logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.02em;
+      transition: color 0.4s var(--ease);
+    }
+    .nav--solid .nav__logo { color: var(--warm-black); }
+
+    .nav__links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav__links a {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s var(--ease);
+      position: relative;
+    }
+    .nav__links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--accent);
+      transition: width 0.3s var(--ease);
+    }
+    .nav__links a:hover::after { width: 100%; }
+    .nav--solid .nav__links a { color: var(--warm-black); }
+
+    .nav__cta {
       font-size: 13px;
       font-weight: 500;
-      letter-spacing: 0.01em;
-    }
-    .banner a { color: var(--accent); font-weight: 600; }
-
-    /* ═══════════════════════════════════════════
-       NAVIGATION
-    ═══════════════════════════════════════════ */
-    .nav {
-      position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      background: rgba(255,255,255,0.82);
-      border-bottom: 1px solid var(--border);
-      padding: 0 clamp(20px, 5vw, 80px);
-      height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-      letter-spacing: -0.01em;
-    }
-    .nav-links {
-      display: flex; gap: 32px; list-style: none;
-      align-items: center;
-    }
-    .nav-links a {
-      font-size: 14px; font-weight: 500;
-      color: var(--text-muted);
-      transition: color var(--transition);
-    }
-    .nav-links a:hover { color: var(--primary); }
-    .nav-cta {
-      background: var(--primary) !important;
-      color: var(--white) !important;
-      padding: 10px 22px;
-      border-radius: var(--radius-sm);
-      font-weight: 600 !important;
-      font-size: 14px !important;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition) !important;
-      box-shadow: 0 2px 8px rgba(var(--primary-rgb),0.3);
-    }
-    .nav-cta:hover {
-      background: var(--primary-dark) !important;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(var(--primary-rgb),0.35) !important;
-    }
-
-    /* ═══════════════════════════════════════════
-       HERO
-    ═══════════════════════════════════════════ */
-    .hero {
-      position: relative;
-      min-height: 92vh;
-      display: flex; align-items: center;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-size: cover;
-      background-position: center;
-      background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AU_ZVEEHBRlIZw6YDprKtPspK_2vVm1dPXaIVYgxJNP1gyq5g8M6w1oP6bd960ZB3izlg2C29q2dmKtg9i3SD_HGwm-lpKKDuVl-TfJJfh0EbpnRrbmmM8XSyt5JZqsBpl0rCBLOER8VOOfR37v4qydYebdkFnj6XBk8dCoNT3Xqz5yu-Z8YkBoJsYdfrA9UGMW-v3mUQcwUSTZHNM9xdhaZ5m333987o39nBrAsNVXyB3DYdhQJB9NSrZlfUiQnmroWZ4UsOnqNhvGzeDDElS_VivmLbun7YWFKj08vaulQtIVDaQ&key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14);
-      transform: scale(1.04);
-      transition: transform 8s ease;
-    }
-    .hero-bg::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: rgba(28,4,4,0.6);
-    }
-    .hero:hover .hero-bg { transform: scale(1.0); }
-
-    .hero-content {
-      position: relative; z-index: 2;
-      max-width: 760px;
-      padding: clamp(40px, 8vw, 100px) clamp(20px, 6vw, 100px);
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25);
-      backdrop-filter: blur(8px);
-      color: rgba(255,255,255,0.92);
-      padding: 6px 16px;
-      border-radius: 100px;
-      font-size: 13px; font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      margin-bottom: 28px;
+      padding: 10px 28px;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      color: #fff;
+      transition: all 0.3s var(--ease);
     }
-    .hero-eyebrow svg { width: 14px; height: 14px; }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
+    .nav__cta:hover {
+      background: #fff;
+      color: var(--warm-black);
+      border-color: #fff;
     }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
+    .nav--solid .nav__cta {
+      border-color: var(--primary);
+      color: var(--primary);
     }
-    .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(255,255,255,0.82);
-      max-width: 520px;
-      line-height: 1.65;
-      margin-bottom: 40px;
-      font-weight: 300;
+    .nav--solid .nav__cta:hover {
+      background: var(--primary);
+      color: #fff;
     }
-    .hero-actions {
-      display: flex; gap: 14px; flex-wrap: wrap;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--accent);
-      color: var(--text) !important;
-      padding: 16px 32px;
-      border-radius: var(--radius-md);
-      font-weight: 700; font-size: 15px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-      transition: transform var(--transition), box-shadow var(--transition);
+
+    /* Hamburger */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
       cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 110;
     }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    .nav__hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      transition: all 0.3s var(--ease);
     }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 10px;
-      border: 2px solid rgba(255,255,255,0.55);
-      color: var(--white);
-      padding: 14px 28px;
-      border-radius: var(--radius-md);
-      font-weight: 600; font-size: 15px;
-      transition: border-color var(--transition), background var(--transition);
-    }
-    .btn-ghost:hover {
-      border-color: rgba(255,255,255,0.9);
-      background: rgba(255,255,255,0.1);
-    }
-    .btn-primary svg, .btn-ghost svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .nav--solid .nav__hamburger span { background: var(--warm-black); }
+    .nav__hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav__hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav__hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-    /* ═══════════════════════════════════════════
-       USP STRIP
-    ═══════════════════════════════════════════ */
-    .usp-strip {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 20px clamp(20px, 5vw, 80px);
-      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+    .nav__mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26,20,18,0.97);
+      z-index: 105;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
     }
-    .usp-item {
-      display: flex; align-items: center; gap: 10px;
-      padding: 12px 28px;
-      border-right: 1px solid var(--border);
-      font-weight: 500; font-size: 14px; color: var(--text);
-    }
-    .usp-item:last-child { border-right: none; }
-    .usp-icon {
-      width: 36px; height: 36px;
-      background: rgba(var(--primary-rgb),0.1);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .usp-icon svg { width: 18px; height: 18px; color: var(--primary); }
-
-    /* ═══════════════════════════════════════════
-       SECTION SHARED
-    ═══════════════════════════════════════════ */
-    section { padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 80px); }
-    .container { max-width: 1160px; margin: 0 auto; }
-    .section-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      color: var(--primary); font-weight: 700; font-size: 12px;
-      text-transform: uppercase; letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-    .section-tag::before {
-      content: '';
-      width: 20px; height: 2px;
-      background: var(--primary); border-radius: 2px;
-    }
-    h2 {
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a {
       font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.18;
-      color: var(--text);
-      margin-bottom: 14px;
+      font-size: 28px;
+      color: #fff;
+      font-weight: 400;
+      letter-spacing: 0.02em;
     }
-    .section-sub {
-      font-size: 17px; color: var(--text-muted);
-      max-width: 520px; line-height: 1.7;
-      margin-bottom: 52px;
-    }
+    .nav__mobile a:hover { color: var(--accent); }
 
-    /* ═══════════════════════════════════════════
-       SERVICES
-    ═══════════════════════════════════════════ */
-    #diensten { background: var(--bg); }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .service-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      transition: transform var(--transition), box-shadow var(--transition);
+    /* ——— HERO ——— */
+    .hero {
       position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AU_ZVEEHBRlIZw6YDprKtPspK_2vVm1dPXaIVYgxJNP1gyq5g8M6w1oP6bd960ZB3izlg2C29q2dmKtg9i3SD_HGwm-lpKKDuVl-TfJJfh0EbpnRrbmmM8XSyt5JZqsBpl0rCBLOER8VOOfR37v4qydYebdkFnj6XBk8dCoNT3Xqz5yu-Z8YkBoJsYdfrA9UGMW-v3mUQcwUSTZHNM9xdhaZ5m333987o39nBrAsNVXyB3DYdhQJB9NSrZlfUiQnmroWZ4UsOnqNhvGzeDDElS_VivmLbun7YWFKj08vaulQtIVDaQ&key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14) center/cover no-repeat;
       overflow: hidden;
     }
-    .service-card::before {
+    .hero::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(135deg, #7F1D1D 0%, #9A2020 60%, #DC2626 100%);
-      opacity: 0;
-      transition: opacity var(--transition);
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.35) 0%,
+        rgba(0,0,0,0.55) 50%,
+        rgba(0,0,0,0.7) 100%
+      );
     }
-    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-    .service-card:hover::before { opacity: 1; }
-    .service-card-icon {
-      width: 52px; height: 52px;
-      background: rgba(var(--primary-rgb),0.1);
-      border-radius: var(--radius-md);
-      display: flex; align-items: center; justify-content: center;
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      padding: 0 24px;
+    }
+    .hero__tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 6vw, 80px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: #fff;
       margin-bottom: 20px;
     }
-    .service-card-icon svg { width: 26px; height: 26px; color: var(--primary); }
-    .service-card h3 {
-      font-family: var(--font-display);
-      font-size: 1.2rem; font-weight: 600;
-      margin-bottom: 10px; color: var(--text);
+    .hero__title em {
+      font-style: italic;
+      font-weight: 400;
     }
-    .service-card p { color: var(--text-muted); font-size: 15px; line-height: 1.6; }
-
-    /* ═══════════════════════════════════════════
-       ABOUT
-    ═══════════════════════════════════════════ */
-    #over-ons { background: var(--white); }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
+    .hero__sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.75);
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+    .hero__btn {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 16px 48px;
+      background: var(--accent);
+      color: #fff;
+      transition: all 0.3s var(--ease);
+    }
+    .hero__btn:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+    .hero__scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      gap: 8px;
     }
-    .about-image {
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      aspect-ratio: 4/5;
-      position: relative;
-      box-shadow: var(--shadow-lg);
-    }
-    .about-image img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-    .about-image-placeholder {
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, #7F1D1D 0%, #9A2020 60%, #DC2626 100%);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .about-image-placeholder svg {
-      width: 80px; height: 80px;
+    .hero__scroll span {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
       color: rgba(255,255,255,0.5);
     }
-    .about-image-badge {
-      position: absolute; bottom: 24px; left: 24px;
-      background: var(--white);
-      border-radius: var(--radius-md);
-      padding: 14px 20px;
-      box-shadow: var(--shadow-md);
-      display: flex; align-items: center; gap: 12px;
+    .hero__scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
     }
-    .badge-icon {
-      width: 40px; height: 40px;
-      background: rgba(var(--primary-rgb),0.1);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; transform: scaleY(1); }
+      50% { opacity: 0.4; transform: scaleY(0.6); }
     }
-    .badge-icon svg { width: 22px; height: 22px; color: var(--primary); }
-    .badge-text { font-size: 12px; color: var(--text-muted); font-weight: 500; }
-    .badge-value { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1; }
 
-    .about-content h2 { margin-bottom: 20px; }
-    .about-content p { color: var(--text-muted); font-size: 16px; line-height: 1.75; margin-bottom: 24px; }
-    .stats-row {
-      display: flex; gap: 32px; flex-wrap: wrap;
-      margin: 32px 0;
-      padding: 28px 0;
+    /* ——— SECTION UTILITIES ——— */
+    .section {
+      padding: 100px 24px;
+    }
+    .section--cream { background: var(--cream); }
+    .section--white { background: #fff; }
+    .section--dark {
+      background: var(--warm-black);
+      color: rgba(255,255,255,0.85);
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .section__label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .section__title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .section--dark .section__title { color: #fff; }
+    .section__divider {
+      width: 48px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    /* ——— ABOUT (Asymmetric) ——— */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about__image-wrap {
+      position: relative;
+    }
+    .about__image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+    }
+    .about__badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 110px;
+      height: 110px;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    .about__badge-value {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .about__badge-label {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    .about__text p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+    .about__signature {
+      margin-top: 32px;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-style: italic;
+      color: var(--warm-black);
+    }
+
+    /* ——— STATS BAR ——— */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-    .stat-item { }
-    .stat-number {
+    .stat {
+      background: #fff;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .stat__value {
       font-family: var(--font-display);
-      font-size: 2.4rem; font-weight: 700;
-      color: var(--primary); line-height: 1;
-      margin-bottom: 4px;
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 6px;
     }
-    .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-    .about-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--primary);
-      color: var(--white);
-      padding: 15px 30px;
-      border-radius: var(--radius-md);
-      font-weight: 600; font-size: 15px;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-      box-shadow: 0 4px 16px rgba(var(--primary-rgb),0.3);
+    .stat__label {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
     }
-    .about-cta:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(var(--primary-rgb),0.4);
-    }
-    .about-cta svg { width: 18px; height: 18px; }
 
-    /* ═══════════════════════════════════════════
-       REVIEWS
-    ═══════════════════════════════════════════ */
-    #reviews { background: var(--bg); }
-    .reviews-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 48px; flex-wrap: wrap; gap: 20px;
-    }
-    .rating-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--white);
+    /* ——— MENU CARD ——— */
+    .menu-card {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 56px 48px;
+      background: #fff;
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 12px 20px;
-      box-shadow: var(--shadow-sm);
+      position: relative;
     }
-    .rating-stars svg { width: 18px; height: 18px; color: #F59E0B; }
-    .rating-number {
+    .menu-card::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      border: 1px solid rgba(200,169,110,0.25);
+      pointer-events: none;
+    }
+    .menu-card__header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .menu-card__title {
       font-family: var(--font-display);
-      font-size: 1.6rem; font-weight: 700; color: var(--text);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      margin-bottom: 8px;
     }
-    .rating-count { font-size: 13px; color: var(--text-muted); }
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    .review-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .review-header {
-      display: flex; justify-content: space-between;
-      align-items: center; margin-bottom: 16px;
-    }
-    .review-stars { display: flex; gap: 2px; }
-    .review-stars svg { width: 16px; height: 16px; color: #F59E0B; }
-    .review-quote-icon { color: rgba(var(--primary-rgb),0.15); }
-    .review-quote-icon svg { width: 28px; height: 28px; }
-    .review-text {
-      font-size: 15px; line-height: 1.7;
-      color: var(--text); margin-bottom: 20px;
+    .menu-card__sub {
+      font-size: 14px;
+      color: var(--text-muted);
       font-style: italic;
     }
-    .review-author {
-      font-weight: 600; font-size: 13px; color: var(--text-muted);
+    .menu-card__ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .menu-card__ornament::before,
+    .menu-card__ornament::after {
+      content: '';
+      width: 50px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .menu-card__ornament-dot {
+      width: 6px;
+      height: 6px;
+      border: 1px solid var(--gold);
+      transform: rotate(45deg);
     }
 
-    /* ═══════════════════════════════════════════
-       CONTACT / CTA
-    ═══════════════════════════════════════════ */
-    #contact {
-      background: var(--primary-dark);
+    .menu-item {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 14px 0;
+    }
+    .menu-item + .menu-item {
+      border-top: none;
+    }
+    .menu-item__name {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 500;
+      white-space: nowrap;
+      color: var(--warm-black);
+    }
+    .menu-item__dots {
+      flex: 1;
+      border-bottom: 1.5px dotted rgba(26,20,18,0.2);
+      min-width: 30px;
+      margin-bottom: 5px;
+    }
+    .menu-item__price {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+    .menu-item__desc {
+      display: block;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-style: italic;
+      padding-bottom: 4px;
+      line-height: 1.5;
+    }
+
+    /* ——— REVIEWS ——— */
+    .reviews__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    .review-card {
+      padding: 40px 36px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+    }
+    .review-card__quote {
+      position: absolute;
+      top: 20px;
+      left: 28px;
+      font-family: var(--font-display);
+      font-size: 64px;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.3;
+    }
+    .review-card__stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+    .review-card__star {
+      width: 16px;
+      height: 16px;
+      color: var(--gold);
+    }
+    .review-card__text {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .review-card__author {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ——— USPs ——— */
+    .usps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+      margin-top: 48px;
+    }
+    .usp {
+      text-align: center;
+    }
+    .usp__icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 16px;
+      color: var(--accent);
+    }
+    .usp__text {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ——— CTA SECTION ——— */
+    .cta {
+      text-align: center;
+      padding: 100px 24px;
+      background: var(--primary);
+      color: #fff;
       position: relative;
       overflow: hidden;
     }
-    #contact::before {
+    .cta::before {
       content: '';
-      position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='2' fill='rgba(255,255,255,0.05)'/%3E%3C/g%3E%3C/svg%3E");
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
     }
-    .contact-inner {
-      position: relative; z-index: 2;
-      text-align: center;
-      max-width: 700px; margin: 0 auto;
+    .cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 400;
+      position: relative;
+      margin-bottom: 12px;
     }
-    #contact .section-tag { color: var(--accent); }
-    #contact .section-tag::before { background: var(--accent); }
-    #contact h2 { color: var(--white); margin-bottom: 16px; }
-    #contact .section-sub { color: rgba(255,255,255,0.7); margin: 0 auto 48px; }
-    .contact-cards {
-      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    .cta__sub {
+      font-size: 16px;
+      opacity: 0.75;
       margin-bottom: 40px;
+      position: relative;
     }
-    .contact-card {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
-      backdrop-filter: blur(12px);
-      border-radius: var(--radius-lg);
-      padding: 24px 28px;
-      min-width: 180px;
-      text-align: center;
-      transition: background var(--transition), transform var(--transition);
+    .cta__btn {
+      display: inline-block;
+      position: relative;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 16px 52px;
+      background: #fff;
+      color: var(--primary);
+      transition: all 0.3s var(--ease);
     }
-    .contact-card:hover {
-      background: rgba(255,255,255,0.16);
-      transform: translateY(-3px);
+    .cta__btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
     }
-    .contact-card-icon {
-      width: 44px; height: 44px;
-      background: rgba(255,255,255,0.12);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 12px;
-    }
-    .contact-card-icon svg { width: 22px; height: 22px; color: var(--accent); }
-    .contact-card-label { font-size: 12px; color: rgba(255,255,255,0.55); font-weight: 500; margin-bottom: 4px; }
-    .contact-card-value { font-size: 15px; font-weight: 600; color: var(--white); }
-    .contact-card-value a { color: var(--white); }
-    .btn-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--white);
-      color: var(--primary-dark);
-      padding: 18px 40px;
-      border-radius: var(--radius-md);
-      font-weight: 700; font-size: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
-    .btn-cta svg { width: 20px; height: 20px; }
 
-    /* ═══════════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════════ */
-    footer {
-      background: #0A0A0A;
+    /* ——— CONTACT / HOURS ——— */
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+    .contact__title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+    .contact__info {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact__info li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+    .contact__info svg {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .hours-table td {
+      padding: 10px 0;
+      font-size: 15px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .hours-table td:last-child {
+      text-align: right;
+      font-weight: 500;
+      color: var(--warm-black);
+    }
+
+    /* ——— FOOTER ——— */
+    .footer {
+      background: var(--warm-black);
       color: rgba(255,255,255,0.4);
-      padding: 28px clamp(20px, 5vw, 80px);
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      text-align: center;
+      padding: 40px 24px;
       font-size: 13px;
     }
-    footer strong { color: rgba(255,255,255,0.7); }
-    footer a { color: rgba(255,255,255,0.4); transition: color var(--transition); }
-    footer a:hover { color: rgba(255,255,255,0.7); }
+    .footer a {
+      color: rgba(255,255,255,0.6);
+      transition: color 0.3s var(--ease);
+    }
+    .footer a:hover { color: #fff; }
+    .footer__credit {
+      margin-top: 8px;
+    }
 
-    /* ═══════════════════════════════════════════
-       SCROLL REVEAL ANIMATION
-    ═══════════════════════════════════════════ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1), transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    /* ——— PHOTO BREAK ——— */
+    .photo-break {
+      width: 100%;
+      height: 50vh;
+      min-height: 320px;
+      object-fit: cover;
     }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-delay-1 { transition-delay: 0.08s; }
-    .reveal-delay-2 { transition-delay: 0.16s; }
-    .reveal-delay-3 { transition-delay: 0.24s; }
-    .reveal-delay-4 { transition-delay: 0.32s; }
-    .reveal-delay-5 { transition-delay: 0.40s; }
 
-    /* ═══════════════════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════════════════ */
-    @media (max-width: 1024px) {
-      .about-grid { grid-template-columns: 1fr; gap: 48px; }
-      .about-image { aspect-ratio: 16/9; }
+    /* ——— RESPONSIVE ——— */
+    @media (max-width: 900px) {
+      .nav { padding: 0 24px; }
+      .nav__links,
+      .nav__cta { display: none; }
+      .nav__hamburger { display: flex; }
+
+      .section { padding: 72px 24px; }
+
+      .about__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .about__badge {
+        bottom: auto;
+        top: -16px;
+        right: 16px;
+        width: 90px;
+        height: 90px;
+      }
+      .about__badge-value { font-size: 26px; }
+
+      .menu-card {
+        padding: 40px 24px;
+      }
+      .menu-card::before {
+        top: 8px; left: 8px; right: 8px; bottom: 8px;
+      }
+
+      .contact__grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .reviews__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .usp-item { padding: 10px 16px; border-right: none; border-bottom: 1px solid var(--border); }
-      .usp-item:last-child { border-bottom: none; }
-      .usp-strip { flex-direction: column; align-items: center; padding: 12px 20px; }
-      footer { flex-direction: column; text-align: center; }
-    }
+
     @media (max-width: 480px) {
-      .hero h1 { font-size: 2rem; }
-      .hero-actions { flex-direction: column; }
-      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-      .hero-bg { transform: none !important; }
+      .hero__title { font-size: 36px; }
+      .hero__sub { font-size: 15px; }
+      .menu-item__name { font-size: 16px; }
+      .menu-item__price { font-size: 16px; }
+      .stats { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- Announcement Banner -->
-<div class="banner">
-  Dit is een gratis website concept voor <strong>Bistro Cannelle</strong> — gemaakt door Solidmotion.
-  Interesse? <a href="mailto:michiel@solidmotion.nl">Stuur ons een bericht</a>
-</div>
+  <!-- ——— NAVIGATION ——— -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav__logo"> Bistro Cannelle</a>
+    <ul class="nav__links">
+      <li><a href="#over-ons">Over ons</a></li>
+      <li><a href="#menukaart">Menukaart</a></li>
+      <li><a href="#reviews">Recensies</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="tel:0165 533 901" class="nav__cta">Reserveer</a>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu openen">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-<!-- Navigation -->
-<nav class="nav">
-  <a class="nav-logo" href="#">Bistro Cannelle</a>
-  <ul class="nav-links">
-    <li><a href="#diensten">Diensten</a></li>
-    <li><a href="#over-ons">Over ons</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li>
-      <a class="nav-cta" href="#contact">
-        Bel 0165 533 901
-      </a>
-    </li>
-  </ul>
-</nav>
+  <!-- Mobile menu -->
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="#over-ons" onclick="closeMobile()">Over ons</a>
+    <a href="#menukaart" onclick="closeMobile()">Menukaart</a>
+    <a href="#reviews" onclick="closeMobile()">Recensies</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <a href="tel:0165 533 901" onclick="closeMobile()">Reserveer</a>
+  </div>
 
-<!-- Hero -->
-<header class="hero">
-  <div class="hero-bg" style="background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEEHBRlIZw6YDprKtPspK_2vVm1dPXaIVYgxJNP1gyq5g8M6w1oP6bd960ZB3izlg2C29q2dmKtg9i3SD_HGwm-lpKKDuVl-TfJJfh0EbpnRrbmmM8XSyt5JZqsBpl0rCBLOER8VOOfR37v4qydYebdkFnj6XBk8dCoNT3Xqz5yu-Z8YkBoJsYdfrA9UGMW-v3mUQcwUSTZHNM9xdhaZ5m333987o39nBrAsNVXyB3DYdhQJB9NSrZlfUiQnmroWZ4UsOnqNhvGzeDDElS_VivmLbun7YWFKj08vaulQtIVDaQ&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14);"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Restaurant &middot; Roosendaal
+  <!-- ——— HERO ——— -->
+  <section class="hero">
+    <div class="hero__content">
+      <span class="hero__tag">Restaurant in Roosendaal</span>
+      <h1 class="hero__title">De restaurant van Roosendaal</h1>
+      <p class="hero__sub">Betrouwbaar, vakkundig en altijd persoonlijk.</p>
+      <a href="tel:0165 533 901" class="hero__btn">Reserveer een tafel</a>
     </div>
-    <h1>Heerlijk tafelen in het hart van Roosendaal</h1>
-    <p class="hero-sub">Ontdek Bistro Cannelle en geniet van eerlijk, smaakvol eten met een warm welkom.</p>
-    <div class="hero-actions">
-      
-      <a class="btn-primary" href="tel:0165 533 901">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-        0165 533 901
-      </a>
-      
-      <a class="btn-ghost" href="#diensten">
-        Bekijk diensten
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+    <div class="hero__scroll">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
     </div>
-  </div>
-</header>
+  </section>
 
-<!-- USP Strip -->
-<div class="usp-strip">
+  <!-- ——— STATS ——— -->
   
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-    <span>Verse ingredienten</span>
-  </div>
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
-    <span>Top beoordelingen</span>
-  </div>
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-    <span>Online reserveren</span>
-  </div>
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-    <span>Groepen welkom</span>
-  </div>
-  
-</div>
-
-<!-- Services -->
-<section id="diensten">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-tag">Wat wij doen</span>
-      <h2>Voor elk moment de juiste tafel</h2>
-      <p class="section-sub">Of u nu komt voor een vlugge lunch, een uitgebreid diner of een bijzondere gelegenheid — bij Bistro Cannelle zit u altijd goed.</p>
+  <div class="stats reveal">
+    
+    <div class="stat">
+      <div class="stat__value">10+</div>
+      <div class="stat__label">Jaar ervaring</div>
     </div>
-    <div class="services-grid">
-      
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20M21 15V2s-5 3-5 9 5 6 5 6z"/></svg></div>
-        <h3>À la carte</h3>
-        <p>Kies vrijuit uit onze zorgvuldig samengestelde kaart, boordevol seizoensgerechten en huisgemaakte smaken. Elke maaltijd wordt met aandacht bereid en geserveerd.</p>
-      </div>
-      
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-        <h3>Lunch</h3>
-        <p>Begin uw middag goed met een verse, lichte lunch in een ontspannen sfeer. Perfect voor een zakelijke afspraak of een gezellig samenzijn.</p>
-      </div>
-      
-      <div class="service-card reveal reveal-delay-3">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
-        <h3>Diner</h3>
-        <p>Geniet van een onvergetelijk avondmaal met aandacht voor elk detail, van het eerste hapje tot het laatste glaasje. Ideaal voor een avondje uit of een speciale gelegenheid.</p>
-      </div>
-      
-      <div class="service-card reveal reveal-delay-4">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-        <h3>Afhalen</h3>
-        <p>Liever thuis genieten? Bestel uw favoriete gerechten en haal ze vers op bij Bistro Cannelle. Restaurantkwaliteit, gewoon aan uw eigen tafel.</p>
-      </div>
-      
-      <div class="service-card reveal reveal-delay-5">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
-        <h3>Catering</h3>
-        <p>Wij verzorgen de catering voor uw bedrijfsevenement, feest of receptie met dezelfde kwaliteit en passie als in ons restaurant. U geniet, wij regelen de rest.</p>
-      </div>
-      
-      <div class="service-card reveal reveal-delay-6">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
-        <h3>Groepsarrangementen</h3>
-        <p>Met een groep op stap? Wij stellen graag een arrangement op maat samen voor uw gezelschap, groot of klein. Denk aan theaterdiner, bedrijfsuitje of familiefeest.</p>
-      </div>
-      
+    
+    <div class="stat">
+      <div class="stat__value">500+</div>
+      <div class="stat__label">Tevreden klanten</div>
     </div>
+    
+    <div class="stat">
+      <div class="stat__value">100%</div>
+      <div class="stat__label">Kwaliteitsgarantie</div>
+    </div>
+    
   </div>
-</section>
+  
 
-<!-- About -->
-<section id="over-ons">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-image reveal">
-        
-        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEE1aGPF68ro33Xjo_P9copLDaNMZYS7Y1ieFlFiYo_ZbcjlWoaVh8f05jpxf7eRn0eeySZQmvHGNrKgNb8F1PImLiANwvmnJ4y3517skaF6OzvYT2EvOGuGjM70Zg0ihXIa6F3iNzGWsPbkuEIDIHgrPdgBOR7l5y-ePVhmXjlzV_pemXHe1UAMScnKJz0jCDSHwM0lbCBGBjrmQDtGvZjWVBuW9XHbSrVpG3YpUyCLD2_fdo4EBeWbsfQblNKkQCoKqzOAqHC4UXquburdsBethSieTGxan9MXJqkl2GKCTw&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Bistro Cannelle — Roosendaal" loading="lazy" width="600" height="750" />
-        
-        
-        <div class="about-image-badge">
-          <div class="badge-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-          </div>
-          <div>
-            <div class="badge-value">4.6</div>
-            <div class="badge-text">171 beoordelingen</div>
-          </div>
-        </div>
-        
-      </div>
-      <div class="about-content reveal reveal-delay-2">
-        <span class="section-tag">Ons verhaal</span>
-        <h2>Een bistro met karakter, midden in Roosendaal</h2>
-        <p>Bistro Cannelle is dé gezellige horecagelegenheid in het hartje van Roosendaal. Met een menukaart die met grote zorgvuldigheid is samengesteld en een team dat gastvrijheid hoog in het vaandel heeft, zorgen wij ervoor dat elk bezoek een herinnering wordt. Of u nu solo luncht, romantisch dineert of met een grote groep aantafel gaat — wij verwelkomen u met open armen. Onze gasten waarderen ons met een 4,6 op Google, en dat compliment nemen wij elke dag mee de keuken in.</p>
-        <div class="stats-row">
+  <!-- ——— ABOUT ——— -->
+  <section class="section section--cream" id="over-ons">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__image-wrap reveal">
           
-          <div class="stat-item">
-            <div class="stat-number">4,6 ★</div>
-            <div class="stat-label">Google beoordeling</div>
-          </div>
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEE1aGPF68ro33Xjo_P9copLDaNMZYS7Y1ieFlFiYo_ZbcjlWoaVh8f05jpxf7eRn0eeySZQmvHGNrKgNb8F1PImLiANwvmnJ4y3517skaF6OzvYT2EvOGuGjM70Zg0ihXIa6F3iNzGWsPbkuEIDIHgrPdgBOR7l5y-ePVhmXjlzV_pemXHe1UAMScnKJz0jCDSHwM0lbCBGBjrmQDtGvZjWVBuW9XHbSrVpG3YpUyCLD2_fdo4EBeWbsfQblNKkQCoKqzOAqHC4UXquburdsBethSieTGxan9MXJqkl2GKCTw&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Bistro Cannelle" class="about__image" />
           
-          <div class="stat-item">
-            <div class="stat-number">171+</div>
-            <div class="stat-label">Tevreden gasten reviews</div>
-          </div>
           
-          <div class="stat-item">
-            <div class="stat-number">6</div>
-            <div class="stat-label">Diensten op maat</div>
+          <div class="about__badge">
+            <span class="about__badge-value">4.6</span>
+            <span class="about__badge-label">171 reviews</span>
           </div>
           
         </div>
+        <div class="about__text reveal">
+          <span class="section__label">Ons verhaal</span>
+          <h2 class="section__title">Over Bistro Cannelle</h2>
+          <div class="section__divider"></div>
+          <p></p>
+          <div class="about__signature">— Bistro Cannelle</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ——— USPs ——— -->
+  
+  <section class="section section--white">
+    <div class="container">
+      <div class="usps reveal">
         
-        <a class="about-cta" href="tel:0165 533 901">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-          Direct bellen
-        </a>
+        <div class="usp">
+          <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <p class="usp__text">Verse ingredienten</p>
+        </div>
+        
+        <div class="usp">
+          <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+          <p class="usp__text">Top beoordelingen</p>
+        </div>
+        
+        <div class="usp">
+          <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <p class="usp__text">Online reserveren</p>
+        </div>
+        
+        <div class="usp">
+          <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <p class="usp__text">Groepen welkom</p>
+        </div>
         
       </div>
     </div>
-  </div>
-</section>
+  </section>
+  
 
-<!-- Reviews -->
+  <!-- ——— PHOTO BREAK ——— -->
+  
+  <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEE1aGPF68ro33Xjo_P9copLDaNMZYS7Y1ieFlFiYo_ZbcjlWoaVh8f05jpxf7eRn0eeySZQmvHGNrKgNb8F1PImLiANwvmnJ4y3517skaF6OzvYT2EvOGuGjM70Zg0ihXIa6F3iNzGWsPbkuEIDIHgrPdgBOR7l5y-ePVhmXjlzV_pemXHe1UAMScnKJz0jCDSHwM0lbCBGBjrmQDtGvZjWVBuW9XHbSrVpG3YpUyCLD2_fdo4EBeWbsfQblNKkQCoKqzOAqHC4UXquburdsBethSieTGxan9MXJqkl2GKCTw&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Bistro Cannelle sfeer" class="photo-break" />
+  
 
-<section id="reviews">
-  <div class="container">
-    <div class="reviews-header reveal">
-      <div>
-        <span class="section-tag">Klantbeoordelingen</span>
-        <h2>Wat onze gasten zeggen</h2>
-      </div>
-      
-      <div class="rating-badge">
-        <div class="rating-stars">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <!-- ——— MENU ——— -->
+  <section class="section section--cream" id="menukaart">
+    <div class="container reveal">
+      <div class="menu-card">
+        <div class="menu-card__header">
+          <h2 class="menu-card__title">Onze diensten</h2>
+          
+          <p class="menu-card__sub">Wat kunnen we voor u betekenen?</p>
+          
+          <div class="menu-card__ornament">
+            <div class="menu-card__ornament-dot"></div>
+          </div>
         </div>
-        <span class="rating-number">4.6</span>
-        <span class="rating-count">(171 reviews)</span>
+
+        
+        <div>
+          
+          <span class="menu-item__desc">Professioneel à la carte uitgevoerd met oog voor kwaliteit en detail.</span>
+          
+          <div class="menu-item">
+            <span class="menu-item__name">À la carte</span>
+            <span class="menu-item__dots"></span>
+            
+          </div>
+        </div>
+        
+        <div>
+          
+          <span class="menu-item__desc">Professioneel lunch uitgevoerd met oog voor kwaliteit en detail.</span>
+          
+          <div class="menu-item">
+            <span class="menu-item__name">Lunch</span>
+            <span class="menu-item__dots"></span>
+            
+          </div>
+        </div>
+        
+        <div>
+          
+          <span class="menu-item__desc">Professioneel diner uitgevoerd met oog voor kwaliteit en detail.</span>
+          
+          <div class="menu-item">
+            <span class="menu-item__name">Diner</span>
+            <span class="menu-item__dots"></span>
+            
+          </div>
+        </div>
+        
+        <div>
+          
+          <span class="menu-item__desc">Professioneel afhalen uitgevoerd met oog voor kwaliteit en detail.</span>
+          
+          <div class="menu-item">
+            <span class="menu-item__name">Afhalen</span>
+            <span class="menu-item__dots"></span>
+            
+          </div>
+        </div>
+        
+        <div>
+          
+          <span class="menu-item__desc">Professioneel catering uitgevoerd met oog voor kwaliteit en detail.</span>
+          
+          <div class="menu-item">
+            <span class="menu-item__name">Catering</span>
+            <span class="menu-item__dots"></span>
+            
+          </div>
+        </div>
+        
+        <div>
+          
+          <span class="menu-item__desc">Professioneel groepsarrangementen uitgevoerd met oog voor kwaliteit en detail.</span>
+          
+          <div class="menu-item">
+            <span class="menu-item__name">Groepsarrangementen</span>
+            <span class="menu-item__dots"></span>
+            
+          </div>
+        </div>
+        
       </div>
-      
     </div>
-    <div class="reviews-grid">
-      
-      <div class="review-card reveal reveal-delay-1">
-        <div class="review-header">
-          <div class="review-stars">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-          </div>
-          <div class="review-quote-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          </div>
+  </section>
+
+  <!-- ——— PHOTOS ——— -->
+  
+  <section class="section" style="background:var(--cream);padding-top:60px;padding-bottom:60px;">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+        
+        <div style="aspect-ratio:1;overflow:hidden;border-radius:8px;grid-column:span 2;grid-row:span 2;aspect-ratio:auto;">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEEHBRlIZw6YDprKtPspK_2vVm1dPXaIVYgxJNP1gyq5g8M6w1oP6bd960ZB3izlg2C29q2dmKtg9i3SD_HGwm-lpKKDuVl-TfJJfh0EbpnRrbmmM8XSyt5JZqsBpl0rCBLOER8VOOfR37v4qydYebdkFnj6XBk8dCoNT3Xqz5yu-Z8YkBoJsYdfrA9UGMW-v3mUQcwUSTZHNM9xdhaZ5m333987o39nBrAsNVXyB3DYdhQJB9NSrZlfUiQnmroWZ4UsOnqNhvGzeDDElS_VivmLbun7YWFKj08vaulQtIVDaQ&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Bistro Cannelle" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
         </div>
-        <p class="review-text">"Wat een aangename verrassing: met z’n vieren heerlijk gedineerd bij Bistro Cannelle voorafgaand aan onze theatervoorstelling. We werden hartelijk ontvangen door een jong en profess"</p>
-        <div class="review-author">— peter verboven</div>
+        
+        <div style="aspect-ratio:1;overflow:hidden;border-radius:8px;">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEE1aGPF68ro33Xjo_P9copLDaNMZYS7Y1ieFlFiYo_ZbcjlWoaVh8f05jpxf7eRn0eeySZQmvHGNrKgNb8F1PImLiANwvmnJ4y3517skaF6OzvYT2EvOGuGjM70Zg0ihXIa6F3iNzGWsPbkuEIDIHgrPdgBOR7l5y-ePVhmXjlzV_pemXHe1UAMScnKJz0jCDSHwM0lbCBGBjrmQDtGvZjWVBuW9XHbSrVpG3YpUyCLD2_fdo4EBeWbsfQblNKkQCoKqzOAqHC4UXquburdsBethSieTGxan9MXJqkl2GKCTw&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Bistro Cannelle" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+        
+        <div style="aspect-ratio:1;overflow:hidden;border-radius:8px;">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEEkaHi5btT0yasv1ZlYZ0dqJk5lLy5cjAS54860uKmeiEKdwaf0pAqqeuJSyFoJWk_OloNNyvz-U2ORgcl1e7cnUGEEL8X0tHqcu49pcGr2kin6fkp3I4jWNF9G3zvKC9ZVnCDrL-HmAw2_QWZyaTNIVrLJ5bKJd7p6fI5ver0ftilHHFBg16WC_fjLu2FzM7-fU9z9PmKJb8DtIKcWjaz25kk20X06lp2FFdn96jfwhJp-4H4RRWkSAV064mxcayRUWaR7IRoIU1coLollrGSbVE3l5EoX2SRFpaAfmlknnCk1kqkjVWkHEiqWiOH4MqqgXX0HxmFujonLLC3FcPp4hZMG1N3S4d8H5m-IKBYgxaYJutYiRnE-LNuZDlZUl_oUTy1svSvWsMcGrYhCIG_tA7oy4huDozHCTw2NiBq1irINYmL7FhGAeYI3YO9u&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Bistro Cannelle" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+        
       </div>
-      
-      <div class="review-card reveal reveal-delay-2">
-        <div class="review-header">
-          <div class="review-stars">
+    </div>
+  </section>
+  
+
+  <!-- ——— REVIEWS ——— -->
+  
+  <section class="section section--dark" id="reviews">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:56px;" class="reveal">
+        <span class="section__label">Wat onze gasten zeggen</span>
+        <h2 class="section__title">Wat onze klanten zeggen</h2>
+        <div class="section__divider" style="margin-left:auto;margin-right:auto;"></div>
+      </div>
+      <div class="reviews__grid">
+        
+        <div class="review-card reveal">
+          <span class="review-card__quote">&ldquo;</span>
+          <div class="review-card__stars">
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
             
           </div>
-          <div class="review-quote-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          </div>
+          <p class="review-card__text">Wat een aangename verrassing: met z’n vieren heerlijk gedineerd bij Bistro Cannelle voorafgaand aan onze theatervoorstelling. We werden hartelijk ontvangen door een jong en professioneel team dat precies aanvoelt wat gastvrijheid betekent. De gerechten waren stuk voor stuk smaakvol en mooi gepresenteerd, en ook de porties waren royaal. De wijnkaart biedt een mooie, goed doordachte selectie met eerlijke prijzen. Kortom, een adres om te onthouden – en beslist een aanrader.</p>
+          <span class="review-card__author">peter verboven</span>
         </div>
-        <p class="review-text">"Een meer dan goede horecagelegenheid in het hartje van Roosendaal.
+        
+        <div class="review-card reveal">
+          <span class="review-card__quote">&ldquo;</span>
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+          </div>
+          <p class="review-card__text">Een meer dan goede horecagelegenheid in het hartje van Roosendaal.
 Menukaart is met grote zorgvuldigheid samengesteld.
 Ook de drankselectie is meer dan genoeg.
-De begrippen Gastvri"</p>
-        <div class="review-author">— Adrie Jonkers</div>
-      </div>
-      
-      <div class="review-card reveal reveal-delay-3">
-        <div class="review-header">
-          <div class="review-stars">
+De begrippen Gastvrijheid en Deskundigheid voeren hier de boventoon.
+Billijke prijsstelling maakt het geheel tot een regelrechte aanrader.
+Laat u verrassen en plan een bezoek aan deze veelgeroemde locatie.
+U zult er beslist geen spijt van krijgen.</p>
+          <span class="review-card__author">Adrie Jonkers</span>
+        </div>
+        
+        <div class="review-card reveal">
+          <span class="review-card__quote">&ldquo;</span>
+          <div class="review-card__stars">
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
             
           </div>
-          <div class="review-quote-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+          <p class="review-card__text">Afgelopen woensdag weer eens heerlijk gegeten met zijn vijven bij Canelle. Was top voor iedereen! Vooral alle visgerechten zijn echt zalig. Ook de kogelbiefstuk is perfect! Dat geldt ook voor de bediening. Hier krijg je nog waar voor je geld. Een absolute aanrader!</p>
+          <span class="review-card__author">Ruud</span>
+        </div>
+        
+        <div class="review-card reveal">
+          <span class="review-card__quote">&ldquo;</span>
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
           </div>
+          <p class="review-card__text">Op zondagavond gezellig druk, dat zegt wat over de prijs/ kwaliteit. Die is dik in orde. Genoten van het goedkoopste menu, echt lekker. Tomatensoep, fantastische biefstuk en crème brulee met bolletje ijs.
+Maar er is ook een ruime keuze uit visgerechten.</p>
+          <span class="review-card__author">Peter Nieuwlaat</span>
         </div>
-        <p class="review-text">"Afgelopen woensdag weer eens heerlijk gegeten met zijn vijven bij Canelle. Was top voor iedereen! Vooral alle visgerechten zijn echt zalig. Ook de kogelbiefstuk is perfect! Dat gel"</p>
-        <div class="review-author">— Ruud</div>
+        
+        <div class="review-card reveal">
+          <span class="review-card__quote">&ldquo;</span>
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+          </div>
+          <p class="review-card__text">Prima restaurant
+Goede kwaliteit en zeer vriendelijk personeel!</p>
+          <span class="review-card__author">John Bennaars</span>
+        </div>
+        
       </div>
-      
     </div>
-  </div>
-</section>
+  </section>
+  
 
+  <!-- ——— CTA ——— -->
+  <section class="cta reveal">
+    <h2 class="cta__title">Klaar om te beginnen?</h2>
+    <p class="cta__sub">Neem vandaag nog contact op voor een vrijblijvend gesprek.</p>
+    <a href="tel:0165 533 901" class="cta__btn">Bel 0165 533 901</a>
+  </section>
 
-<!-- Contact / CTA -->
-<section id="contact">
-  <div class="contact-inner">
-    <span class="section-tag">Neem contact op</span>
-    <h2>Klaar voor een heerlijke avond?</h2>
-    <p class="section-sub">Reserveer uw tafel bij Bistro Cannelle en ervaar zelf waarom Roosendaal hier zo graag tafelt.</p>
-    <div class="contact-cards">
-      
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
+  <!-- ——— CONTACT & HOURS ——— -->
+  <section class="section section--white" id="contact">
+    <div class="container">
+      <div class="contact__grid reveal">
+        <div>
+          <h3 class="contact__title">Bezoek ons</h3>
+          <ul class="contact__info">
+            
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Markt 46, 4701 PH Roosendaal, Nederland</span>
+            </li>
+            
+            
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <a href="tel:0165 533 901">0165 533 901</a>
+            </li>
+            
+            
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:info@bistrocannelle.nl">info@bistrocannelle.nl</a>
+            </li>
+            
+          </ul>
         </div>
-        <div class="contact-card-label">Telefoon</div>
-        <div class="contact-card-value"><a href="tel:0165 533 901">0165 533 901</a></div>
-      </div>
-      
-      
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div>
+          
+          <h3 class="contact__title">Openingstijden</h3>
+          <table class="hours-table">
+            
+            <tr>
+              <td colspan="2">maandag: Gesloten</td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">dinsdag: Gesloten</td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">woensdag: 17:00–22:00</td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">donderdag: 17:00–22:30</td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">vrijdag: 17:00–23:00</td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">zaterdag: 17:00–23:00</td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">zondag: 17:00–22:00</td>
+            </tr>
+            
+          </table>
+          
         </div>
-        <div class="contact-card-label">E-mail</div>
-        <div class="contact-card-value"><a href="mailto:info@bistrocannelle.nl">info@bistrocannelle.nl</a></div>
       </div>
-      
-      
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div class="contact-card-label">Adres</div>
-        <div class="contact-card-value">Markt 46, 4701 PH Roosendaal, Nederland</div>
-      </div>
-      
     </div>
-    
-    <a class="btn-cta" href="tel:0165 533 901">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-      Nu bellen: 0165 533 901
-    </a>
-    
-  </div>
-</section>
+  </section>
 
-<!-- Footer -->
-<footer>
-  <span>&copy; 2025 <strong>Bistro Cannelle</strong> &mdash; Roosendaal</span>
-  <span>Website concept door <strong>Solidmotion</strong> &middot; <a href="mailto:michiel@solidmotion.nl">michiel@solidmotion.nl</a></span>
-</footer>
+  <!-- ——— FOOTER ——— -->
+  <footer class="footer">
+    <p>&copy; Bistro Cannelle &middot; Roosendaal</p>
+    <p class="footer__credit">Website ontworpen door <a href="mailto:michiel@solidmotion.nl">Solidmotion</a></p>
+  </footer>
 
-<script>
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+  <script>
+    /* ——— Transparent-to-solid nav ——— */
+    (function() {
+      var nav = document.getElementById('nav');
+      var hero = document.querySelector('.hero');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            nav.classList.remove('nav--solid');
+          } else {
+            nav.classList.add('nav--solid');
+          }
+        });
+      }, { threshold: 0.05 });
+      observer.observe(hero);
+    })();
+
+    /* ——— Scroll reveal ——— */
+    (function() {
+      var reveals = document.querySelectorAll('.reveal');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(function(el) { observer.observe(el); });
+    })();
+
+    /* ——— Mobile menu ——— */
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    function closeMobile() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  </script>
 </body>
 </html>
