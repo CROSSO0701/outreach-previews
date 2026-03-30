@@ -1,844 +1,1217 @@
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Verander uw tuin in een groene oase met BloemTuinen – vakkundig en persoonlijk." />
-  <title>BloemTuinen — Breda</title>
+  <meta name="description" content="Betrouwbaar, vakkundig en altijd persoonlijk." />
+  <title>BloemTuinen - Hovenier in Breda</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    /* ═══════════════════════════════════════════
-       DESIGN TOKENS
-    ═══════════════════════════════════════════ */
     :root {
-      --primary:       #2D6A4F;
-      --primary-dark:  #1B4332;
-      --primary-rgb:   45,106,79;
-      --accent:        #74C69D;
-      --bg:            #F0FAF4;
-      --text:          #081C15;
-      --text-muted:    #6B7280;
-      --white:         #FFFFFF;
-      --surface:       #FFFFFF;
-      --border:        rgba(0,0,0,0.08);
-      --shadow-sm:     0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-      --shadow-md:     0 4px 16px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
-      --shadow-lg:     0 20px 40px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.08);
-      --radius-sm:     8px;
-      --radius-md:     14px;
-      --radius-lg:     20px;
-      --radius-xl:     28px;
-      --font-display:  'Bodoni Moda', Georgia, serif;
-      --font-body:     'Jost', system-ui, sans-serif;
-      --transition:    0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      --primary:      #2D6A4F;
+      --primary-dark: #1B4332;
+      --primary-rgb:  45,106,79;
+      --accent:       #74C69D;
+      --bg:           #F0FAF4;
+      --text:         #081C15;
+      --cream:        #F7F3EC;
+      --forest:       #2D4A3E;
+      --forest-light: #3E6B5A;
+      --earth:        #8B7355;
+      --earth-light:  #C4A97D;
+      --moss:         #5A7247;
+      --sand:         #E8DFD0;
+      --warm-black:   #1E2420;
+      --text-muted:   #5E6B62;
+      --border:       rgba(45,74,62,0.12);
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body:    'Outfit', system-ui, sans-serif;
+      --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-out:     cubic-bezier(0.0, 0, 0.2, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font-body);
       font-size: 16px;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.65;
+      color: var(--warm-black);
+      background: var(--cream);
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
 
     img { max-width: 100%; height: auto; display: block; }
     a { color: inherit; text-decoration: none; }
 
-    /* ═══════════════════════════════════════════
-       ANNOUNCEMENT BANNER
-    ═══════════════════════════════════════════ */
-    .banner {
-      background: var(--primary-dark);
-      color: rgba(255,255,255,0.92);
-      text-align: center;
-      padding: 10px 20px;
+    /* --- REVEAL ANIMATIONS --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-48px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(48px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* --- ORGANIC SHAPES --- */
+    .organic-blob {
+      position: absolute;
+      border-radius: 50% 40% 60% 45%;
+      opacity: 0.06;
+      background: var(--forest);
+      pointer-events: none;
+    }
+
+    /* --- NAVIGATION --- */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 48px;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.5s var(--ease), box-shadow 0.5s var(--ease);
+    }
+    .nav--solid {
+      background: rgba(247,243,236,0.97);
+      box-shadow: 0 1px 20px rgba(45,74,62,0.08);
+      backdrop-filter: blur(12px);
+    }
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav__logo img {
+      height: 38px;
+      width: auto;
+    }
+    .nav__logo-text {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: -0.01em;
+      transition: color 0.4s var(--ease);
+    }
+    .nav--solid .nav__logo-text { color: var(--forest); }
+
+    .nav__links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav__links a {
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s var(--ease);
+      position: relative;
+    }
+    .nav__links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--earth-light);
+      border-radius: 1px;
+      transition: width 0.3s var(--ease);
+    }
+    .nav__links a:hover::after { width: 100%; }
+    .nav--solid .nav__links a { color: var(--warm-black); }
+
+    .nav__cta {
       font-size: 13px;
       font-weight: 500;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.04em;
+      padding: 10px 28px;
+      border: 1.5px solid rgba(255,255,255,0.45);
+      border-radius: 40px;
+      color: #fff;
+      transition: all 0.3s var(--ease);
     }
-    .banner a { color: var(--accent); font-weight: 600; }
+    .nav__cta:hover {
+      background: #fff;
+      color: var(--forest);
+      border-color: #fff;
+    }
+    .nav--solid .nav__cta {
+      border-color: var(--forest);
+      color: var(--forest);
+    }
+    .nav--solid .nav__cta:hover {
+      background: var(--forest);
+      color: #fff;
+    }
 
-    /* ═══════════════════════════════════════════
-       NAVIGATION
-    ═══════════════════════════════════════════ */
-    .nav {
-      position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      background: rgba(255,255,255,0.82);
-      border-bottom: 1px solid var(--border);
-      padding: 0 clamp(20px, 5vw, 80px);
-      height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
+    /* Hamburger */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 110;
     }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-      letter-spacing: -0.01em;
+    .nav__hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s var(--ease);
     }
-    .nav-links {
-      display: flex; gap: 32px; list-style: none;
+    .nav--solid .nav__hamburger span { background: var(--warm-black); }
+    .nav__hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav__hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav__hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .nav__mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(30,36,32,0.97);
+      z-index: 105;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
+      gap: 28px;
     }
-    .nav-links a {
-      font-size: 14px; font-weight: 500;
-      color: var(--text-muted);
-      transition: color var(--transition);
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: #fff;
+      font-weight: 400;
     }
-    .nav-links a:hover { color: var(--primary); }
-    .nav-cta {
-      background: var(--primary) !important;
-      color: var(--white) !important;
-      padding: 10px 22px;
-      border-radius: var(--radius-sm);
-      font-weight: 600 !important;
-      font-size: 14px !important;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition) !important;
-      box-shadow: 0 2px 8px rgba(var(--primary-rgb),0.3);
-    }
-    .nav-cta:hover {
-      background: var(--primary-dark) !important;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(var(--primary-rgb),0.35) !important;
-    }
+    .nav__mobile a:hover { color: var(--earth-light); }
 
-    /* ═══════════════════════════════════════════
-       HERO
-    ═══════════════════════════════════════════ */
+    /* --- HERO --- */
     .hero {
       position: relative;
-      min-height: 92vh;
-      display: flex; align-items: center;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      align-items: flex-end;
+      background: url(https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1600) center/cover no-repeat;
       overflow: hidden;
     }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-size: cover;
-      background-position: center;
-      background-image: url(https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1600);
-      transform: scale(1.04);
-      transition: transform 8s ease;
-    }
-    .hero-bg::after {
+    .hero::before {
       content: '';
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background: rgba(8,28,21,0.6);
     }
-    .hero:hover .hero-bg { transform: scale(1.0); }
-
-    .hero-content {
-      position: relative; z-index: 2;
-      max-width: 760px;
-      padding: clamp(40px, 8vw, 100px) clamp(20px, 6vw, 100px);
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      padding: 0 48px 100px;
     }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25);
-      backdrop-filter: blur(8px);
-      color: rgba(255,255,255,0.92);
-      padding: 6px 16px;
-      border-radius: 100px;
-      font-size: 13px; font-weight: 600;
-      letter-spacing: 0.06em;
+    .hero__tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-bottom: 28px;
-    }
-    .hero-eyebrow svg { width: 14px; height: 14px; }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+      color: var(--earth-light);
       margin-bottom: 20px;
+      padding: 6px 16px;
+      border: 1px solid rgba(196,169,125,0.3);
+      border-radius: 40px;
     }
-    .hero h1 em {
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .hero__title em {
       font-style: italic;
-      color: var(--accent);
-    }
-    .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(255,255,255,0.82);
-      max-width: 520px;
-      line-height: 1.65;
-      margin-bottom: 40px;
       font-weight: 300;
+      color: var(--earth-light);
     }
-    .hero-actions {
-      display: flex; gap: 14px; flex-wrap: wrap;
+    .hero__sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+      line-height: 1.65;
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+    .hero__actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
     }
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--accent);
-      color: var(--text) !important;
-      padding: 16px 32px;
-      border-radius: var(--radius-md);
-      font-weight: 700; font-size: 15px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-      transition: transform var(--transition), box-shadow var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 14px 36px;
+      background: var(--forest);
+      color: #fff;
+      border-radius: 50px;
+      transition: all 0.3s var(--ease);
+      border: none;
       cursor: pointer;
     }
     .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+      background: var(--forest-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(45,74,62,0.3);
     }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 10px;
-      border: 2px solid rgba(255,255,255,0.55);
-      color: var(--white);
-      padding: 14px 28px;
-      border-radius: var(--radius-md);
-      font-weight: 600; font-size: 15px;
-      transition: border-color var(--transition), background var(--transition);
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 14px 32px;
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 50px;
+      transition: all 0.3s var(--ease);
+      cursor: pointer;
     }
-    .btn-ghost:hover {
-      border-color: rgba(255,255,255,0.9);
+    .btn-outline:hover {
       background: rgba(255,255,255,0.1);
-    }
-    .btn-primary svg, .btn-ghost svg { width: 18px; height: 18px; flex-shrink: 0; }
-
-    /* ═══════════════════════════════════════════
-       USP STRIP
-    ═══════════════════════════════════════════ */
-    .usp-strip {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 20px clamp(20px, 5vw, 80px);
-      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
-    }
-    .usp-item {
-      display: flex; align-items: center; gap: 10px;
-      padding: 12px 28px;
-      border-right: 1px solid var(--border);
-      font-weight: 500; font-size: 14px; color: var(--text);
-    }
-    .usp-item:last-child { border-right: none; }
-    .usp-icon {
-      width: 36px; height: 36px;
-      background: rgba(var(--primary-rgb),0.1);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .usp-icon svg { width: 18px; height: 18px; color: var(--primary); }
-
-    /* ═══════════════════════════════════════════
-       SECTION SHARED
-    ═══════════════════════════════════════════ */
-    section { padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 80px); }
-    .container { max-width: 1160px; margin: 0 auto; }
-    .section-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      color: var(--primary); font-weight: 700; font-size: 12px;
-      text-transform: uppercase; letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-    .section-tag::before {
-      content: '';
-      width: 20px; height: 2px;
-      background: var(--primary); border-radius: 2px;
-    }
-    h2 {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.18;
-      color: var(--text);
-      margin-bottom: 14px;
-    }
-    .section-sub {
-      font-size: 17px; color: var(--text-muted);
-      max-width: 520px; line-height: 1.7;
-      margin-bottom: 52px;
+      border-color: rgba(255,255,255,0.5);
     }
 
-    /* ═══════════════════════════════════════════
-       SERVICES
-    ═══════════════════════════════════════════ */
-    #diensten { background: var(--bg); }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+    .hero__scroll {
+      position: absolute;
+      bottom: 36px;
+      right: 48px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
     }
-    .service-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      transition: transform var(--transition), box-shadow var(--transition);
+    .hero__scroll span {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      writing-mode: vertical-rl;
+    }
+    .hero__scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+      animation: scrollPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* --- SECTION UTILITIES --- */
+    .section {
+      padding: 110px 24px;
       position: relative;
       overflow: hidden;
     }
-    .service-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 60%, #52B788 100%);
-      opacity: 0;
-      transition: opacity var(--transition);
+    .section--cream { background: var(--cream); }
+    .section--white { background: #fff; }
+    .section--sand { background: var(--sand); }
+    .section--forest {
+      background: var(--forest);
+      color: rgba(255,255,255,0.85);
     }
-    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-    .service-card:hover::before { opacity: 1; }
-    .service-card-icon {
-      width: 52px; height: 52px;
-      background: rgba(var(--primary-rgb),0.1);
-      border-radius: var(--radius-md);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
     }
-    .service-card-icon svg { width: 26px; height: 26px; color: var(--primary); }
-    .service-card h3 {
+    .section__eyebrow {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--earth);
+      margin-bottom: 12px;
+    }
+    .section--forest .section__eyebrow { color: var(--earth-light); }
+    .section__title {
       font-family: var(--font-display);
-      font-size: 1.2rem; font-weight: 600;
-      margin-bottom: 10px; color: var(--text);
+      font-size: clamp(30px, 3.5vw, 46px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
     }
-    .service-card p { color: var(--text-muted); font-size: 15px; line-height: 1.6; }
+    .section--forest .section__title { color: #fff; }
+    .section__subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 540px;
+    }
+    .section--forest .section__subtitle { color: rgba(255,255,255,0.6); }
+    .section__leaf {
+      width: 32px;
+      height: 2px;
+      background: var(--moss);
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .section--forest .section__leaf { background: var(--earth-light); }
 
-    /* ═══════════════════════════════════════════
-       ABOUT
-    ═══════════════════════════════════════════ */
-    #over-ons { background: var(--white); }
-    .about-grid {
+    /* --- STATS BAR --- */
+    .stats-bar {
+      background: var(--forest);
+      padding: 48px 24px;
+    }
+    .stats-bar__inner {
+      max-width: 1140px;
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 36px;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat__value {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .stat__label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    /* --- ABOUT (Asymmetric) --- */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
       gap: 80px;
       align-items: center;
     }
-    .about-image {
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      aspect-ratio: 4/5;
+    .about__image-wrap {
       position: relative;
-      box-shadow: var(--shadow-lg);
     }
-    .about-image img {
-      width: 100%; height: 100%;
+    .about__image {
+      width: 100%;
+      aspect-ratio: 3/4;
       object-fit: cover;
+      border-radius: 0 50% 4px 4px;
     }
-    .about-image-placeholder {
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 60%, #52B788 100%);
-      display: flex; align-items: center; justify-content: center;
+    .about__accent {
+      position: absolute;
+      bottom: -24px;
+      left: -24px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 2px solid var(--earth-light);
+      opacity: 0.3;
     }
-    .about-image-placeholder svg {
-      width: 80px; height: 80px;
-      color: rgba(255,255,255,0.5);
+    .about__badge {
+      position: absolute;
+      top: 24px;
+      right: -16px;
+      background: var(--earth);
+      color: #fff;
+      padding: 16px 20px;
+      border-radius: 50%;
+      text-align: center;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+      width: 96px;
+      height: 96px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
-    .about-image-badge {
-      position: absolute; bottom: 24px; left: 24px;
-      background: var(--white);
-      border-radius: var(--radius-md);
-      padding: 14px 20px;
-      box-shadow: var(--shadow-md);
-      display: flex; align-items: center; gap: 12px;
+    .about__badge-value {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1;
     }
-    .badge-icon {
-      width: 40px; height: 40px;
-      background: rgba(var(--primary-rgb),0.1);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
+    .about__badge-label {
+      font-size: 10px;
+      opacity: 0.8;
+      margin-top: 2px;
+      letter-spacing: 0.02em;
     }
-    .badge-icon svg { width: 22px; height: 22px; color: var(--primary); }
-    .badge-text { font-size: 12px; color: var(--text-muted); font-weight: 500; }
-    .badge-value { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1; }
+    .about__text {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
 
-    .about-content h2 { margin-bottom: 20px; }
-    .about-content p { color: var(--text-muted); font-size: 16px; line-height: 1.75; margin-bottom: 24px; }
-    .stats-row {
-      display: flex; gap: 32px; flex-wrap: wrap;
-      margin: 32px 0;
+    /* --- USPs --- */
+    .usps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      margin-top: 56px;
+    }
+    .usp {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 24px;
+      background: rgba(45,74,62,0.04);
+      border-radius: 16px;
+      transition: background 0.3s var(--ease);
+    }
+    .usp:hover {
+      background: rgba(45,74,62,0.08);
+    }
+    .usp__icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      color: var(--forest);
+    }
+    .usp__text {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* --- SERVICES (List style) --- */
+    .services__header {
+      margin-bottom: 56px;
+    }
+    .services-list {
+      max-width: 800px;
+    }
+    .service-item {
       padding: 28px 0;
-      border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-    .stat-item { }
-    .stat-number {
+    .service-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+    .service-item__row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .service-item__name {
       font-family: var(--font-display);
-      font-size: 2.4rem; font-weight: 700;
-      color: var(--primary); line-height: 1;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--forest);
+      flex-shrink: 0;
+    }
+    .service-item__dots {
+      flex: 1;
+      border-bottom: 2px dotted var(--border);
+      min-width: 40px;
       margin-bottom: 4px;
     }
-    .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-    .about-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--primary);
-      color: var(--white);
-      padding: 15px 30px;
-      border-radius: var(--radius-md);
-      font-weight: 600; font-size: 15px;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-      box-shadow: 0 4px 16px rgba(var(--primary-rgb),0.3);
-    }
-    .about-cta:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(var(--primary-rgb),0.4);
-    }
-    .about-cta svg { width: 18px; height: 18px; }
-
-    /* ═══════════════════════════════════════════
-       REVIEWS
-    ═══════════════════════════════════════════ */
-    #reviews { background: var(--bg); }
-    .reviews-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 48px; flex-wrap: wrap; gap: 20px;
-    }
-    .rating-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 12px 20px;
-      box-shadow: var(--shadow-sm);
-    }
-    .rating-stars svg { width: 18px; height: 18px; color: #F59E0B; }
-    .rating-number {
+    .service-item__price {
       font-family: var(--font-display);
-      font-size: 1.6rem; font-weight: 700; color: var(--text);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--earth);
+      flex-shrink: 0;
     }
-    .rating-count { font-size: 13px; color: var(--text-muted); }
-    .reviews-grid {
+    .service-item__desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.55;
+    }
+
+    /* --- PHOTO GALLERY (Masonry) --- */
+    .gallery__grid {
+      columns: 3;
+      column-gap: 16px;
+    }
+    .gallery__item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery__item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.6s var(--ease);
+    }
+    .gallery__item:hover img {
+      transform: scale(1.04);
+    }
+    .gallery__item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(30,36,32,0.2) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s var(--ease);
+    }
+    .gallery__item:hover::after {
+      opacity: 1;
+    }
+
+    /* --- REVIEWS --- */
+    .reviews__grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+      gap: 24px;
+      margin-top: 48px;
     }
     .review-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition);
+      padding: 36px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      position: relative;
     }
-    .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .review-header {
-      display: flex; justify-content: space-between;
-      align-items: center; margin-bottom: 16px;
+    .review-card__quote {
+      font-family: var(--font-display);
+      font-size: 56px;
+      line-height: 1;
+      color: var(--earth-light);
+      opacity: 0.4;
+      position: absolute;
+      top: 16px;
+      left: 24px;
     }
-    .review-stars { display: flex; gap: 2px; }
-    .review-stars svg { width: 16px; height: 16px; color: #F59E0B; }
-    .review-quote-icon { color: rgba(var(--primary-rgb),0.15); }
-    .review-quote-icon svg { width: 28px; height: 28px; }
-    .review-text {
-      font-size: 15px; line-height: 1.7;
-      color: var(--text); margin-bottom: 20px;
+    .review-card__stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+    .review-card__star {
+      width: 16px;
+      height: 16px;
+      color: var(--earth-light);
+    }
+    .review-card__text {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 20px;
       font-style: italic;
     }
-    .review-author {
-      font-weight: 600; font-size: 13px; color: var(--text-muted);
+    .review-card__author {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--earth-light);
+    }
+    .reviews__summary {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
+    }
+    .reviews__summary strong {
+      color: #fff;
+      font-weight: 600;
     }
 
-    /* ═══════════════════════════════════════════
-       CONTACT / CTA
-    ═══════════════════════════════════════════ */
-    #contact {
-      background: var(--primary-dark);
+    /* --- CTA SECTION --- */
+    .cta {
+      text-align: center;
+      padding: 110px 24px;
+      background: var(--forest);
+      color: #fff;
       position: relative;
       overflow: hidden;
     }
-    #contact::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='2' fill='rgba(255,255,255,0.05)'/%3E%3C/g%3E%3C/svg%3E");
+    .cta__blob {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50% 40% 55% 45%;
+      background: rgba(255,255,255,0.03);
+      top: -200px;
+      right: -100px;
+      pointer-events: none;
     }
-    .contact-inner {
-      position: relative; z-index: 2;
-      text-align: center;
-      max-width: 700px; margin: 0 auto;
+    .cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4vw, 50px);
+      font-weight: 400;
+      position: relative;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
     }
-    #contact .section-tag { color: var(--accent); }
-    #contact .section-tag::before { background: var(--accent); }
-    #contact h2 { color: var(--white); margin-bottom: 16px; }
-    #contact .section-sub { color: rgba(255,255,255,0.7); margin: 0 auto 48px; }
-    .contact-cards {
-      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    .cta__sub {
+      font-size: 16px;
+      opacity: 0.65;
       margin-bottom: 40px;
+      position: relative;
     }
-    .contact-card {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
-      backdrop-filter: blur(12px);
-      border-radius: var(--radius-lg);
-      padding: 24px 28px;
-      min-width: 180px;
-      text-align: center;
-      transition: background var(--transition), transform var(--transition);
+    .cta__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 16px 44px;
+      background: #fff;
+      color: var(--forest);
+      border-radius: 50px;
+      transition: all 0.3s var(--ease);
     }
-    .contact-card:hover {
-      background: rgba(255,255,255,0.16);
-      transform: translateY(-3px);
+    .cta__btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.25);
     }
-    .contact-card-icon {
-      width: 44px; height: 44px;
-      background: rgba(255,255,255,0.12);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 12px;
-    }
-    .contact-card-icon svg { width: 22px; height: 22px; color: var(--accent); }
-    .contact-card-label { font-size: 12px; color: rgba(255,255,255,0.55); font-weight: 500; margin-bottom: 4px; }
-    .contact-card-value { font-size: 15px; font-weight: 600; color: var(--white); }
-    .contact-card-value a { color: var(--white); }
-    .btn-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--white);
-      color: var(--primary-dark);
-      padding: 18px 40px;
-      border-radius: var(--radius-md);
-      font-weight: 700; font-size: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
-    .btn-cta svg { width: 20px; height: 20px; }
 
-    /* ═══════════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════════ */
-    footer {
-      background: #0A0A0A;
+    /* --- CONTACT / HOURS --- */
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+    }
+    .contact__title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 400;
+      margin-bottom: 28px;
+      color: var(--forest);
+    }
+    .contact__info {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .contact__info li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+    .contact__info svg {
+      width: 18px;
+      height: 18px;
+      color: var(--forest);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .contact__info a:hover {
+      color: var(--forest);
+    }
+
+    .hours-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .hours-list li {
+      padding: 12px 0;
+      font-size: 15px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .hours-list li:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    /* --- PHOTO BREAK --- */
+    .photo-break {
+      width: 100%;
+      height: 50vh;
+      min-height: 320px;
+      object-fit: cover;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+      background: var(--warm-black);
       color: rgba(255,255,255,0.4);
-      padding: 28px clamp(20px, 5vw, 80px);
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      padding: 48px 24px;
       font-size: 13px;
     }
-    footer strong { color: rgba(255,255,255,0.7); }
-    footer a { color: rgba(255,255,255,0.4); transition: color var(--transition); }
-    footer a:hover { color: rgba(255,255,255,0.7); }
+    .footer__inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer a {
+      color: rgba(255,255,255,0.6);
+      transition: color 0.3s var(--ease);
+    }
+    .footer a:hover { color: #fff; }
 
-    /* ═══════════════════════════════════════════
-       SCROLL REVEAL ANIMATION
-    ═══════════════════════════════════════════ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1), transform 0.5s cubic-bezier(0.4,0,0.2,1);
-    }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-delay-1 { transition-delay: 0.08s; }
-    .reveal-delay-2 { transition-delay: 0.16s; }
-    .reveal-delay-3 { transition-delay: 0.24s; }
-    .reveal-delay-4 { transition-delay: 0.32s; }
-    .reveal-delay-5 { transition-delay: 0.40s; }
+    /* --- RESPONSIVE --- */
+    @media (max-width: 900px) {
+      .nav { padding: 0 24px; }
+      .nav__links,
+      .nav__cta { display: none; }
+      .nav__hamburger { display: flex; }
 
-    /* ═══════════════════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════════════════ */
-    @media (max-width: 1024px) {
-      .about-grid { grid-template-columns: 1fr; gap: 48px; }
-      .about-image { aspect-ratio: 16/9; }
+      .section { padding: 72px 24px; }
+
+      .about__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .about__badge {
+        right: 16px;
+        top: 16px;
+        width: 80px;
+        height: 80px;
+      }
+      .about__badge-value { font-size: 22px; }
+
+      .hero__content {
+        padding: 0 24px 72px;
+      }
+
+      .contact__grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .gallery__grid {
+        columns: 2;
+      }
+
+      .reviews__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-bar__inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer__inner {
+        flex-direction: column;
+        text-align: center;
+      }
     }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .usp-item { padding: 10px 16px; border-right: none; border-bottom: 1px solid var(--border); }
-      .usp-item:last-child { border-bottom: none; }
-      .usp-strip { flex-direction: column; align-items: center; padding: 12px 20px; }
-      footer { flex-direction: column; text-align: center; }
-    }
+
     @media (max-width: 480px) {
-      .hero h1 { font-size: 2rem; }
-      .hero-actions { flex-direction: column; }
-      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-      .hero-bg { transform: none !important; }
+      .hero__title { font-size: 34px; }
+      .hero__sub { font-size: 15px; }
+      .hero__actions { flex-direction: column; align-items: flex-start; }
+      .gallery__grid { columns: 1; }
+      .stats-bar__inner { grid-template-columns: 1fr; }
+      .service-item__name { font-size: 18px; }
+      .service-item__price { font-size: 18px; }
     }
   </style>
 </head>
 <body>
 
-<!-- Announcement Banner -->
-<div class="banner">
-  Dit is een gratis website concept voor <strong>BloemTuinen</strong> — gemaakt door Solidmotion.
-  Interesse? <a href="mailto:michiel@solidmotion.nl">Stuur ons een bericht</a>
-</div>
-
-<!-- Navigation -->
-<nav class="nav">
-  <a class="nav-logo" href="#">BloemTuinen</a>
-  <ul class="nav-links">
-    <li><a href="#diensten">Diensten</a></li>
-    <li><a href="#over-ons">Over ons</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li>
-      <a class="nav-cta" href="#contact">
-        Bel 06 49092760
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<!-- Hero -->
-<header class="hero">
-  <div class="hero-bg" style="background-image: url(https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1600);"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Hovenier &middot; Breda
-    </div>
-    <h1>Dé Hovenier van Breda voor een Prachtige Tuin</h1>
-    <p class="hero-sub">Verander uw tuin in een groene oase met BloemTuinen – vakkundig en persoonlijk.</p>
-    <div class="hero-actions">
-      
-      <a class="btn-primary" href="tel:06 49092760">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-        06 49092760
-      </a>
-      
-      <a class="btn-ghost" href="#diensten">
-        Bekijk diensten
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </div>
-  </div>
-</header>
-
-<!-- USP Strip -->
-<div class="usp-strip">
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-    <span>Snel &amp; betrouwbaar</span>
-  </div>
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-    <span>Kwaliteitsgarantie</span>
-  </div>
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-    <span>Flexibele planning</span>
-  </div>
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 22l1.06-.36C6.5 15.83 8 12.5 17 11c0 0-2 5-6 7.59C7.08 20.92 3.5 22 2 22c1-3.5 3-12 15-14z"/></svg></div>
-    <span>Duurzaam werken</span>
-  </div>
-  
-</div>
-
-<!-- Services -->
-<section id="diensten">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-tag">Wat wij doen</span>
-      <h2>Onze Tuindiensten in Breda</h2>
-      <p class="section-sub">Van ontwerp tot onderhoud – wij zorgen dat uw tuin er altijd op zijn best uitziet.</p>
-    </div>
-    <div class="services-grid">
-      
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 22l1.06-.36C6.5 15.83 8 12.5 17 11c0 0-2 5-6 7.59C7.08 20.92 3.5 22 2 22c1-3.5 3-12 15-14z"/></svg></div>
-        <h3>Tuinaanleg</h3>
-        <p>Wij leggen uw droomtuin aan van begin tot eind, met oog voor detail en kwaliteit. Samen maken we van uw buitenruimte iets om trots op te zijn.</p>
-      </div>
-      
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
-        <h3>Tuinonderhoud</h3>
-        <p>Regelmatig onderhoud houdt uw tuin in topconditie door het hele jaar heen. Wij nemen het werk uit handen zodat u kunt genieten.</p>
-      </div>
-      
-      <div class="service-card reveal reveal-delay-3">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
-        <h3>Snoeien</h3>
-        <p>Vakkundig snoeien zorgt voor gezonde planten en een verzorgde uitstraling. Wij weten precies wanneer en hoe elke plant gesnoeid moet worden.</p>
-      </div>
-      
-      <div class="service-card reveal reveal-delay-4">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
-        <h3>Bestrating</h3>
-        <p>Van opritten tot tuinpaden – wij leggen bestrating aan die duurzaam en mooi oogt. Strakke afwerking is voor ons vanzelfsprekend.</p>
-      </div>
-      
-      <div class="service-card reveal reveal-delay-5">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div>
-        <h3>Gazononderhoud</h3>
-        <p>Een groen en egaal gazon vraagt om de juiste kennis en aanpak. Wij zorgen voor maaien, verticuteren en bemesting op maat.</p>
-      </div>
-      
-      <div class="service-card reveal reveal-delay-6">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-        <h3>Tuinontwerp</h3>
-        <p>Samen met u bedenken wij een tuinontwerp dat past bij uw wensen, stijl en budget. Uw ideale tuin begint met een goed plan.</p>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-<!-- About -->
-<section id="over-ons">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-image reveal">
-        
-        <div class="about-image-placeholder">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        
-        
-        <div class="about-image-badge">
-          <div class="badge-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-          </div>
-          <div>
-            <div class="badge-value">5</div>
-            <div class="badge-text">1 beoordelingen</div>
-          </div>
-        </div>
-        
-      </div>
-      <div class="about-content reveal reveal-delay-2">
-        <span class="section-tag">Ons verhaal</span>
-        <h2>Vakmanschap met een Persoonlijk Tintje</h2>
-        <p>Bij BloemTuinen in Breda staat uw tuin centraal. Wij geloven dat een mooie tuin begint bij goed luisteren. Onze hovenier neemt de tijd om uw wensen te begrijpen en denkt actief mee over de mooiste oplossingen voor uw buitenruimte. Of het nu gaat om een volledig nieuwe tuin of regelmatig onderhoud – wij werken altijd netjes, punctueel en met passie voor ons vak. Breda en omgeving mogen rekenen op een hovenier die echt het verschil maakt.</p>
-        <div class="stats-row">
-          
-          <div class="stat-item">
-            <div class="stat-number">10+</div>
-            <div class="stat-label">Jaar ervaring</div>
-          </div>
-          
-          <div class="stat-item">
-            <div class="stat-number">200+</div>
-            <div class="stat-label">Tevreden klanten</div>
-          </div>
-          
-          <div class="stat-item">
-            <div class="stat-number">5★</div>
-            <div class="stat-label">Google beoordeling</div>
-          </div>
-          
-        </div>
-        
-        <a class="about-cta" href="tel:06 49092760">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-          Direct bellen
-        </a>
-        
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Reviews -->
-
-<section id="reviews">
-  <div class="container">
-    <div class="reviews-header reveal">
-      <div>
-        <span class="section-tag">Klantbeoordelingen</span>
-        <h2>Wat Onze Klanten Zeggen</h2>
-      </div>
-      
-      <div class="rating-badge">
-        <div class="rating-stars">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        </div>
-        <span class="rating-number">5</span>
-        <span class="rating-count">(1 reviews)</span>
-      </div>
-      
-    </div>
-    <div class="reviews-grid">
-      
-      <div class="review-card reveal reveal-delay-1">
-        <div class="review-header">
-          <div class="review-stars">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-          </div>
-          <div class="review-quote-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          </div>
-        </div>
-        <p class="review-text">"Altijd netjes echt een een vak man luistert  goed naar wat je wil en komt zelfs met mooi ideeën aan als je een nieuwe tuin wil"</p>
-        <div class="review-author">— Patrick Van Der Heijden</div>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-
-<!-- Contact / CTA -->
-<section id="contact">
-  <div class="contact-inner">
-    <span class="section-tag">Neem contact op</span>
-    <h2>Klaar voor een Mooiere Tuin in Breda?</h2>
-    <p class="section-sub">Neem vandaag nog contact op voor een vrijblijvend gesprek – wij denken graag met u mee.</p>
-    <div class="contact-cards">
-      
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-        </div>
-        <div class="contact-card-label">Telefoon</div>
-        <div class="contact-card-value"><a href="tel:06 49092760">06 49092760</a></div>
-      </div>
-      
-      
-      
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div class="contact-card-label">Adres</div>
-        <div class="contact-card-value">Wilderen 136, 4817 VH Breda, Nederland</div>
-      </div>
-      
-    </div>
-    
-    <a class="btn-cta" href="tel:06 49092760">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-      Nu bellen: 06 49092760
+  <!-- --- NAVIGATION --- -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav__logo">
+      <span class="nav__logo-text">BloemTuinen</span>
     </a>
-    
+    <ul class="nav__links">
+      <li><a href="#over-ons">Over ons</a></li>
+      <li><a href="#diensten">Diensten</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="tel:06 49092760" class="nav__cta">Bel ons</a>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu openen">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="#over-ons" onclick="closeMobile()">Over ons</a>
+    <a href="#diensten" onclick="closeMobile()">Diensten</a>
+    <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
+    <a href="#reviews" onclick="closeMobile()">Reviews</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <a href="tel:06 49092760" onclick="closeMobile()">Bel ons</a>
   </div>
-</section>
 
-<!-- Footer -->
-<footer>
-  <span>&copy; 2025 <strong>BloemTuinen</strong> &mdash; Breda</span>
-  <span>Website concept door <strong>Solidmotion</strong> &middot; <a href="mailto:michiel@solidmotion.nl">michiel@solidmotion.nl</a></span>
-</footer>
+  <!-- --- HERO --- -->
+  <section class="hero">
+    <div class="hero__content">
+      <span class="hero__tag">Hovenier in Breda</span>
+      <h1 class="hero__title">De hovenier van Breda</h1>
+      <p class="hero__sub">Betrouwbaar, vakkundig en altijd persoonlijk.</p>
+      <div class="hero__actions">
+        <a href="tel:06 49092760" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Neem contact op
+        </a>
+        <a href="#portfolio" class="btn-outline">Bekijk ons werk</a>
+      </div>
+    </div>
+    <div class="hero__scroll">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
 
-<script>
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+  <!-- --- STATS BAR --- -->
+  
+  <div class="stats-bar reveal">
+    <div class="stats-bar__inner">
+      
+      <div class="stat">
+        <div class="stat__value">10+</div>
+        <div class="stat__label">Jaar ervaring</div>
+      </div>
+      
+      <div class="stat">
+        <div class="stat__value">500+</div>
+        <div class="stat__label">Tevreden klanten</div>
+      </div>
+      
+      <div class="stat">
+        <div class="stat__value">100%</div>
+        <div class="stat__label">Kwaliteitsgarantie</div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  <!-- --- ABOUT --- -->
+  <section class="section section--cream" id="over-ons">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__image-wrap reveal-left">
+          
+          <div class="about__accent"></div>
+          
+          <div class="about__badge">
+            <span class="about__badge-value">5</span>
+            <span class="about__badge-label">1 reviews</span>
+          </div>
+          
+        </div>
+        <div class="reveal-right">
+          <div class="section__leaf"></div>
+          <span class="section__eyebrow">Over ons</span>
+          <h2 class="section__title">Over BloemTuinen</h2>
+          <p class="about__text"></p>
+
+          
+          <div class="usps">
+            
+            <div class="usp">
+              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+              <span class="usp__text">Snel &amp; betrouwbaar</span>
+            </div>
+            
+            <div class="usp">
+              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <span class="usp__text">Kwaliteitsgarantie</span>
+            </div>
+            
+            <div class="usp">
+              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+              <span class="usp__text">Flexibele planning</span>
+            </div>
+            
+            <div class="usp">
+              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 22l1.06-.36C6.5 15.83 8 12.5 17 11c0 0-2 5-6 7.59C7.08 20.92 3.5 22 2 22c1-3.5 3-12 15-14z"/></svg></div>
+              <span class="usp__text">Duurzaam werken</span>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- SERVICES --- -->
+  <section class="section section--white" id="diensten">
+    <div class="container">
+      <div class="services__header reveal">
+        <div class="section__leaf"></div>
+        <span class="section__eyebrow">Wat wij doen</span>
+        <h2 class="section__title">Onze diensten</h2>
+        
+        <p class="section__subtitle">Wat kunnen we voor u betekenen?</p>
+        
+      </div>
+
+      
+      <div class="services-list">
+        
+        <div class="service-item reveal">
+          <div class="service-item__row">
+            <span class="service-item__name">Tuinaanleg</span>
+            <span class="service-item__dots"></span>
+            
+          </div>
+          
+          <p class="service-item__desc">Professioneel tuinaanleg uitgevoerd met oog voor kwaliteit en detail.</p>
+          
+        </div>
+        
+        <div class="service-item reveal">
+          <div class="service-item__row">
+            <span class="service-item__name">Tuinonderhoud</span>
+            <span class="service-item__dots"></span>
+            
+          </div>
+          
+          <p class="service-item__desc">Professioneel tuinonderhoud uitgevoerd met oog voor kwaliteit en detail.</p>
+          
+        </div>
+        
+        <div class="service-item reveal">
+          <div class="service-item__row">
+            <span class="service-item__name">Snoeien</span>
+            <span class="service-item__dots"></span>
+            
+          </div>
+          
+          <p class="service-item__desc">Professioneel snoeien uitgevoerd met oog voor kwaliteit en detail.</p>
+          
+        </div>
+        
+        <div class="service-item reveal">
+          <div class="service-item__row">
+            <span class="service-item__name">Bestrating</span>
+            <span class="service-item__dots"></span>
+            
+          </div>
+          
+          <p class="service-item__desc">Professioneel bestrating uitgevoerd met oog voor kwaliteit en detail.</p>
+          
+        </div>
+        
+        <div class="service-item reveal">
+          <div class="service-item__row">
+            <span class="service-item__name">Gazononderhoud</span>
+            <span class="service-item__dots"></span>
+            
+          </div>
+          
+          <p class="service-item__desc">Professioneel gazononderhoud uitgevoerd met oog voor kwaliteit en detail.</p>
+          
+        </div>
+        
+        <div class="service-item reveal">
+          <div class="service-item__row">
+            <span class="service-item__name">Tuinontwerp</span>
+            <span class="service-item__dots"></span>
+            
+          </div>
+          
+          <p class="service-item__desc">Professioneel tuinontwerp uitgevoerd met oog voor kwaliteit en detail.</p>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- --- PHOTO GALLERY --- -->
+  
+
+  <!-- --- REVIEWS --- -->
+  
+  <section class="section section--forest" id="reviews">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:56px;" class="reveal">
+        <span class="section__eyebrow">Ervaringen</span>
+        <h2 class="section__title">Wat onze klanten zeggen</h2>
+        <div class="section__leaf" style="margin-left:auto;margin-right:auto;"></div>
+      </div>
+      <div class="reviews__grid">
+        
+        <div class="review-card reveal">
+          <span class="review-card__quote">&ldquo;</span>
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+          </div>
+          <p class="review-card__text">Altijd netjes echt een een vak man luistert  goed naar wat je wil en komt zelfs met mooi ideeën aan als je een nieuwe tuin wil</p>
+          <span class="review-card__author">Patrick Van Der Heijden</span>
+        </div>
+        
+      </div>
+      
+      <div class="reviews__summary reveal">
+        Gemiddeld <strong>5</strong> sterren uit <strong>1</strong> beoordelingen
+      </div>
+      
+    </div>
+  </section>
+  
+
+  <!-- --- CTA --- -->
+  <section class="cta reveal">
+    <div class="cta__blob"></div>
+    <h2 class="cta__title">Klaar om te beginnen?</h2>
+    <p class="cta__sub">Neem vandaag nog contact op voor een vrijblijvend gesprek.</p>
+    <a href="tel:06 49092760" class="cta__btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Bel 06 49092760
+    </a>
+  </section>
+
+  <!-- --- CONTACT & HOURS --- -->
+  <section class="section section--white" id="contact">
+    <div class="container">
+      <div class="contact__grid reveal">
+        <div>
+          <h3 class="contact__title">Neem contact op</h3>
+          <ul class="contact__info">
+            
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Wilderen 136, 4817 VH Breda, Nederland</span>
+            </li>
+            
+            
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <a href="tel:06 49092760">06 49092760</a>
+            </li>
+            
+            
+          </ul>
+        </div>
+        <div>
+          
+          <h3 class="contact__title">Bereikbaarheid</h3>
+          <ul class="hours-list">
+            
+            <li>maandag: 08:00–18:00</li>
+            
+            <li>dinsdag: 08:00–18:00</li>
+            
+            <li>woensdag: 08:00–18:00</li>
+            
+            <li>donderdag: 08:00–18:00</li>
+            
+            <li>vrijdag: 08:00–18:00</li>
+            
+            <li>zaterdag: 08:00–18:00</li>
+            
+            <li>zondag: Gesloten</li>
+            
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- FOOTER --- -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p>&copy; BloemTuinen &middot; Breda</p>
+      <p>Website ontworpen door <a href="mailto:michiel@solidmotion.nl">Solidmotion</a></p>
+    </div>
+  </footer>
+
+  <script>
+    /* --- Transparent-to-solid nav --- */
+    (function() {
+      var nav = document.getElementById('nav');
+      var hero = document.querySelector('.hero');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            nav.classList.remove('nav--solid');
+          } else {
+            nav.classList.add('nav--solid');
+          }
+        });
+      }, { threshold: 0.05 });
+      observer.observe(hero);
+    })();
+
+    /* --- Scroll reveal --- */
+    (function() {
+      var reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(function(el) { observer.observe(el); });
+    })();
+
+    /* --- Mobile menu --- */
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    function closeMobile() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  </script>
 </body>
 </html>
