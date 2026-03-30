@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Betrouwbaar, vakkundig en altijd persoonlijk." />
+  <title>Garage de Lisboa — Nijmegen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS
+    ═══════════════════════════════════════════ */
+    :root {
+      --primary:       #a20049;
+      --primary-dark:  #790036;
+      --primary-rgb:   162,0,73;
+      --accent:        #F59E0B;
+      --bg:            #F3F4F6;
+      --text:          #111827;
+      --text-muted:    #6B7280;
+      --white:         #FFFFFF;
+      --surface:       #FFFFFF;
+      --border:        rgba(0,0,0,0.08);
+      --shadow-sm:     0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md:     0 4px 16px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
+      --shadow-lg:     0 20px 40px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.08);
+      --radius-sm:     8px;
+      --radius-md:     14px;
+      --radius-lg:     20px;
+      --radius-xl:     28px;
+      --font-display:  'Bodoni Moda', Georgia, serif;
+      --font-body:     'Jost', system-ui, sans-serif;
+      --transition:    0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ═══════════════════════════════════════════
+       ANNOUNCEMENT BANNER
+    ═══════════════════════════════════════════ */
+    .banner {
+      background: var(--primary-dark);
+      color: rgba(255,255,255,0.92);
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+    .banner a { color: var(--accent); font-weight: 600; }
+
+    /* ═══════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════ */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      background: rgba(255,255,255,0.82);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(20px, 5vw, 80px);
+      height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 500;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: var(--primary) !important;
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: var(--radius-sm);
+      font-weight: 600 !important;
+      font-size: 14px !important;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition) !important;
+      box-shadow: 0 2px 8px rgba(var(--primary-rgb),0.3);
+    }
+    .nav-cta:hover {
+      background: var(--primary-dark) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(var(--primary-rgb),0.35) !important;
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AU_ZVEFjTxRjVbaCECiQCSkZIkhQdPx7z_pa6yWN-qJTVyNHbfEk3ci04AdEjZzTIpFezWMm-34Le5ao8F9uEWQuS31lXmkiYqq_dURTxX6uYvONNw2r5PlXlh5XhARnxMjpVjD6hU4E9baSUz7lp0kSGAT-yoVz4JHHdSn50eGm3aYyvbpoWAPBYxEDvfLaVv2e148L-a4Q8cMd02ZajjNfGFdB7Ju9LSh_B58twBLgurTIzTw5Dw8w_oDnfs7uD5swzVGTwA1OBTiLEWAGaKh0kRtumF8xAL-3D82em-ahvwpmUjMkx_KhFfXZBgW5C60kMyas3rwuPNzTM-XrZPiJWVI2E_ya8Iby-Kv1tCPmvvZcHCNbFO8aI3X0cCMLlof1enDlNbG3MaMGDtO7MBHg2yQl_bI69EeujaWeYgBYgPpAuQ&key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14);
+      transform: scale(1.04);
+      transition: transform 8s ease;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(81,0,36,0.65);
+    }
+    .hero:hover .hero-bg { transform: scale(1.0); }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 760px;
+      padding: clamp(40px, 8vw, 100px) clamp(20px, 6vw, 100px);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,0.92);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow svg { width: 14px; height: 14px; }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.82);
+      max-width: 520px;
+      line-height: 1.65;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+    .hero-actions {
+      display: flex; gap: 14px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent);
+      color: var(--text) !important;
+      padding: 16px 32px;
+      border-radius: var(--radius-md);
+      font-weight: 700; font-size: 15px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 2px solid rgba(255,255,255,0.55);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: var(--radius-md);
+      font-weight: 600; font-size: 15px;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.1);
+    }
+    .btn-primary svg, .btn-ghost svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ═══════════════════════════════════════════
+       USP STRIP
+    ═══════════════════════════════════════════ */
+    .usp-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 20px clamp(20px, 5vw, 80px);
+      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+    }
+    .usp-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 28px;
+      border-right: 1px solid var(--border);
+      font-weight: 500; font-size: 14px; color: var(--text);
+    }
+    .usp-item:last-child { border-right: none; }
+    .usp-icon {
+      width: 36px; height: 36px;
+      background: rgba(var(--primary-rgb),0.1);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .usp-icon svg { width: 18px; height: 18px; color: var(--primary); }
+
+    /* ═══════════════════════════════════════════
+       SECTION SHARED
+    ═══════════════════════════════════════════ */
+    section { padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 80px); }
+    .container { max-width: 1160px; margin: 0 auto; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--primary); font-weight: 700; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .section-tag::before {
+      content: '';
+      width: 20px; height: 2px;
+      background: var(--primary); border-radius: 2px;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.18;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .section-sub {
+      font-size: 17px; color: var(--text-muted);
+      max-width: 520px; line-height: 1.7;
+      margin-bottom: 52px;
+    }
+
+    /* ═══════════════════════════════════════════
+       SERVICES
+    ═══════════════════════════════════════════ */
+    #diensten { background: var(--bg); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(135deg, #030712 0%, #1F2937 60%, #374151 100%);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .service-card:hover::before { opacity: 1; }
+    .service-card-icon {
+      width: 52px; height: 52px;
+      background: rgba(var(--primary-rgb),0.1);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .service-card-icon svg { width: 26px; height: 26px; color: var(--primary); }
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem; font-weight: 600;
+      margin-bottom: 10px; color: var(--text);
+    }
+    .service-card p { color: var(--text-muted); font-size: 15px; line-height: 1.6; }
+
+    /* ═══════════════════════════════════════════
+       ABOUT
+    ═══════════════════════════════════════════ */
+    #over-ons { background: var(--white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-image {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+    }
+    .about-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .about-image-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #030712 0%, #1F2937 60%, #374151 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-image-placeholder svg {
+      width: 80px; height: 80px;
+      color: rgba(255,255,255,0.5);
+    }
+    .about-image-badge {
+      position: absolute; bottom: 24px; left: 24px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      box-shadow: var(--shadow-md);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .badge-icon {
+      width: 40px; height: 40px;
+      background: rgba(var(--primary-rgb),0.1);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .badge-icon svg { width: 22px; height: 22px; color: var(--primary); }
+    .badge-text { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+    .badge-value { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1; }
+
+    .about-content h2 { margin-bottom: 20px; }
+    .about-content p { color: var(--text-muted); font-size: 16px; line-height: 1.75; margin-bottom: 24px; }
+    .stats-row {
+      display: flex; gap: 32px; flex-wrap: wrap;
+      margin: 32px 0;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-item { }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.4rem; font-weight: 700;
+      color: var(--primary); line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    .about-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--primary);
+      color: var(--white);
+      padding: 15px 30px;
+      border-radius: var(--radius-md);
+      font-weight: 600; font-size: 15px;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 16px rgba(var(--primary-rgb),0.3);
+    }
+    .about-cta:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(var(--primary-rgb),0.4);
+    }
+    .about-cta svg { width: 18px; height: 18px; }
+
+    /* ═══════════════════════════════════════════
+       REVIEWS
+    ═══════════════════════════════════════════ */
+    #reviews { background: var(--bg); }
+    .reviews-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 48px; flex-wrap: wrap; gap: 20px;
+    }
+    .rating-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .rating-stars svg { width: 18px; height: 18px; color: #F59E0B; }
+    .rating-number {
+      font-family: var(--font-display);
+      font-size: 1.6rem; font-weight: 700; color: var(--text);
+    }
+    .rating-count { font-size: 13px; color: var(--text-muted); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .review-header {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 16px;
+    }
+    .review-stars { display: flex; gap: 2px; }
+    .review-stars svg { width: 16px; height: 16px; color: #F59E0B; }
+    .review-quote-icon { color: rgba(var(--primary-rgb),0.15); }
+    .review-quote-icon svg { width: 28px; height: 28px; }
+    .review-text {
+      font-size: 15px; line-height: 1.7;
+      color: var(--text); margin-bottom: 20px;
+      font-style: italic;
+    }
+    .review-author {
+      font-weight: 600; font-size: 13px; color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════
+       CONTACT / CTA
+    ═══════════════════════════════════════════ */
+    #contact {
+      background: var(--primary-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    #contact::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='2' fill='rgba(255,255,255,0.05)'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .contact-inner {
+      position: relative; z-index: 2;
+      text-align: center;
+      max-width: 700px; margin: 0 auto;
+    }
+    #contact .section-tag { color: var(--accent); }
+    #contact .section-tag::before { background: var(--accent); }
+    #contact h2 { color: var(--white); margin-bottom: 16px; }
+    #contact .section-sub { color: rgba(255,255,255,0.7); margin: 0 auto 48px; }
+    .contact-cards {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      min-width: 180px;
+      text-align: center;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .contact-card:hover {
+      background: rgba(255,255,255,0.16);
+      transform: translateY(-3px);
+    }
+    .contact-card-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.12);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px;
+    }
+    .contact-card-icon svg { width: 22px; height: 22px; color: var(--accent); }
+    .contact-card-label { font-size: 12px; color: rgba(255,255,255,0.55); font-weight: 500; margin-bottom: 4px; }
+    .contact-card-value { font-size: 15px; font-weight: 600; color: var(--white); }
+    .contact-card-value a { color: var(--white); }
+    .btn-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--white);
+      color: var(--primary-dark);
+      padding: 18px 40px;
+      border-radius: var(--radius-md);
+      font-weight: 700; font-size: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
+    .btn-cta svg { width: 20px; height: 20px; }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    footer {
+      background: #0A0A0A;
+      color: rgba(255,255,255,0.4);
+      padding: 28px clamp(20px, 5vw, 80px);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      font-size: 13px;
+    }
+    footer strong { color: rgba(255,255,255,0.7); }
+    footer a { color: rgba(255,255,255,0.4); transition: color var(--transition); }
+    footer a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ═══════════════════════════════════════════
+       SCROLL REVEAL ANIMATION
+    ═══════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1), transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+    .reveal-delay-5 { transition-delay: 0.40s; }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-image { aspect-ratio: 16/9; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .usp-item { padding: 10px 16px; border-right: none; border-bottom: 1px solid var(--border); }
+      .usp-item:last-child { border-bottom: none; }
+      .usp-strip { flex-direction: column; align-items: center; padding: 12px 20px; }
+      footer { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2rem; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .hero-bg { transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Announcement Banner -->
+<div class="banner">
+  Dit is een gratis website concept voor <strong>Garage de Lisboa</strong> — gemaakt door Solidmotion.
+  Interesse? <a href="mailto:michiel@solidmotion.nl">Stuur ons een bericht</a>
+</div>
+
+<!-- Navigation -->
+<nav class="nav">
+  <a class="nav-logo" href="#">Garage de Lisboa</a>
+  <ul class="nav-links">
+    <li><a href="#diensten">Diensten</a></li>
+    <li><a href="#over-ons">Over ons</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li>
+      <a class="nav-cta" href="#contact">
+        Bel 024 323 0723
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-bg" style="background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEFjTxRjVbaCECiQCSkZIkhQdPx7z_pa6yWN-qJTVyNHbfEk3ci04AdEjZzTIpFezWMm-34Le5ao8F9uEWQuS31lXmkiYqq_dURTxX6uYvONNw2r5PlXlh5XhARnxMjpVjD6hU4E9baSUz7lp0kSGAT-yoVz4JHHdSn50eGm3aYyvbpoWAPBYxEDvfLaVv2e148L-a4Q8cMd02ZajjNfGFdB7Ju9LSh_B58twBLgurTIzTw5Dw8w_oDnfs7uD5swzVGTwA1OBTiLEWAGaKh0kRtumF8xAL-3D82em-ahvwpmUjMkx_KhFfXZBgW5C60kMyas3rwuPNzTM-XrZPiJWVI2E_ya8Iby-Kv1tCPmvvZcHCNbFO8aI3X0cCMLlof1enDlNbG3MaMGDtO7MBHg2yQl_bI69EeujaWeYgBYgPpAuQ&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14);"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Garage &middot; Nijmegen
+    </div>
+    <h1>De garage van Nijmegen</h1>
+    <p class="hero-sub">Betrouwbaar, vakkundig en altijd persoonlijk.</p>
+    <div class="hero-actions">
+      
+      <a class="btn-primary" href="tel:024 323 0723">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
+        024 323 0723
+      </a>
+      
+      <a class="btn-ghost" href="#diensten">
+        Bekijk diensten
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- USP Strip -->
+<div class="usp-strip">
+  
+  <div class="usp-item">
+    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+    <span>APK-erkend</span>
+  </div>
+  
+  <div class="usp-item">
+    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+    <span>Snelle service</span>
+  </div>
+  
+  <div class="usp-item">
+    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+    <span>Transparante prijs</span>
+  </div>
+  
+  <div class="usp-item">
+    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <span>Garantie op werk</span>
+  </div>
+  
+</div>
+
+<!-- Services -->
+<section id="diensten">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">Wat wij doen</span>
+      <h2>Onze diensten</h2>
+      <p class="section-sub">Wat kunnen we voor u betekenen?</p>
+    </div>
+    <div class="services-grid">
+      
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 16H9m10 0h3v-3.15a1 1 0 00-.84-.99L16 11l-2.7-3.6a1 1 0 00-.8-.4H5.24a2 2 0 00-1.8 1.1l-.8 1.63A6 6 0 002 12.42V16h2"/><circle cx="6.5" cy="16.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg></div>
+        <h3>APK keuring</h3>
+        <p>Professioneel apk keuring uitgevoerd met oog voor kwaliteit en detail.</p>
+      </div>
+      
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+        <h3>Onderhoud</h3>
+        <p>Professioneel onderhoud uitgevoerd met oog voor kwaliteit en detail.</p>
+      </div>
+      
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Reparatie</h3>
+        <p>Professioneel reparatie uitgevoerd met oog voor kwaliteit en detail.</p>
+      </div>
+      
+      <div class="service-card reveal reveal-delay-4">
+        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>Bandenservice</h3>
+        <p>Professioneel bandenservice uitgevoerd met oog voor kwaliteit en detail.</p>
+      </div>
+      
+      <div class="service-card reveal reveal-delay-5">
+        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>Airco service</h3>
+        <p>Professioneel airco service uitgevoerd met oog voor kwaliteit en detail.</p>
+      </div>
+      
+      <div class="service-card reveal reveal-delay-6">
+        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+        <h3>Diagnose</h3>
+        <p>Professioneel diagnose uitgevoerd met oog voor kwaliteit en detail.</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="over-ons">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image reveal">
+        
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEFdhpF901eSERei1eoo_C_qfQZs_11TjCndMaKAMcslmeCU-84Zuhh-VdpoUyHzzo0aFgQO-LsCTdB77w_Cc02yH7kFwKFiLqrejpbsOc33XeZVfbRWtrgb4alc1fGPQIQ9pmKmeHs5nb6VtXFVzQ0AJjaCpa_rKantlJq6MJPiPqagt5SxFiW_gEZxbOw9kS0fk5nb3RPeSOfYlAGkTvK_LCFk29HayLsag7HTgE8tR-hwmZu56x8HHQjt57tv4apH6BY_JtwcBIEen8JzgYT1yiCmoAnyEOvIv_ZWXgPdGos3MD3aeAirRaJFhNATviFgwetrizsXhH1dDTHUCG9zL5qloA-i_RboKUl2G5feFBtXIPOIMUQG5cImhFFakF_XXUusztYm8O5-qQilW8ZjWqEWbPLUKIi0FOzHq9hCYgaX&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Garage de Lisboa — Nijmegen" loading="lazy" width="600" height="750" />
+        
+        
+        <div class="about-image-badge">
+          <div class="badge-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <div>
+            <div class="badge-value">4.9</div>
+            <div class="badge-text">36 beoordelingen</div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="about-content reveal reveal-delay-2">
+        <span class="section-tag">Ons verhaal</span>
+        <h2>Over Garage de Lisboa</h2>
+        <p></p>
+        <div class="stats-row">
+          
+          <div class="stat-item">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Jaar ervaring</div>
+          </div>
+          
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Tevreden klanten</div>
+          </div>
+          
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Kwaliteitsgarantie</div>
+          </div>
+          
+        </div>
+        
+        <a class="about-cta" href="tel:024 323 0723">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
+          Direct bellen
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+
+<section id="reviews">
+  <div class="container">
+    <div class="reviews-header reveal">
+      <div>
+        <span class="section-tag">Klantbeoordelingen</span>
+        <h2>Wat onze klanten zeggen</h2>
+      </div>
+      
+      <div class="rating-badge">
+        <div class="rating-stars">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <span class="rating-number">4.9</span>
+        <span class="rating-count">(36 reviews)</span>
+      </div>
+      
+    </div>
+    <div class="reviews-grid">
+      
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-header">
+          <div class="review-stars">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+          </div>
+          <div class="review-quote-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+          </div>
+        </div>
+        <p class="review-text">"De meest betrouwbare garage die er is. Denkt graag met je mee."</p>
+        <div class="review-author">— Jeroen Winkenius</div>
+      </div>
+      
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-header">
+          <div class="review-stars">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+          </div>
+          <div class="review-quote-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+          </div>
+        </div>
+        <p class="review-text">"Top garage. Je wordt altijd goed geholpen,  gewoon normale prijzen ook. vriendelijke garagist 🙂"</p>
+        <div class="review-author">— Max Anoniem</div>
+      </div>
+      
+      <div class="review-card reveal reveal-delay-3">
+        <div class="review-header">
+          <div class="review-stars">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            
+          </div>
+          <div class="review-quote-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+          </div>
+        </div>
+        <p class="review-text">"Vriendelijke gastvrije ondernemer die vanuit het het niets een iets weet te maken, deze persoon beschikt over een dosis ervaring en humor, en prijs en kwaliteit komen goed overeen!"</p>
+        <div class="review-author">— Amrish Sewnandan</div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<!-- Contact / CTA -->
+<section id="contact">
+  <div class="contact-inner">
+    <span class="section-tag">Neem contact op</span>
+    <h2>Klaar om te beginnen?</h2>
+    <p class="section-sub">Neem vandaag nog contact op voor een vrijblijvend gesprek.</p>
+    <div class="contact-cards">
+      
+      <div class="contact-card">
+        <div class="contact-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
+        </div>
+        <div class="contact-card-label">Telefoon</div>
+        <div class="contact-card-value"><a href="tel:024 323 0723">024 323 0723</a></div>
+      </div>
+      
+      
+      <div class="contact-card">
+        <div class="contact-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="contact-card-label">E-mail</div>
+        <div class="contact-card-value"><a href="mailto:garagedelisboa@gmail.com">garagedelisboa@gmail.com</a></div>
+      </div>
+      
+      
+      <div class="contact-card">
+        <div class="contact-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="contact-card-label">Adres</div>
+        <div class="contact-card-value">Gerard Noodtstraat 8, 6511 SW Nijmegen, Nederland</div>
+      </div>
+      
+    </div>
+    
+    <a class="btn-cta" href="tel:024 323 0723">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
+      Nu bellen: 024 323 0723
+    </a>
+    
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <span>&copy; 2025 <strong>Garage de Lisboa</strong> &mdash; Nijmegen</span>
+  <span>Website concept door <strong>Solidmotion</strong> &middot; <a href="mailto:michiel@solidmotion.nl">michiel@solidmotion.nl</a></span>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
