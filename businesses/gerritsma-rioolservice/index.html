@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Betrouwbaar, vakkundig en altijd persoonlijk." />
+  <meta name="description" content="Snel ter plaatse bij lekkage of verstopping, dag en nacht." />
   <title>Gerritsma Rioolservice | Loodgieter Breda</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     :root {
       --primary: #0369A1;
@@ -16,24 +16,33 @@
       --accent: #38BDF8;
       --bg: #F0F9FF;
       --text: #0C1A2E;
-      --cyan: #06B6D4;
-      --cyan-light: #ECFEFF;
-      --trust-blue: #0C4A6E;
-      --trust-blue-light: #F0F9FF;
+      --teal: #0D9488;
+      --teal-dark: #0F766E;
+      --teal-light: #CCFBF1;
+      --teal-50: #F0FDFA;
+      --navy: #0F172A;
+      --navy-mid: #1E293B;
+      --slate: #334155;
+      --sky: #38BDF8;
+      --sky-light: #E0F2FE;
       --white: #FFFFFF;
-      --surface: #FFFFFF;
+      --surface: #F8FAFC;
       --text-muted: #64748B;
-      --border: rgba(0,0,0,0.07);
+      --border: rgba(15,23,42,0.08);
+      --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
       --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
-      --shadow-lg: 0 20px 40px rgba(0,0,0,0.10), 0 8px 16px rgba(0,0,0,0.06);
-      --radius-sm: 6px;
-      --radius-md: 10px;
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.08), 0 4px 10px -4px rgba(0,0,0,0.04);
+      --shadow-xl: 0 20px 50px -12px rgba(0,0,0,0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
       --radius-lg: 16px;
       --radius-xl: 24px;
-      --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
-      --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+      --radius-full: 9999px;
+      --font-heading: 'Manrope', system-ui, sans-serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
       --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -53,39 +62,35 @@
 
     /* TOPBAR */
     .topbar {
-      background: var(--trust-blue);
-      color: rgba(255,255,255,0.9);
-      padding: 8px 20px;
+      background: var(--navy);
+      color: rgba(255,255,255,0.85);
+      padding: 10px 20px;
       font-size: 13px;
       font-weight: 500;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
       flex-wrap: wrap;
     }
-    .topbar a { color: var(--cyan); font-weight: 600; }
+    .topbar a { color: var(--sky); font-weight: 600; }
     .topbar-item {
       display: flex;
       align-items: center;
       gap: 6px;
     }
     .topbar-item svg { width: 14px; height: 14px; flex-shrink: 0; }
-    .topbar .emergency-badge {
-      background: rgba(6,182,212,0.2);
-      border: 1px solid rgba(6,182,212,0.4);
-      padding: 2px 10px;
-      border-radius: 100px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: #67E8F9;
-      animation: pulse-glow 2s ease-in-out infinite;
+    .topbar .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #34D399;
+      border-radius: 50%;
+      display: inline-block;
+      animation: dot-pulse 2s ease-in-out infinite;
     }
-    @keyframes pulse-glow {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
+    @keyframes dot-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
     }
 
     /* NAVIGATION */
@@ -93,12 +98,12 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(12px) saturate(180%);
-      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
       border-bottom: 1px solid var(--border);
       padding: 0 clamp(20px, 5vw, 80px);
-      height: 64px;
+      height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -109,20 +114,20 @@
       gap: 10px;
     }
     .nav-logo img {
-      height: 36px;
+      height: 38px;
       width: auto;
       object-fit: contain;
     }
     .nav-logo-text {
       font-family: var(--font-heading);
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 800;
-      color: var(--trust-blue);
-      letter-spacing: -0.02em;
+      color: var(--navy);
+      letter-spacing: -0.03em;
     }
     .nav-links {
       display: flex;
-      gap: 28px;
+      gap: 8px;
       list-style: none;
       align-items: center;
     }
@@ -131,26 +136,28 @@
       font-size: 14px;
       font-weight: 500;
       color: var(--text-muted);
-      transition: color var(--transition);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: color var(--transition), background var(--transition);
     }
-    .nav-links a:hover { color: var(--trust-blue); }
+    .nav-links a:hover { color: var(--navy); background: var(--surface); }
     .nav-cta-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--trust-blue) !important;
+      background: var(--teal) !important;
       color: var(--white) !important;
       padding: 10px 20px;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-full);
       font-weight: 600 !important;
       font-size: 14px !important;
       transition: background var(--transition), transform var(--transition), box-shadow var(--transition) !important;
-      box-shadow: 0 2px 8px rgba(12,74,110,0.25);
+      box-shadow: 0 2px 8px rgba(13,148,136,0.3);
     }
     .nav-cta-btn:hover {
-      background: #083B5A !important;
+      background: var(--teal-dark) !important;
       transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(12,74,110,0.3) !important;
+      box-shadow: 0 4px 16px rgba(13,148,136,0.35) !important;
     }
     .nav-cta-btn svg { width: 15px; height: 15px; }
 
@@ -167,9 +174,9 @@
     }
     .hamburger span {
       display: block;
-      width: 24px;
+      width: 22px;
       height: 2px;
-      background: var(--trust-blue);
+      background: var(--navy);
       border-radius: 2px;
       transition: transform 0.3s, opacity 0.3s;
     }
@@ -182,15 +189,16 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 32px;
+      gap: 28px;
     }
     .mobile-menu.active { display: flex; }
     .mobile-menu a {
       font-family: var(--font-heading);
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      color: var(--trust-blue);
+      color: var(--navy);
     }
+    .mobile-menu a:hover { color: var(--teal); }
     .mobile-menu-close {
       position: absolute;
       top: 20px;
@@ -198,54 +206,66 @@
       background: none;
       border: none;
       font-size: 2rem;
-      color: var(--trust-blue);
+      color: var(--navy);
       cursor: pointer;
     }
 
-    /* HERO - SPLIT LAYOUT */
-    .hero-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 520px;
+    /* HERO - MODERN CARD LAYOUT */
+    .hero {
+      background: linear-gradient(135deg, var(--teal-50) 0%, var(--sky-light) 50%, var(--white) 100%);
+      padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 80px);
+      position: relative;
       overflow: hidden;
     }
-    .hero-left {
-      background: var(--trust-blue-light);
-      padding: clamp(40px, 6vw, 80px) clamp(20px, 5vw, 80px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(13,148,136,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
     }
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(6,182,212,0.1);
-      border: 1px solid rgba(6,182,212,0.3);
-      color: var(--trust-blue);
-      padding: 5px 14px;
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      background: var(--white);
+      border: 1px solid var(--border);
+      color: var(--teal-dark);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
       margin-bottom: 20px;
-      width: fit-content;
+      box-shadow: var(--shadow-xs);
     }
-    .hero-badge svg { width: 14px; height: 14px; color: var(--cyan); }
+    .hero-badge svg { width: 14px; height: 14px; color: var(--teal); }
     .hero-left h1 {
       font-family: var(--font-heading);
-      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
       font-weight: 800;
-      color: var(--trust-blue);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 18px;
+      color: var(--navy);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
     }
+    .hero-left h1 span { color: var(--teal); }
     .hero-left .hero-sub {
-      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
       color: var(--text-muted);
-      max-width: 460px;
+      max-width: 480px;
       line-height: 1.7;
       margin-bottom: 32px;
     }
@@ -253,36 +273,37 @@
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
+      margin-bottom: 40px;
     }
     .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: var(--trust-blue);
+      background: var(--teal);
       color: var(--white) !important;
-      padding: 15px 28px;
-      border-radius: var(--radius-md);
+      padding: 14px 28px;
+      border-radius: var(--radius-full);
       font-family: var(--font-heading);
       font-weight: 700;
       font-size: 15px;
-      box-shadow: 0 4px 16px rgba(12,74,110,0.3);
+      box-shadow: 0 4px 14px rgba(13,148,136,0.3);
       transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
       cursor: pointer;
       border: none;
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(12,74,110,0.35);
-      background: #083B5A;
+      box-shadow: 0 8px 28px rgba(13,148,136,0.35);
+      background: var(--teal-dark);
     }
     .btn-outline {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      border: 2px solid var(--trust-blue);
-      color: var(--trust-blue);
-      padding: 13px 24px;
-      border-radius: var(--radius-md);
+      border: 2px solid var(--navy);
+      color: var(--navy);
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
       font-family: var(--font-heading);
       font-weight: 600;
       font-size: 15px;
@@ -291,248 +312,348 @@
       background: transparent;
     }
     .btn-outline:hover {
-      background: var(--trust-blue);
+      background: var(--navy);
       color: var(--white);
     }
     .btn-primary svg, .btn-outline svg { width: 18px; height: 18px; flex-shrink: 0; }
 
+    /* Hero trust row */
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .hero-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--slate);
+    }
+    .hero-trust-item svg { width: 16px; height: 16px; color: var(--teal); flex-shrink: 0; }
+    .hero-trust-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+    }
+
+    /* Hero right - floating cards */
     .hero-right {
       position: relative;
-      background-size: cover;
-      background-position: center;
+      min-height: 420px;
     }
-    .hero-right-overlay {
+    .hero-card {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(12,74,110,0.85) 0%, rgba(6,182,212,0.6) 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 24px;
-      padding: 40px;
-    }
-    .hero-info-card {
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: var(--radius-lg);
-      padding: 24px 32px;
-      text-align: center;
-      min-width: 260px;
-      transition: background var(--transition);
-    }
-    .hero-info-card:hover { background: rgba(255,255,255,0.18); }
-    .hero-info-icon {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 12px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-info-icon svg { width: 24px; height: 24px; color: var(--white); }
-    .hero-info-label {
-      font-size: 12px;
-      color: rgba(255,255,255,0.7);
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
-    }
-    .hero-info-value {
-      font-family: var(--font-heading);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--white);
-    }
-    .hero-info-value a { color: var(--white); }
-
-    /* USP STRIP */
-    .usp-strip {
       background: var(--white);
-      border-bottom: 2px solid var(--border);
-      padding: 0 clamp(20px, 5vw, 80px);
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-lg);
+      transition: transform var(--transition-slow);
     }
-    .usp-item {
+    .hero-card:hover { transform: translateY(-4px); }
+    .hero-card-main {
+      top: 0;
+      left: 0;
+      right: 40px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      padding: 0;
+      min-height: 280px;
+    }
+    .hero-card-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 280px;
+    }
+    .hero-card-main .hero-image-placeholder {
+      width: 100%;
+      min-height: 280px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--sky) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-card-main .hero-image-placeholder svg {
+      width: 64px;
+      height: 64px;
+      color: rgba(255,255,255,0.4);
+    }
+    .hero-card-rating {
+      bottom: 80px;
+      right: 0;
+      z-index: 3;
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 18px 32px;
-      border-right: 1px solid var(--border);
-      font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--text);
+      min-width: 200px;
     }
-    .usp-item:last-child { border-right: none; }
-    .usp-item--highlight {
-      background: var(--cyan-light);
-      color: var(--trust-blue);
-      font-weight: 700;
-    }
-    .usp-icon {
-      width: 38px;
-      height: 38px;
-      background: var(--trust-blue-light);
+    .hero-card-rating .hcr-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--teal-light);
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
     }
-    .usp-item--highlight .usp-icon {
-      background: rgba(6,182,212,0.15);
+    .hero-card-rating .hcr-icon svg { width: 22px; height: 22px; color: var(--teal); }
+    .hero-card-rating .hcr-val {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
     }
-    .usp-icon svg { width: 18px; height: 18px; color: var(--trust-blue); }
+    .hero-card-rating .hcr-label { font-size: 12px; color: var(--text-muted); }
+    .hero-card-avail {
+      bottom: 10px;
+      left: 20px;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-card-avail .avail-dot {
+      width: 10px;
+      height: 10px;
+      background: #34D399;
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: dot-pulse 2s ease-in-out infinite;
+    }
+    .hero-card-avail .avail-text {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--navy);
+    }
+    .hero-card-avail .avail-sub { font-size: 12px; color: var(--text-muted); }
+
+    /* USP PILLS */
+    .usp-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 20px clamp(20px, 5vw, 80px);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .usp-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--slate);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .usp-pill:hover {
+      border-color: rgba(13,148,136,0.3);
+      box-shadow: 0 0 0 3px rgba(13,148,136,0.06);
+    }
+    .usp-pill-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--teal-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .usp-pill-icon svg { width: 16px; height: 16px; color: var(--teal); }
 
     /* SECTIONS */
-    section { padding: clamp(56px, 8vw, 96px) clamp(20px, 5vw, 80px); }
+    section { padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 80px); }
     .container { max-width: 1120px; margin: 0 auto; }
-    .section-label {
+    .section-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--cyan);
+      color: var(--teal);
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 12px;
+      font-size: 13px;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 10px;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
     }
-    .section-label::before {
-      content: '';
-      width: 24px;
-      height: 2px;
-      background: var(--cyan);
-      border-radius: 2px;
+    .section-eyebrow .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--teal);
+      border-radius: 50%;
     }
     h2 {
       font-family: var(--font-heading);
-      font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
       font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.15;
-      color: var(--text);
-      margin-bottom: 12px;
+      line-height: 1.12;
+      color: var(--navy);
+      margin-bottom: 14px;
     }
     .section-desc {
       font-size: 16px;
       color: var(--text-muted);
-      max-width: 500px;
+      max-width: 520px;
       line-height: 1.7;
       margin-bottom: 48px;
     }
 
-    /* SERVICES TABLE */
-    #diensten { background: var(--white); }
-    .services-table {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    /* SERVICES - CLEAN CARDS */
+    #diensten { background: var(--surface); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .service-card {
+      background: var(--white);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      position: relative;
       overflow: hidden;
     }
-    .service-row {
-      display: grid;
-      grid-template-columns: 1fr 2fr auto;
-      gap: 24px;
-      align-items: center;
-      padding: 24px 28px;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      transition: background var(--transition);
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--sky));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
     }
-    .service-row:last-child { border-bottom: none; }
-    .service-row:hover { background: var(--trust-blue-light); }
-    .service-row--emergency {
-      background: linear-gradient(90deg, rgba(6,182,212,0.06) 0%, rgba(6,182,212,0.02) 100%);
-      border-left: 4px solid var(--cyan);
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: rgba(13,148,136,0.2);
     }
-    .service-row--emergency:hover {
-      background: linear-gradient(90deg, rgba(6,182,212,0.1) 0%, rgba(6,182,212,0.04) 100%);
-    }
-    .service-name {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--text);
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card-top {
       display: flex;
-      align-items: center;
-      gap: 8px;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
     }
-    .service-name .emergency-tag {
-      background: var(--cyan);
+    .service-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .service-price-badge {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--teal-dark);
+      background: var(--teal-light);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .service-card:first-child {
+      border-color: rgba(13,148,136,0.2);
+      background: linear-gradient(135deg, var(--teal-50) 0%, var(--white) 100%);
+    }
+    .service-card:first-child .spoed-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--teal);
       color: var(--white);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 10px;
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
+      margin-top: 8px;
     }
-    .service-desc {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.6;
+
+    /* PROCESS TIMELINE */
+    .process-section {
+      background: var(--white);
     }
-    .service-price {
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal-light), var(--teal), var(--teal-light));
+      z-index: 0;
+    }
+    .process-step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .process-number {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      background: var(--white);
+      border: 2px solid var(--teal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--teal);
+      box-shadow: var(--shadow-md);
+      transition: background var(--transition), color var(--transition);
+    }
+    .process-step:hover .process-number {
+      background: var(--teal);
+      color: var(--white);
+    }
+    .process-step h3 {
       font-family: var(--font-heading);
       font-weight: 700;
       font-size: 0.95rem;
-      color: var(--trust-blue);
-      white-space: nowrap;
-      text-align: right;
+      color: var(--navy);
+      margin-bottom: 6px;
     }
-
-    /* CERTIFICATIONS */
-    .certs-strip {
-      background: var(--trust-blue-light);
-      padding: 32px clamp(20px, 5vw, 80px);
-    }
-    .certs-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-    .certs-label {
-      font-family: var(--font-heading);
-      font-weight: 700;
+    .process-step p {
       font-size: 13px;
       color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      line-height: 1.6;
     }
-    .cert-badge {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      background: var(--white);
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 13px;
-      color: var(--text);
-      box-shadow: var(--shadow-sm);
-    }
-    .cert-badge svg { width: 20px; height: 20px; color: var(--cyan); }
 
     /* ABOUT */
-    #over-ons { background: var(--bg); }
+    #over-ons { background: var(--surface); }
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -544,7 +665,7 @@
       border-radius: var(--radius-xl);
       overflow: hidden;
       aspect-ratio: 4/5;
-      box-shadow: var(--shadow-lg);
+      box-shadow: var(--shadow-xl);
     }
     .about-image-wrap img {
       width: 100%;
@@ -554,7 +675,7 @@
     .about-image-placeholder {
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, var(--trust-blue) 0%, var(--cyan) 100%);
+      background: linear-gradient(135deg, var(--teal) 0%, var(--sky) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -562,7 +683,7 @@
     .about-image-placeholder svg {
       width: 80px;
       height: 80px;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.35);
     }
     .about-rating-badge {
       position: absolute;
@@ -570,41 +691,40 @@
       left: 20px;
       background: var(--white);
       border-radius: var(--radius-md);
-      padding: 12px 18px;
-      box-shadow: var(--shadow-md);
+      padding: 14px 18px;
+      box-shadow: var(--shadow-lg);
       display: flex;
       align-items: center;
       gap: 10px;
     }
     .about-rating-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--trust-blue-light);
+      width: 38px;
+      height: 38px;
+      background: var(--teal-light);
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .about-rating-icon svg { width: 20px; height: 20px; color: #F59E0B; }
-    .about-rating-val { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: var(--text); line-height: 1; }
+    .about-rating-val { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: var(--navy); line-height: 1; }
     .about-rating-count { font-size: 11px; color: var(--text-muted); font-weight: 500; }
     .about-content h2 { margin-bottom: 18px; }
-    .about-content p { color: var(--text-muted); font-size: 15px; line-height: 1.75; margin-bottom: 20px; }
+    .about-content p { color: var(--text-muted); font-size: 15px; line-height: 1.75; margin-bottom: 24px; }
     .stats-row {
       display: flex;
-      gap: 28px;
+      gap: 32px;
       flex-wrap: wrap;
       margin: 28px 0;
       padding: 24px 0;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-    .stat-item {}
     .stat-number {
       font-family: var(--font-heading);
       font-size: 2.2rem;
       font-weight: 800;
-      color: var(--trust-blue);
+      color: var(--teal);
       line-height: 1;
       margin-bottom: 2px;
     }
@@ -617,27 +737,27 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: var(--trust-blue);
+      background: var(--teal);
       color: var(--white);
       padding: 14px 28px;
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-full);
       font-family: var(--font-heading);
       font-weight: 700;
       font-size: 15px;
       transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-      box-shadow: 0 4px 16px rgba(12,74,110,0.25);
+      box-shadow: 0 4px 14px rgba(13,148,136,0.25);
     }
     .about-cta:hover {
-      background: #083B5A;
+      background: var(--teal-dark);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(12,74,110,0.35);
+      box-shadow: 0 8px 24px rgba(13,148,136,0.35);
     }
     .about-cta svg { width: 18px; height: 18px; }
 
     /* PHOTOS GALLERY */
     .gallery-section {
       background: var(--white);
-      padding: clamp(56px, 8vw, 96px) clamp(20px, 5vw, 80px);
+      padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 80px);
     }
     .gallery-grid {
       display: grid;
@@ -655,12 +775,12 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s ease;
+      transition: transform 0.5s ease;
     }
-    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item:hover img { transform: scale(1.06); }
 
     /* REVIEWS */
-    #reviews { background: var(--trust-blue-light); }
+    #reviews { background: var(--teal-50); }
     .reviews-header {
       display: flex;
       justify-content: space-between;
@@ -675,22 +795,22 @@
       gap: 10px;
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      padding: 10px 20px;
       box-shadow: var(--shadow-sm);
     }
     .rating-stars svg { width: 18px; height: 18px; color: #F59E0B; }
     .rating-number {
       font-family: var(--font-heading);
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 800;
-      color: var(--text);
+      color: var(--navy);
     }
     .rating-count { font-size: 13px; color: var(--text-muted); }
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 18px;
+      gap: 16px;
     }
     .review-card {
       background: var(--white);
@@ -701,20 +821,20 @@
       transition: transform var(--transition), box-shadow var(--transition);
       position: relative;
     }
-    .review-card::before {
+    .review-card::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      bottom: 0;
+      left: 24px;
+      right: 24px;
       height: 3px;
-      background: linear-gradient(90deg, var(--trust-blue), var(--cyan));
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      background: linear-gradient(90deg, var(--teal), var(--sky));
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
       opacity: 0;
       transition: opacity var(--transition);
     }
-    .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .review-card:hover::before { opacity: 1; }
+    .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .review-card:hover::after { opacity: 1; }
     .review-header {
       display: flex;
       justify-content: space-between;
@@ -723,12 +843,12 @@
     }
     .review-stars { display: flex; gap: 2px; }
     .review-stars svg { width: 16px; height: 16px; color: #F59E0B; }
-    .review-quote-icon { color: rgba(12,74,110,0.12); }
+    .review-quote-icon { color: rgba(13,148,136,0.12); }
     .review-quote-icon svg { width: 28px; height: 28px; }
     .review-text {
       font-size: 15px;
       line-height: 1.7;
-      color: var(--text);
+      color: var(--slate);
       margin-bottom: 18px;
       font-style: italic;
     }
@@ -758,23 +878,23 @@
       padding: 12px 0;
       border-bottom: 1px solid var(--border);
       font-size: 15px;
-      color: var(--text);
+      color: var(--slate);
     }
     .hours-list li:last-child { border-bottom: none; }
     .hours-emergency {
       margin-top: 32px;
-      background: var(--cyan-light);
-      border: 1px solid rgba(6,182,212,0.2);
-      border-radius: var(--radius-md);
-      padding: 20px 24px;
+      background: var(--teal-50);
+      border: 1px solid rgba(13,148,136,0.15);
+      border-radius: var(--radius-lg);
+      padding: 24px;
       display: flex;
       align-items: center;
       gap: 16px;
     }
     .hours-emergency-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--trust-blue);
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -786,7 +906,7 @@
       font-family: var(--font-heading);
       font-weight: 700;
       font-size: 15px;
-      color: var(--trust-blue);
+      color: var(--navy);
     }
     .hours-emergency-sub {
       font-size: 13px;
@@ -796,15 +916,29 @@
 
     /* CONTACT / CTA */
     #contact {
-      background: var(--trust-blue);
+      background: var(--navy);
       position: relative;
       overflow: hidden;
     }
     #contact::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,255,255,0.04)'/%3E%3C/g%3E%3C/svg%3E");
+      top: -200px;
+      right: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    #contact::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%);
+      border-radius: 50%;
     }
     .contact-inner {
       position: relative;
@@ -813,10 +947,10 @@
       max-width: 680px;
       margin: 0 auto;
     }
-    #contact .section-label { color: var(--cyan); }
-    #contact .section-label::before { background: var(--cyan); }
+    #contact .section-eyebrow { color: var(--sky); }
+    #contact .section-eyebrow .eyebrow-dot { background: var(--sky); }
     #contact h2 { color: var(--white); margin-bottom: 14px; }
-    #contact .section-desc { color: rgba(255,255,255,0.65); margin: 0 auto 44px; }
+    #contact .section-desc { color: rgba(255,255,255,0.55); margin: 0 auto 44px; }
     .contact-cards {
       display: flex;
       gap: 14px;
@@ -825,53 +959,58 @@
       margin-bottom: 36px;
     }
     .contact-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
       backdrop-filter: blur(10px);
       border-radius: var(--radius-lg);
       padding: 22px 26px;
       min-width: 170px;
       text-align: center;
-      transition: background var(--transition), transform var(--transition);
+      transition: background var(--transition), transform var(--transition), border-color var(--transition);
     }
     .contact-card:hover {
-      background: rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.1);
       transform: translateY(-3px);
+      border-color: rgba(13,148,136,0.4);
     }
     .contact-card-icon {
       width: 42px;
       height: 42px;
-      background: rgba(255,255,255,0.1);
-      border-radius: var(--radius-sm);
+      background: rgba(13,148,136,0.15);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 10px;
     }
-    .contact-card-icon svg { width: 20px; height: 20px; color: var(--cyan); }
-    .contact-card-label { font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 500; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .contact-card-icon svg { width: 20px; height: 20px; color: var(--teal); }
+    .contact-card-label { font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 500; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.06em; }
     .contact-card-value { font-family: var(--font-heading); font-size: 15px; font-weight: 600; color: var(--white); }
     .contact-card-value a { color: var(--white); }
     .btn-cta {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: var(--white);
-      color: var(--trust-blue);
+      background: var(--teal);
+      color: var(--white);
       padding: 16px 36px;
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-full);
       font-family: var(--font-heading);
       font-weight: 700;
       font-size: 16px;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.2);
-      transition: transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 8px 28px rgba(13,148,136,0.35);
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
     }
-    .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 44px rgba(0,0,0,0.3); }
+    .btn-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 44px rgba(13,148,136,0.4);
+      background: var(--teal-dark);
+    }
     .btn-cta svg { width: 20px; height: 20px; }
 
     /* FOOTER */
     footer {
-      background: #071E2E;
+      background: #0B1120;
       color: rgba(255,255,255,0.4);
       padding: 24px clamp(20px, 5vw, 80px);
       display: flex;
@@ -881,9 +1020,9 @@
       gap: 12px;
       font-size: 13px;
     }
-    footer strong { color: rgba(255,255,255,0.65); }
+    footer strong { color: rgba(255,255,255,0.6); }
     footer a { color: rgba(255,255,255,0.4); transition: color var(--transition); }
-    footer a:hover { color: rgba(255,255,255,0.7); }
+    footer a:hover { color: var(--teal); }
 
     /* SCROLL REVEAL */
     .reveal {
@@ -900,28 +1039,30 @@
 
     /* RESPONSIVE */
     @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-right { min-height: 300px; }
       .about-grid { grid-template-columns: 1fr; gap: 44px; }
       .about-image-wrap { aspect-ratio: 16/9; }
       .hours-grid { grid-template-columns: 1fr; gap: 32px; }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid::before { display: none; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .hero-split { grid-template-columns: 1fr; }
-      .hero-right { min-height: 320px; }
-      .usp-strip { flex-direction: column; align-items: center; padding: 12px 20px; }
-      .usp-item { padding: 12px 16px; border-right: none; border-bottom: 1px solid var(--border); width: 100%; justify-content: center; }
-      .usp-item:last-child { border-bottom: none; }
-      .service-row { grid-template-columns: 1fr; gap: 8px; padding: 20px; }
-      .service-price { text-align: left; }
+      .usp-strip { flex-direction: column; align-items: stretch; padding: 16px 20px; gap: 8px; }
+      .services-grid { grid-template-columns: 1fr; }
       .topbar { flex-direction: column; gap: 6px; padding: 10px 16px; }
       footer { flex-direction: column; text-align: center; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 480px) {
-      .hero-left h1 { font-size: 1.8rem; }
+      .hero-left h1 { font-size: 1.9rem; }
       .hero-actions { flex-direction: column; }
       .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+      .hero-right { min-height: 240px; }
+      .hero-card-rating { right: -10px; bottom: 60px; }
+      .process-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -933,7 +1074,10 @@
 
 <!-- Top Bar -->
 <div class="topbar">
-  <span class="emergency-badge">24/7 Bereikbaar</span>
+  <span class="topbar-item">
+    <span class="status-dot"></span>
+    Nu beschikbaar
+  </span>
   
   <span class="topbar-item">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
@@ -941,7 +1085,7 @@
   </span>
   
   <span class="topbar-item">
-    Dit is een gratis website concept voor <strong>Gerritsma Rioolservice</strong> door Solidmotion.
+    Gratis concept voor <strong>Gerritsma Rioolservice</strong> door Solidmotion.
     <a href="mailto:michiel@solidmotion.nl">Interesse?</a>
   </span>
 </div>
@@ -979,59 +1123,73 @@
   <a href="#openingstijden" onclick="this.parentElement.classList.remove('active')">Openingstijden</a>
   <a href="#contact" onclick="this.parentElement.classList.remove('active')">Contact</a>
   
-  <a href="tel:076 541 9693" style="color: var(--cyan); font-size: 1.2rem;">076 541 9693</a>
+  <a href="tel:076 541 9693" style="color: var(--teal); font-size: 1.2rem;">076 541 9693</a>
   
 </div>
 
-<!-- Hero - Split Layout -->
-<header class="hero-split">
-  <div class="hero-left">
-    <div class="hero-badge">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Loodgieter in Breda
-    </div>
-    <h1>De loodgieter van Breda</h1>
-    <p class="hero-sub">Betrouwbaar, vakkundig en altijd persoonlijk.</p>
-    <div class="hero-actions">
-      
-      <a class="btn-primary" href="tel:076 541 9693">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-        Bel nu: 076 541 9693
-      </a>
-      
-      <a class="btn-outline" href="#diensten">
-        Bekijk diensten
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </div>
-  </div>
-  <div class="hero-right" style="background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AU_ZVEGhcz1DeKcIFXXqTZC1HKi6cOWHcfeIHUEhtuH1-Dc4K3vkHdqK1dCaH08nuRbhs3_pEwha3rv7OIpVuOjyT8A2xciMLyiGCLqW0bm6ir6--ZN74tQXORxd1HBMcnbUM3cYHL2rkdvvn_MPVc01AL5X00byQ9fkXiT57flXjsEorwD13JifVCg79ItrIsGcRCeVIus2ZNwVGqwR6CH_X-50TgrktP-dUCuDt6fa9foRM6RBA4FaPzmHzoci2paWz_lOZbbtgbAQzIknqa-P5baN6EaOkjY93r2buudWjQ0jTw&key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14);">
-    <div class="hero-right-overlay">
-      <div class="hero-info-card">
-        <div class="hero-info-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <div class="hero-info-label">Beschikbaarheid</div>
-        <div class="hero-info-value">24/7 bereikbaar</div>
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Loodgieter in Breda
       </div>
-      
-      <div class="hero-info-card">
-        <div class="hero-info-icon">
+      <h1>Uw rioolspecialist in Breda</h1>
+      <p class="hero-sub">Snel ter plaatse bij lekkage of verstopping, dag en nacht.</p>
+      <div class="hero-actions">
+        
+        <a class="btn-primary" href="tel:076 541 9693">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
+          Bel nu: 076 541 9693
+        </a>
+        
+        <a class="btn-outline" href="#diensten">
+          Bekijk diensten
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="hero-trust-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Erkend installateur
         </div>
-        <div class="hero-info-label">Direct bellen</div>
-        <div class="hero-info-value"><a href="tel:076 541 9693">076 541 9693</a></div>
+        <div class="hero-trust-divider"></div>
+        <div class="hero-trust-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          24/7 bereikbaar
+        </div>
+        <div class="hero-trust-divider"></div>
+        <div class="hero-trust-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Garantie op werk
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card hero-card-main">
+        
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEEu7rufFdFVErVRo1HVd13VZQLss6V9shTjskIA2C0mQNmrPOtw-DtHEsCnu3btYz_9ozhusMWps826jPfsBl06ECdXnZ0bnPbK8anOCDzEh7xJoTwoCR-bSZDayioZ8eB85eALFbHB80bYv_-e3ec-5oyJqRBfEKuwm6SIu4aB2Mr16UY-8WtIhnBOm6kz-xiG97eByunoXLUIu7pwM7DXWmxs8jzXc29B5388Azn3-LFjfLgkBqft06UEcUw9C50WMTVfp0qed-36-v9QXmugTsyhXDhz4sguIfK8YkCX1ocmVjIIKZiTDGsNZjahaK7bm4ac_dbqYUSbmxsH4X7q9Nw4_O99I-3XoVXXo1ZZb6pisHqbrHQHInZiNO6b6GtBU4PPba_4ORP8WWAgaGR1KNBl2em0gBElTYQLZZ2aSg&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Gerritsma Rioolservice" />
+        
       </div>
       
-      
-      <div class="hero-info-card">
-        <div class="hero-info-icon">
+      <div class="hero-card hero-card-rating">
+        <div class="hcr-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
         </div>
-        <div class="hero-info-label">Beoordeling</div>
-        <div class="hero-info-value">4.3 / 5 sterren</div>
+        <div>
+          <div class="hcr-val">4.3 / 5</div>
+          <div class="hcr-label">84 beoordelingen</div>
+        </div>
       </div>
       
+      <div class="hero-card hero-card-avail">
+        <div class="avail-dot"></div>
+        <div>
+          <div class="avail-text">Nu beschikbaar</div>
+          <div class="avail-sub">Spoedservice mogelijk</div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
@@ -1039,24 +1197,24 @@
 <!-- USP Strip -->
 <div class="usp-strip">
   
-  <div class="usp-item usp-item--highlight">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.19-1.16a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
-    <span>24/7 spoedservice</span>
+  <div class="usp-pill">
+    <div class="usp-pill-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
+    <span>Reactie binnen 24 uur gegarandeerd na uw aanvraag</span>
   </div>
   
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-    <span>Snel ter plaatse</span>
+  <div class="usp-pill">
+    <div class="usp-pill-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+    <span>Grondige inspectie voor een eerlijk en passend advies</span>
   </div>
   
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
-    <span>Vaste prijzen</span>
+  <div class="usp-pill">
+    <div class="usp-pill-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/></svg></div>
+    <span>Lokaal verankerd in Breda met jarenlange ervaring</span>
   </div>
   
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
-    <span>Gecertificeerd</span>
+  <div class="usp-pill">
+    <div class="usp-pill-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+    <span>Persoonlijke afspraak afgestemd op uw specifieke wensen</span>
   </div>
   
 </div>
@@ -1065,52 +1223,65 @@
 <section id="diensten">
   <div class="container">
     <div class="reveal">
-      <span class="section-label">Onze diensten</span>
-      <h2>Onze diensten</h2>
-      <p class="section-desc">Wat kunnen we voor u betekenen?</p>
+      <span class="section-eyebrow"><span class="eyebrow-dot"></span> Onze diensten</span>
+      <h2>Onze diensten in Breda</h2>
+      <p class="section-desc">Van verstopt riool tot vervelende lekkage, wij lossen het vakkundig op.</p>
     </div>
-    <div class="services-table reveal reveal-delay-1">
+    <div class="services-grid">
       
-      <div class="service-row service-row--emergency">
-        <div class="service-name">
-          Riool
-          <span class="emergency-tag">Spoed</span>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-card-top">
+          <h3>Riool</h3>
+          <span class="service-price-badge">vanaf €95</span>
         </div>
-        <div class="service-desc">Professioneel riool uitgevoerd met oog voor kwaliteit en detail.</div>
-        <div class="service-price"></div>
+        <p>Last van een verstopt of kapot riool? Gerritsma Rioolservice verhelpt rioolproblemen snel en grondig, zodat alles weer soepel doorstroomt.</p>
+        <span class="spoed-label">Spoedservice</span>
       </div>
       
-      <div class="service-row">
-        <div class="service-name">
-          Lekkage
-          
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-card-top">
+          <h3>Lekkage</h3>
+          <span class="service-price-badge">vanaf €85</span>
         </div>
-        <div class="service-desc">Professioneel lekkage uitgevoerd met oog voor kwaliteit en detail.</div>
-        <div class="service-price"></div>
+        <p>Een lekkage kan snel grote schade veroorzaken. Wij sporen de oorzaak vakkundig op en lossen het probleem duurzaam op.</p>
+        
       </div>
       
     </div>
   </div>
 </section>
 
-<!-- Certifications Strip -->
-<div class="certs-strip reveal">
-  <div class="certs-inner">
-    <span class="certs-label">Gecertificeerd &amp; verzekerd</span>
-    <div class="cert-badge">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      Erkend installateur
+<!-- Process Timeline -->
+<section class="process-section">
+  <div class="container">
+    <div class="reveal" style="text-align: center; margin-bottom: 52px;">
+      <span class="section-eyebrow"><span class="eyebrow-dot"></span> Werkwijze</span>
+      <h2>Hoe wij te werk gaan</h2>
     </div>
-    <div class="cert-badge">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      Volledig verzekerd
-    </div>
-    <div class="cert-badge">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      Garantie op werk
+    <div class="process-grid">
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-number">1</div>
+        <h3>Contact</h3>
+        <p>Bel ons of stuur een bericht. Wij reageren direct.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-number">2</div>
+        <h3>Inspectie</h3>
+        <p>Wij komen langs voor een gratis inspectie en offerte.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-number">3</div>
+        <h3>Uitvoering</h3>
+        <p>Professionele reparatie of installatie door vakmensen.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-4">
+        <div class="process-number">4</div>
+        <h3>Garantie</h3>
+        <p>Oplevering met garantie. U betaalt pas als u tevreden bent.</p>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- About -->
 <section id="over-ons">
@@ -1118,7 +1289,7 @@
     <div class="about-grid">
       <div class="about-image-wrap reveal">
         
-        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEEu7rufFdFVErVRo1HVd13VZQLss6V9shTjskIA2C0mQNmrPOtw-DtHEsCnu3btYz_9ozhusMWps826jPfsBl06ECdXnZ0bnPbK8anOCDzEh7xJoTwoCR-bSZDayioZ8eB85eALFbHB80bYv_-e3ec-5oyJqRBfEKuwm6SIu4aB2Mr16UY-8WtIhnBOm6kz-xiG97eByunoXLUIu7pwM7DXWmxs8jzXc29B5388Azn3-LFjfLgkBqft06UEcUw9C50WMTVfp0qed-36-v9QXmugTsyhXDhz4sguIfK8YkCX1ocmVjIIKZiTDGsNZjahaK7bm4ac_dbqYUSbmxsH4X7q9Nw4_O99I-3XoVXXo1ZZb6pisHqbrHQHInZiNO6b6GtBU4PPba_4ORP8WWAgaGR1KNBl2em0gBElTYQLZZ2aSg&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Gerritsma Rioolservice - Breda" loading="lazy" width="600" height="750" />
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEGhcz1DeKcIFXXqTZC1HKi6cOWHcfeIHUEhtuH1-Dc4K3vkHdqK1dCaH08nuRbhs3_pEwha3rv7OIpVuOjyT8A2xciMLyiGCLqW0bm6ir6--ZN74tQXORxd1HBMcnbUM3cYHL2rkdvvn_MPVc01AL5X00byQ9fkXiT57flXjsEorwD13JifVCg79ItrIsGcRCeVIus2ZNwVGqwR6CH_X-50TgrktP-dUCuDt6fa9foRM6RBA4FaPzmHzoci2paWz_lOZbbtgbAQzIknqa-P5baN6EaOkjY93r2buudWjQ0jTw&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Gerritsma Rioolservice - Breda" loading="lazy" width="600" height="750" />
         
         
         <div class="about-rating-badge">
@@ -1133,24 +1304,24 @@
         
       </div>
       <div class="about-content reveal reveal-delay-2">
-        <span class="section-label">Over ons</span>
-        <h2>Over Gerritsma Rioolservice</h2>
-        <p></p>
+        <span class="section-eyebrow"><span class="eyebrow-dot"></span> Over ons</span>
+        <h2>Gerritsma Rioolservice: betrouwbaar loodgieterswerk in Breda</h2>
+        <p>Gerritsma Rioolservice is uw vertrouwde loodgieter in Breda en omgeving. Of u nu te maken heeft met een hardnekkige verstopping of een onverwachte lekkage, wij staan voor u klaar. Klanten waarderen onze snelle reactietijd en persoonlijke aanpak. Binnen 24 uur reageren wij op uw aanvraag en maken wij een afspraak die past bij uw wensen. Met een 4.3-sterrenrating op Google weten onze klanten ons al jaren te vinden.</p>
         <div class="stats-row">
           
           <div class="stat-item">
-            <div class="stat-number">10+</div>
-            <div class="stat-label">Jaar ervaring</div>
+            <div class="stat-number">4.3</div>
+            <div class="stat-label">Google beoordeling</div>
           </div>
           
           <div class="stat-item">
-            <div class="stat-number">500+</div>
-            <div class="stat-label">Tevreden klanten</div>
+            <div class="stat-number">84</div>
+            <div class="stat-label">Klantreviews</div>
           </div>
           
           <div class="stat-item">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Kwaliteitsgarantie</div>
+            <div class="stat-number">24u</div>
+            <div class="stat-label">Reactietijd</div>
           </div>
           
         </div>
@@ -1170,7 +1341,7 @@
 <section class="gallery-section">
   <div class="container">
     <div class="reveal">
-      <span class="section-label">Ons werk</span>
+      <span class="section-eyebrow"><span class="eyebrow-dot"></span> Ons werk</span>
       <h2>Recente projecten</h2>
     </div>
     <div class="gallery-grid">
@@ -1198,8 +1369,8 @@
   <div class="container">
     <div class="reviews-header reveal">
       <div>
-        <span class="section-label">Klantbeoordelingen</span>
-        <h2>Wat onze klanten zeggen</h2>
+        <span class="section-eyebrow"><span class="eyebrow-dot"></span> Klantbeoordelingen</span>
+        <h2>Wat klanten zeggen over Gerritsma Rioolservice</h2>
       </div>
       
       <div class="rating-badge">
@@ -1295,7 +1466,7 @@ Gelukkig hebben we door onze ei"</p>
   <div class="container">
     <div class="hours-grid">
       <div class="reveal">
-        <span class="section-label">Openingstijden</span>
+        <span class="section-eyebrow"><span class="eyebrow-dot"></span> Openingstijden</span>
         <h2>Wanneer kunt u ons bereiken?</h2>
         <ul class="hours-list">
           
@@ -1324,7 +1495,7 @@ Gelukkig hebben we door onze ei"</p>
             <div class="hours-emergency-text">Spoedservice 24/7</div>
             <div class="hours-emergency-sub">
               Bij lekkage of leidingbreuk zijn wij dag en nacht bereikbaar.
-              Bel <a href="tel:076 541 9693" style="color: var(--cyan); font-weight: 600;">076 541 9693</a>
+              Bel <a href="tel:076 541 9693" style="color: var(--teal); font-weight: 600;">076 541 9693</a>
             </div>
           </div>
         </div>
@@ -1337,9 +1508,9 @@ Gelukkig hebben we door onze ei"</p>
 <!-- Contact / CTA -->
 <section id="contact">
   <div class="contact-inner">
-    <span class="section-label">Neem contact op</span>
-    <h2>Klaar om te beginnen?</h2>
-    <p class="section-desc">Neem vandaag nog contact op voor een vrijblijvend gesprek.</p>
+    <span class="section-eyebrow"><span class="eyebrow-dot"></span> Neem contact op</span>
+    <h2>Direct hulp nodig in Breda?</h2>
+    <p class="section-desc">Neem vandaag nog contact op en wij reageren binnen 24 uur.</p>
     <div class="contact-cards">
       
       <div class="contact-card">
