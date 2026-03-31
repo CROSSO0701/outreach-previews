@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Betrouwbaar, vakkundig en altijd persoonlijk." />
+  <meta name="description" content="Van ontwerp tot onderhoud, wij maken uw tuin perfect." />
   <title>Tuinaanleg Haarlemmermeer - Hovenier in Haarlemmermeer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --primary:      #2D6A4F;
@@ -16,20 +16,25 @@
       --accent:       #74C69D;
       --bg:           #F0FAF4;
       --text:         #081C15;
-      --cream:        #F7F3EC;
-      --forest:       #2D4A3E;
-      --forest-light: #3E6B5A;
-      --earth:        #8B7355;
-      --earth-light:  #C4A97D;
-      --moss:         #5A7247;
-      --sand:         #E8DFD0;
-      --warm-black:   #1E2420;
-      --text-muted:   #5E6B62;
-      --border:       rgba(45,74,62,0.12);
-      --font-display: 'Fraunces', Georgia, serif;
-      --font-body:    'Outfit', system-ui, sans-serif;
-      --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+      --stone:        #F5F0E8;
+      --stone-warm:   #EDE6D8;
+      --olive:        #4A5A3C;
+      --olive-deep:   #374430;
+      --olive-light:  #6B7F58;
+      --bark:         #7A6548;
+      --bark-light:   #A8906E;
+      --peat:         #3A3228;
+      --clay:         #C9B99A;
+      --sage:         #8FA67A;
+      --linen:        #FAF7F2;
+      --text-body:    #4A4640;
+      --text-muted:   #7D766C;
+      --border:       rgba(74,90,60,0.10);
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body:    'Be Vietnam Pro', system-ui, sans-serif;
+      --ease:         cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --ease-out:     cubic-bezier(0.0, 0, 0.2, 1);
+      --ease-bounce:  cubic-bezier(0.34, 1.4, 0.64, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,8 +43,8 @@
     body {
       font-family: var(--font-body);
       font-size: 16px;
-      color: var(--warm-black);
-      background: var(--cream);
+      color: var(--text-body);
+      background: var(--linen);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
@@ -50,8 +55,8 @@
     /* --- REVEAL ANIMATIONS --- */
     .reveal {
       opacity: 0;
-      transform: translateY(36px);
-      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+      transform: translateY(40px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
     }
     .reveal.visible {
       opacity: 1;
@@ -59,8 +64,8 @@
     }
     .reveal-left {
       opacity: 0;
-      transform: translateX(-48px);
-      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+      transform: translateX(-50px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
     }
     .reveal-left.visible {
       opacity: 1;
@@ -68,109 +73,129 @@
     }
     .reveal-right {
       opacity: 0;
-      transform: translateX(48px);
-      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+      transform: translateX(50px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
     }
     .reveal-right.visible {
       opacity: 1;
       transform: translateX(0);
     }
-
-    /* --- ORGANIC SHAPES --- */
-    .organic-blob {
-      position: absolute;
-      border-radius: 50% 40% 60% 45%;
-      opacity: 0.06;
-      background: var(--forest);
-      pointer-events: none;
+    .reveal-zoom {
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-bounce);
+    }
+    .reveal-zoom.visible {
+      opacity: 1;
+      transform: scale(1);
     }
 
-    /* --- NAVIGATION --- */
+    /* --- BOTANICAL ACCENTS (inspired by Buytengewoon organic shapes) --- */
+    .botanical-line {
+      width: 48px;
+      height: 1px;
+      background: var(--bark-light);
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .botanical-line::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: -3px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--sage);
+    }
+
+    /* --- NAVIGATION (Buytengewoon-style: minimal, wide-spaced, elegant) --- */
     .nav {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 100;
-      padding: 0 48px;
-      height: 76px;
+      padding: 0 56px;
+      height: 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: background 0.5s var(--ease), box-shadow 0.5s var(--ease);
+      transition: background 0.6s var(--ease), box-shadow 0.6s var(--ease), height 0.4s var(--ease);
     }
     .nav--solid {
-      background: rgba(247,243,236,0.97);
-      box-shadow: 0 1px 20px rgba(45,74,62,0.08);
-      backdrop-filter: blur(12px);
+      background: rgba(250,247,242,0.96);
+      box-shadow: 0 2px 24px rgba(58,50,40,0.06);
+      backdrop-filter: blur(16px);
+      height: 68px;
     }
     .nav__logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
     .nav__logo img {
-      height: 38px;
+      height: 40px;
       width: auto;
     }
     .nav__logo-text {
       font-family: var(--font-display);
-      font-size: 22px;
-      font-weight: 500;
+      font-size: 24px;
       color: #fff;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.01em;
       transition: color 0.4s var(--ease);
     }
-    .nav--solid .nav__logo-text { color: var(--forest); }
+    .nav--solid .nav__logo-text { color: var(--olive-deep); }
 
     .nav__links {
       display: flex;
-      gap: 32px;
+      gap: 40px;
       list-style: none;
     }
     .nav__links a {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 400;
-      letter-spacing: 0.02em;
-      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
       transition: color 0.3s var(--ease);
       position: relative;
     }
     .nav__links a::after {
       content: '';
       position: absolute;
-      bottom: -4px;
+      bottom: -6px;
       left: 0;
       width: 0;
-      height: 2px;
-      background: var(--earth-light);
-      border-radius: 1px;
-      transition: width 0.3s var(--ease);
+      height: 1.5px;
+      background: var(--bark-light);
+      transition: width 0.4s var(--ease);
     }
     .nav__links a:hover::after { width: 100%; }
-    .nav--solid .nav__links a { color: var(--warm-black); }
+    .nav--solid .nav__links a { color: var(--text-body); }
 
     .nav__cta {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
-      letter-spacing: 0.04em;
-      padding: 10px 28px;
-      border: 1.5px solid rgba(255,255,255,0.45);
-      border-radius: 40px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 11px 30px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 0;
       color: #fff;
       transition: all 0.3s var(--ease);
     }
     .nav__cta:hover {
       background: #fff;
-      color: var(--forest);
+      color: var(--olive-deep);
       border-color: #fff;
     }
     .nav--solid .nav__cta {
-      border-color: var(--forest);
-      color: var(--forest);
+      border-color: var(--olive);
+      color: var(--olive);
     }
     .nav--solid .nav__cta:hover {
-      background: var(--forest);
+      background: var(--olive);
       color: #fff;
     }
 
@@ -178,7 +203,7 @@
     .nav__hamburger {
       display: none;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
       cursor: pointer;
       background: none;
       border: none;
@@ -187,42 +212,40 @@
     }
     .nav__hamburger span {
       display: block;
-      width: 26px;
-      height: 2px;
+      width: 28px;
+      height: 1.5px;
       background: #fff;
-      border-radius: 2px;
       transition: all 0.3s var(--ease);
     }
-    .nav--solid .nav__hamburger span { background: var(--warm-black); }
-    .nav__hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav--solid .nav__hamburger span { background: var(--peat); }
+    .nav__hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5.5px, 5.5px); }
     .nav__hamburger.active span:nth-child(2) { opacity: 0; }
-    .nav__hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .nav__hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5.5px, -5.5px); }
 
     .nav__mobile {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(30,36,32,0.97);
+      background: var(--olive-deep);
       z-index: 105;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 28px;
+      gap: 32px;
     }
     .nav__mobile.open { display: flex; }
     .nav__mobile a {
       font-family: var(--font-display);
-      font-size: 28px;
+      font-size: 32px;
       color: #fff;
-      font-weight: 400;
     }
-    .nav__mobile a:hover { color: var(--earth-light); }
+    .nav__mobile a:hover { color: var(--clay); }
 
-    /* --- HERO --- */
+    /* --- HERO (Van Mierlo-style: full-bleed, bottom-left text, editorial) --- */
     .hero {
       position: relative;
       height: 100vh;
-      min-height: 640px;
+      min-height: 680px;
       display: flex;
       align-items: flex-end;
       background: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AU_ZVEEoOq8xbtwG4-wrPO9WpjnWPCM-y38l4u5KUwBvhHdDU3KUP2BZEVycJ-A_S2T7TINs8dxPm5w44xA4jChpEyywRQS0W250yK8cMfWyTujSKr5gdPvUOghkM7CqogYQwvz2jTCa1smyzmR_F_ozbChbsqXr3GoBYVEfnUV5SGFddm3P4_xu61idvs2SxAlFLCPi00HwFOH0FOwldA1jtYNyPFhHfZK_k7Y-xamiz9eZTRz9fCmrlI99JOTk-Ooy3PupU6D_zx408AJHE2HkCN3uAlix722DUiPT9wdIR-UQPg&key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14) center/cover no-repeat;
@@ -234,45 +257,58 @@
       inset: 0;
       background: rgba(8,28,21,0.6);
     }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 45%;
+      background: linear-gradient(to top, rgba(55,68,48,0.55) 0%, transparent 100%);
+      pointer-events: none;
+    }
     .hero__content {
       position: relative;
       z-index: 2;
-      max-width: 680px;
-      padding: 0 48px 100px;
+      max-width: 720px;
+      padding: 0 56px 96px;
     }
-    .hero__tag {
-      display: inline-block;
-      font-size: 12px;
+    .hero__location {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--earth-light);
-      margin-bottom: 20px;
-      padding: 6px 16px;
-      border: 1px solid rgba(196,169,125,0.3);
-      border-radius: 40px;
+      color: var(--clay);
+      margin-bottom: 24px;
+    }
+    .hero__location-line {
+      width: 32px;
+      height: 1px;
+      background: var(--clay);
     }
     .hero__title {
       font-family: var(--font-display);
-      font-size: clamp(40px, 5.5vw, 72px);
+      font-size: clamp(42px, 5.8vw, 76px);
       font-weight: 400;
-      line-height: 1.1;
+      line-height: 1.08;
       color: #fff;
-      margin-bottom: 20px;
-      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
     }
     .hero__title em {
       font-style: italic;
-      font-weight: 300;
-      color: var(--earth-light);
+      color: var(--clay);
     }
     .hero__sub {
       font-size: 17px;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.65);
       font-weight: 300;
-      line-height: 1.65;
-      max-width: 480px;
-      margin-bottom: 36px;
+      line-height: 1.7;
+      max-width: 500px;
+      margin-bottom: 40px;
     }
     .hero__actions {
       display: flex;
@@ -283,155 +319,163 @@
     .btn-primary {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 14px;
+      gap: 10px;
+      font-size: 13px;
       font-weight: 500;
-      padding: 14px 36px;
-      background: var(--forest);
+      letter-spacing: 0.04em;
+      padding: 15px 38px;
+      background: var(--olive);
       color: #fff;
-      border-radius: 50px;
-      transition: all 0.3s var(--ease);
+      border-radius: 0;
+      transition: all 0.35s var(--ease);
       border: none;
       cursor: pointer;
     }
     .btn-primary:hover {
-      background: var(--forest-light);
+      background: var(--olive-deep);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(45,74,62,0.3);
+      box-shadow: 0 10px 30px rgba(55,68,48,0.35);
     }
     .btn-outline {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 400;
-      padding: 14px 32px;
+      letter-spacing: 0.04em;
+      padding: 14px 34px;
       background: transparent;
       color: #fff;
-      border: 1.5px solid rgba(255,255,255,0.3);
-      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 0;
       transition: all 0.3s var(--ease);
       cursor: pointer;
     }
     .btn-outline:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.45);
     }
 
-    .hero__scroll {
+    /* Vertical side label (Buytengewoon-style) */
+    .hero__side-label {
       position: absolute;
-      bottom: 36px;
-      right: 48px;
+      right: 56px;
+      bottom: 96px;
       z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-    .hero__scroll span {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
       writing-mode: vertical-rl;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-    .hero__scroll-line {
+    .hero__side-line {
       width: 1px;
-      height: 48px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
-      animation: scrollPulse 2.5s ease-in-out infinite;
+      height: 56px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.25), transparent);
+      animation: sideLinePulse 2.8s ease-in-out infinite;
     }
-    @keyframes scrollPulse {
+    @keyframes sideLinePulse {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+      50% { opacity: 0.25; }
     }
 
     /* --- SECTION UTILITIES --- */
     .section {
-      padding: 110px 24px;
+      padding: 120px 24px;
       position: relative;
       overflow: hidden;
     }
-    .section--cream { background: var(--cream); }
-    .section--white { background: #fff; }
-    .section--sand { background: var(--sand); }
-    .section--forest {
-      background: var(--forest);
+    .section--linen { background: var(--linen); }
+    .section--stone { background: var(--stone); }
+    .section--warm  { background: var(--stone-warm); }
+    .section--olive {
+      background: var(--olive-deep);
       color: rgba(255,255,255,0.85);
     }
     .container {
-      max-width: 1140px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .container--narrow {
+      max-width: 900px;
       margin: 0 auto;
     }
     .section__eyebrow {
       font-family: var(--font-body);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--earth);
-      margin-bottom: 12px;
+      color: var(--bark);
+      margin-bottom: 14px;
+      display: block;
     }
-    .section--forest .section__eyebrow { color: var(--earth-light); }
+    .section--olive .section__eyebrow { color: var(--clay); }
     .section__title {
       font-family: var(--font-display);
-      font-size: clamp(30px, 3.5vw, 46px);
+      font-size: clamp(32px, 3.8vw, 52px);
       font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 16px;
-      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      color: var(--peat);
     }
-    .section--forest .section__title { color: #fff; }
+    .section--olive .section__title { color: #fff; }
     .section__subtitle {
       font-size: 16px;
       color: var(--text-muted);
-      line-height: 1.65;
-      max-width: 540px;
+      line-height: 1.7;
+      max-width: 520px;
     }
-    .section--forest .section__subtitle { color: rgba(255,255,255,0.6); }
-    .section__leaf {
-      width: 32px;
-      height: 2px;
-      background: var(--moss);
-      border-radius: 2px;
-      margin-bottom: 24px;
-    }
-    .section--forest .section__leaf { background: var(--earth-light); }
+    .section--olive .section__subtitle { color: rgba(255,255,255,0.5); }
 
-    /* --- STATS BAR --- */
-    .stats-bar {
-      background: var(--forest);
-      padding: 48px 24px;
+    /* --- STATS RIBBON (Rodenburg-style: horizontal, elegant dividers) --- */
+    .stats-ribbon {
+      background: var(--olive-deep);
+      padding: 0 24px;
     }
-    .stats-bar__inner {
-      max-width: 1140px;
+    .stats-ribbon__inner {
+      max-width: 1180px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 36px;
+      display: flex;
+      justify-content: center;
     }
-    .stat {
+    .stat-item {
+      flex: 1;
       text-align: center;
+      padding: 44px 24px;
+      position: relative;
     }
-    .stat__value {
+    .stat-item + .stat-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+    .stat-item__value {
       font-family: var(--font-display);
-      font-size: 36px;
-      font-weight: 500;
-      color: #fff;
-      letter-spacing: -0.02em;
+      font-size: 40px;
+      color: var(--clay);
+      line-height: 1;
+      margin-bottom: 6px;
     }
-    .stat__label {
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
-      margin-top: 4px;
-      letter-spacing: 0.04em;
+    .stat-item__label {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
     }
 
-    /* --- ABOUT (Asymmetric) --- */
+    /* --- ABOUT (Ernst Baas-style: large image left, text right, offset badge) --- */
     .about__grid {
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 80px;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 88px;
       align-items: center;
     }
     .about__image-wrap {
@@ -439,318 +483,322 @@
     }
     .about__image {
       width: 100%;
-      aspect-ratio: 3/4;
+      aspect-ratio: 5/6;
       object-fit: cover;
-      border-radius: 0 50% 4px 4px;
     }
-    .about__accent {
+    .about__frame {
       position: absolute;
+      top: 24px;
+      left: 24px;
+      right: -24px;
       bottom: -24px;
-      left: -24px;
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      border: 2px solid var(--earth-light);
+      border: 1px solid var(--bark-light);
       opacity: 0.3;
+      pointer-events: none;
     }
     .about__badge {
       position: absolute;
-      top: 24px;
-      right: -16px;
-      background: var(--earth);
+      bottom: -32px;
+      right: 40px;
+      background: var(--olive);
       color: #fff;
-      padding: 16px 20px;
-      border-radius: 50%;
+      padding: 20px 24px;
       text-align: center;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.15);
-      width: 96px;
-      height: 96px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.15);
+      min-width: 110px;
     }
     .about__badge-value {
       font-family: var(--font-display);
-      font-size: 26px;
-      font-weight: 600;
+      font-size: 30px;
       line-height: 1;
     }
     .about__badge-label {
       font-size: 10px;
-      opacity: 0.8;
-      margin-top: 2px;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-top: 4px;
     }
     .about__text {
       font-size: 16px;
-      line-height: 1.75;
+      line-height: 1.8;
       color: var(--text-muted);
     }
 
-    /* --- USPs --- */
+    /* --- USPs (Stacked list, minimal) --- */
     .usps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px;
-      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 48px;
     }
     .usp {
       display: flex;
       align-items: flex-start;
       gap: 16px;
-      padding: 24px;
-      background: rgba(45,74,62,0.04);
-      border-radius: 16px;
+      padding: 20px 24px;
+      background: var(--stone);
+      border-left: 3px solid var(--sage);
       transition: background 0.3s var(--ease);
     }
     .usp:hover {
-      background: rgba(45,74,62,0.08);
+      background: var(--stone-warm);
     }
     .usp__icon {
-      width: 36px;
-      height: 36px;
+      width: 28px;
+      height: 28px;
       flex-shrink: 0;
-      color: var(--forest);
+      color: var(--olive);
     }
     .usp__text {
-      font-size: 15px;
-      color: var(--text-muted);
+      font-size: 14px;
+      color: var(--text-body);
       line-height: 1.55;
+      font-weight: 400;
     }
 
-    /* --- SERVICES (List style) --- */
+    /* --- SERVICES (Buytengewoon-style: editorial list with large numbers) --- */
     .services__header {
-      margin-bottom: 56px;
+      margin-bottom: 64px;
     }
-    .services-list {
-      max-width: 800px;
+    .services-editorial {
+      max-width: 880px;
     }
-    .service-item {
-      padding: 28px 0;
+    .service-row {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      gap: 24px;
+      padding: 32px 0;
       border-bottom: 1px solid var(--border);
+      align-items: baseline;
+      transition: background 0.3s var(--ease);
     }
-    .service-item:first-child {
+    .service-row:first-child {
       border-top: 1px solid var(--border);
     }
-    .service-item__row {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
+    .service-row:hover {
+      background: rgba(143,166,122,0.04);
     }
-    .service-item__name {
+    .service-row__num {
       font-family: var(--font-display);
-      font-size: 22px;
-      font-weight: 400;
-      color: var(--forest);
-      flex-shrink: 0;
+      font-size: 14px;
+      color: var(--bark-light);
+      font-style: italic;
     }
-    .service-item__dots {
-      flex: 1;
-      border-bottom: 2px dotted var(--border);
-      min-width: 40px;
-      margin-bottom: 4px;
-    }
-    .service-item__price {
+    .service-row__name {
       font-family: var(--font-display);
-      font-size: 20px;
+      font-size: 24px;
+      color: var(--peat);
+    }
+    .service-row__price {
+      font-family: var(--font-body);
+      font-size: 15px;
       font-weight: 500;
-      color: var(--earth);
-      flex-shrink: 0;
+      color: var(--olive);
     }
-    .service-item__desc {
+    .service-row__desc {
+      grid-column: 2 / -1;
       font-size: 14px;
       color: var(--text-muted);
-      margin-top: 6px;
-      line-height: 1.55;
+      line-height: 1.6;
+      margin-top: -8px;
     }
 
-    /* --- PHOTO GALLERY (Masonry) --- */
-    .gallery__grid {
-      columns: 3;
-      column-gap: 16px;
+    /* --- PHOTO GALLERY (Van Mierlo-style: asymmetric grid, mixed sizes) --- */
+    .gallery__mosaic {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
     }
-    .gallery__item {
-      break-inside: avoid;
-      margin-bottom: 16px;
-      border-radius: 8px;
+    .gallery__cell {
       overflow: hidden;
       position: relative;
     }
-    .gallery__item img {
+    .gallery__cell:nth-child(1) { grid-column: 1 / 8; grid-row: 1 / 3; }
+    .gallery__cell:nth-child(2) { grid-column: 8 / 13; }
+    .gallery__cell:nth-child(3) { grid-column: 8 / 13; }
+    .gallery__cell:nth-child(4) { grid-column: 1 / 5; }
+    .gallery__cell:nth-child(5) { grid-column: 5 / 9; }
+    .gallery__cell:nth-child(6) { grid-column: 9 / 13; }
+    .gallery__cell:nth-child(n+7) { grid-column: span 4; }
+    .gallery__cell img {
       width: 100%;
-      display: block;
-      transition: transform 0.6s var(--ease);
+      height: 100%;
+      object-fit: cover;
+      min-height: 200px;
+      transition: transform 0.7s var(--ease);
     }
-    .gallery__item:hover img {
-      transform: scale(1.04);
+    .gallery__cell:hover img {
+      transform: scale(1.05);
     }
-    .gallery__item::after {
+    .gallery__cell::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(30,36,32,0.2) 0%, transparent 50%);
+      background: linear-gradient(to top, rgba(55,68,48,0.25) 0%, transparent 50%);
       opacity: 0;
-      transition: opacity 0.4s var(--ease);
+      transition: opacity 0.5s var(--ease);
     }
-    .gallery__item:hover::after {
+    .gallery__cell:hover::after {
       opacity: 1;
     }
 
-    /* --- REVIEWS --- */
+    /* --- TESTIMONIAL SECTION (Rodenburg-style: full-width olive bg, quote-first) --- */
+    .reviews__intro {
+      text-align: center;
+      margin-bottom: 56px;
+    }
     .reviews__grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-      margin-top: 48px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
     }
     .review-card {
-      padding: 36px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
+      padding: 40px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.06);
       position: relative;
     }
     .review-card__quote {
       font-family: var(--font-display);
-      font-size: 56px;
+      font-size: 72px;
       line-height: 1;
-      color: var(--earth-light);
-      opacity: 0.4;
+      color: var(--clay);
+      opacity: 0.3;
       position: absolute;
-      top: 16px;
-      left: 24px;
+      top: 12px;
+      left: 28px;
     }
     .review-card__stars {
       display: flex;
       gap: 3px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .review-card__star {
-      width: 16px;
-      height: 16px;
-      color: var(--earth-light);
+      width: 15px;
+      height: 15px;
+      color: var(--clay);
     }
     .review-card__text {
       font-size: 15px;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 20px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 24px;
       font-style: italic;
     }
     .review-card__author {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--earth-light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--clay);
     }
     .reviews__summary {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 44px;
       font-size: 15px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.4);
     }
     .reviews__summary strong {
       color: #fff;
       font-weight: 600;
     }
 
-    /* --- CTA SECTION --- */
-    .cta {
-      text-align: center;
-      padding: 110px 24px;
-      background: var(--forest);
-      color: #fff;
-      position: relative;
-      overflow: hidden;
+    /* --- CTA (Split design: image left, text right) --- */
+    .cta-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 420px;
     }
-    .cta__blob {
+    .cta-split__image {
+      background: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AU_ZVEEoOq8xbtwG4-wrPO9WpjnWPCM-y38l4u5KUwBvhHdDU3KUP2BZEVycJ-A_S2T7TINs8dxPm5w44xA4jChpEyywRQS0W250yK8cMfWyTujSKr5gdPvUOghkM7CqogYQwvz2jTCa1smyzmR_F_ozbChbsqXr3GoBYVEfnUV5SGFddm3P4_xu61idvs2SxAlFLCPi00HwFOH0FOwldA1jtYNyPFhHfZK_k7Y-xamiz9eZTRz9fCmrlI99JOTk-Ooy3PupU6D_zx408AJHE2HkCN3uAlix722DUiPT9wdIR-UQPg&key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14) center/cover no-repeat;
+      position: relative;
+    }
+    .cta-split__image::after {
+      content: '';
       position: absolute;
-      width: 500px;
-      height: 500px;
-      border-radius: 50% 40% 55% 45%;
-      background: rgba(255,255,255,0.03);
-      top: -200px;
-      right: -100px;
-      pointer-events: none;
+      inset: 0;
+      background: rgba(55,68,48,0.25);
     }
-    .cta__title {
+    .cta-split__content {
+      background: var(--olive-deep);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 72px 64px;
+    }
+    .cta-split__title {
       font-family: var(--font-display);
-      font-size: clamp(30px, 4vw, 50px);
-      font-weight: 400;
-      position: relative;
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
+      font-size: clamp(28px, 3.5vw, 46px);
+      margin-bottom: 16px;
+      line-height: 1.15;
     }
-    .cta__sub {
+    .cta-split__sub {
       font-size: 16px;
-      opacity: 0.65;
+      opacity: 0.55;
       margin-bottom: 40px;
-      position: relative;
+      line-height: 1.7;
     }
-    .cta__btn {
+    .cta-split__btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      position: relative;
-      font-size: 14px;
+      gap: 10px;
+      font-size: 13px;
       font-weight: 500;
+      letter-spacing: 0.04em;
       padding: 16px 44px;
       background: #fff;
-      color: var(--forest);
-      border-radius: 50px;
-      transition: all 0.3s var(--ease);
+      color: var(--olive-deep);
+      border-radius: 0;
+      transition: all 0.35s var(--ease);
+      align-self: flex-start;
     }
-    .cta__btn:hover {
+    .cta-split__btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
     }
 
-    /* --- CONTACT / HOURS --- */
+    /* --- CONTACT / HOURS (Two-column, refined) --- */
     .contact__grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 72px;
+      gap: 80px;
     }
-    .contact__title {
+    .contact__heading {
       font-family: var(--font-display);
-      font-size: 26px;
-      font-weight: 400;
-      margin-bottom: 28px;
-      color: var(--forest);
+      font-size: 28px;
+      color: var(--peat);
+      margin-bottom: 32px;
     }
     .contact__info {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
     }
     .contact__info li {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
+      gap: 16px;
       font-size: 15px;
       color: var(--text-muted);
     }
     .contact__info svg {
       width: 18px;
       height: 18px;
-      color: var(--forest);
+      color: var(--olive);
       flex-shrink: 0;
       margin-top: 3px;
     }
     .contact__info a:hover {
-      color: var(--forest);
+      color: var(--olive);
     }
-
     .hours-list {
       list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
     }
     .hours-list li {
-      padding: 12px 0;
+      padding: 13px 0;
       font-size: 15px;
       color: var(--text-muted);
       border-bottom: 1px solid var(--border);
@@ -759,23 +807,24 @@
       border-top: 1px solid var(--border);
     }
 
-    /* --- PHOTO BREAK --- */
-    .photo-break {
+    /* --- PHOTO DIVIDER --- */
+    .photo-divider {
       width: 100%;
       height: 50vh;
-      min-height: 320px;
+      min-height: 340px;
       object-fit: cover;
     }
 
-    /* --- FOOTER --- */
+    /* --- FOOTER (Peat-dark, understated) --- */
     .footer {
-      background: var(--warm-black);
-      color: rgba(255,255,255,0.4);
-      padding: 48px 24px;
-      font-size: 13px;
+      background: var(--peat);
+      color: rgba(255,255,255,0.35);
+      padding: 52px 24px;
+      font-size: 12px;
+      letter-spacing: 0.02em;
     }
     .footer__inner {
-      max-width: 1140px;
+      max-width: 1180px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -784,7 +833,7 @@
       gap: 16px;
     }
     .footer a {
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.5);
       transition: color 0.3s var(--ease);
     }
     .footer a:hover { color: #fff; }
@@ -796,40 +845,64 @@
       .nav__cta { display: none; }
       .nav__hamburger { display: flex; }
 
-      .section { padding: 72px 24px; }
+      .section { padding: 80px 24px; }
 
       .about__grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 48px;
       }
+      .about__frame { display: none; }
       .about__badge {
-        right: 16px;
-        top: 16px;
-        width: 80px;
-        height: 80px;
+        bottom: -20px;
+        right: 20px;
       }
-      .about__badge-value { font-size: 22px; }
 
-      .hero__content {
-        padding: 0 24px 72px;
-      }
+      .hero__content { padding: 0 24px 64px; }
+      .hero__side-label { display: none; }
 
       .contact__grid {
         grid-template-columns: 1fr;
         gap: 48px;
       }
 
-      .gallery__grid {
-        columns: 2;
+      .gallery__mosaic {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gallery__cell:nth-child(1),
+      .gallery__cell:nth-child(2),
+      .gallery__cell:nth-child(3),
+      .gallery__cell:nth-child(4),
+      .gallery__cell:nth-child(5),
+      .gallery__cell:nth-child(6),
+      .gallery__cell:nth-child(n+7) {
+        grid-column: span 1;
+        grid-row: auto;
+      }
+      .gallery__cell:first-child {
+        grid-column: span 2;
       }
 
       .reviews__grid {
         grid-template-columns: 1fr;
       }
 
-      .stats-bar__inner {
-        grid-template-columns: repeat(2, 1fr);
+      .cta-split {
+        grid-template-columns: 1fr;
       }
+      .cta-split__image {
+        min-height: 220px;
+      }
+      .cta-split__content {
+        padding: 48px 24px;
+      }
+
+      .stats-ribbon__inner {
+        flex-wrap: wrap;
+      }
+      .stat-item {
+        flex-basis: 50%;
+      }
+      .stat-item + .stat-item::before { display: none; }
 
       .footer__inner {
         flex-direction: column;
@@ -838,13 +911,20 @@
     }
 
     @media (max-width: 480px) {
-      .hero__title { font-size: 34px; }
+      .hero__title { font-size: 36px; }
       .hero__sub { font-size: 15px; }
       .hero__actions { flex-direction: column; align-items: flex-start; }
-      .gallery__grid { columns: 1; }
-      .stats-bar__inner { grid-template-columns: 1fr; }
-      .service-item__name { font-size: 18px; }
-      .service-item__price { font-size: 18px; }
+      .gallery__mosaic {
+        grid-template-columns: 1fr;
+      }
+      .gallery__cell:first-child { grid-column: span 1; }
+      .stat-item { flex-basis: 100%; }
+      .service-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+      .service-row__num { display: none; }
+      .service-row__price { justify-self: start; }
     }
   </style>
 </head>
@@ -881,9 +961,12 @@
   <!-- --- HERO --- -->
   <section class="hero">
     <div class="hero__content">
-      <span class="hero__tag">Hovenier in Haarlemmermeer</span>
-      <h1 class="hero__title">De hovenier van Haarlemmermeer</h1>
-      <p class="hero__sub">Betrouwbaar, vakkundig en altijd persoonlijk.</p>
+      <div class="hero__location">
+        <span class="hero__location-line"></span>
+        Hovenier in Haarlemmermeer
+      </div>
+      <h1 class="hero__title">Uw droomtuin in Haarlemmermeer, wij regelen het</h1>
+      <p class="hero__sub">Van ontwerp tot onderhoud, wij maken uw tuin perfect.</p>
       <div class="hero__actions">
         <a href="tel:06 20471046" class="btn-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -892,30 +975,30 @@
         <a href="#portfolio" class="btn-outline">Bekijk ons werk</a>
       </div>
     </div>
-    <div class="hero__scroll">
+    <div class="hero__side-label">
       <span>Scroll</span>
-      <div class="hero__scroll-line"></div>
+      <div class="hero__side-line"></div>
     </div>
   </section>
 
-  <!-- --- STATS BAR --- -->
+  <!-- --- STATS RIBBON --- -->
   
-  <div class="stats-bar reveal">
-    <div class="stats-bar__inner">
+  <div class="stats-ribbon reveal">
+    <div class="stats-ribbon__inner">
       
-      <div class="stat">
-        <div class="stat__value">10+</div>
-        <div class="stat__label">Jaar ervaring</div>
+      <div class="stat-item">
+        <div class="stat-item__value">5.0</div>
+        <div class="stat-item__label">Google beoordeling</div>
       </div>
       
-      <div class="stat">
-        <div class="stat__value">500+</div>
-        <div class="stat__label">Tevreden klanten</div>
+      <div class="stat-item">
+        <div class="stat-item__value">100%</div>
+        <div class="stat-item__label">Tevreden klanten</div>
       </div>
       
-      <div class="stat">
-        <div class="stat__value">100%</div>
-        <div class="stat__label">Kwaliteitsgarantie</div>
+      <div class="stat-item">
+        <div class="stat-item__value">6+</div>
+        <div class="stat-item__label">Jaar ervaring</div>
       </div>
       
     </div>
@@ -923,14 +1006,14 @@
   
 
   <!-- --- ABOUT --- -->
-  <section class="section section--cream" id="over-ons">
+  <section class="section section--linen" id="over-ons">
     <div class="container">
       <div class="about__grid">
         <div class="about__image-wrap reveal-left">
           
           <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEERMtOX9IVhYSd1lkBZ5p6uwj_IA50Xk53muB31DutgzPC9-dZ7M79IMvFxp-JLCryRAaq0h9FyDB9iaLJfNQnkKqfQMQpv5h1V600ZBsyjInwfm6fVa2HCGl-zG3GuKyq0a5VLPmVwQILBbY6rdScHcXxU8ZW0mKOtHZWSBYQItp2fySJ-nweqhwa-F2q1U4ug2KiR_90YW4Nf0rfXAZqKoqa0nGlL-0rc9NgYGWVFrvUJLQYiA0gZYkI5DJrDXVvDwW6EsU2PmSZ6W9LkWspLL42Snj3e2Midie_52-F9QA&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Tuinaanleg Haarlemmermeer" class="about__image" />
           
-          <div class="about__accent"></div>
+          <div class="about__frame"></div>
           
           <div class="about__badge">
             <span class="about__badge-value">5</span>
@@ -939,32 +1022,32 @@
           
         </div>
         <div class="reveal-right">
-          <div class="section__leaf"></div>
+          <div class="botanical-line"></div>
           <span class="section__eyebrow">Over ons</span>
-          <h2 class="section__title">Over Tuinaanleg Haarlemmermeer</h2>
-          <p class="about__text"></p>
+          <h2 class="section__title">Uw betrouwbare hovenier in Haarlemmermeer</h2>
+          <p class="about__text">Bij Tuinaanleg Haarlemmermeer staan vakmanschap en persoonlijke aandacht centraal. Ons team werkt nauwgezet en met plezier aan uw tuin, of het nu gaat om een grote aanleg of regelmatig onderhoud. Klanten zoals Jeroen weten ons te vinden voor projecten waarbij zowel voor- als achtertuin volledig worden aangepakt. Wij nemen de tijd die uw tuin verdient en werken pas door tot u tevreden bent.</p>
 
           
           <div class="usps">
             
             <div class="usp">
-              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-              <span class="usp__text">Snel &amp; betrouwbaar</span>
-            </div>
-            
-            <div class="usp">
-              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-              <span class="usp__text">Kwaliteitsgarantie</span>
-            </div>
-            
-            <div class="usp">
-              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-              <span class="usp__text">Flexibele planning</span>
-            </div>
-            
-            <div class="usp">
               <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 22l1.06-.36C6.5 15.83 8 12.5 17 11c0 0-2 5-6 7.59C7.08 20.92 3.5 22 2 22c1-3.5 3-12 15-14z"/></svg></div>
-              <span class="usp__text">Duurzaam werken</span>
+              <span class="usp__text">Leroy en Ryan werken persoonlijk aan uw project, van begin tot eind</span>
+            </div>
+            
+            <div class="usp">
+              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
+              <span class="usp__text">Zowel voor- als achtertuin in één traject aangelegd of onderhouden</span>
+            </div>
+            
+            <div class="usp">
+              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+              <span class="usp__text">Lokaal bedrijf met kennis van tuinen in de Haarlemmermeer regio</span>
+            </div>
+            
+            <div class="usp">
+              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
+              <span class="usp__text">Perfect afgewerkt resultaat waar klanten vol lof over zijn</span>
             </div>
             
           </div>
@@ -975,83 +1058,83 @@
   </section>
 
   <!-- --- SERVICES --- -->
-  <section class="section section--white" id="diensten">
+  <section class="section section--stone" id="diensten">
     <div class="container">
       <div class="services__header reveal">
-        <div class="section__leaf"></div>
+        <div class="botanical-line"></div>
         <span class="section__eyebrow">Wat wij doen</span>
-        <h2 class="section__title">Onze diensten</h2>
+        <h2 class="section__title">Onze tuindiensten in Haarlemmermeer</h2>
         
-        <p class="section__subtitle">Wat kunnen we voor u betekenen?</p>
+        <p class="section__subtitle">Van een complete tuinaanleg tot dagelijks onderhoud, wij helpen u met alles rondom uw tuin.</p>
         
       </div>
 
       
-      <div class="services-list">
+      <div class="services-editorial">
         
-        <div class="service-item reveal">
-          <div class="service-item__row">
-            <span class="service-item__name">Tuinaanleg</span>
-            <span class="service-item__dots"></span>
-            
-          </div>
+        <div class="service-row reveal">
+          <span class="service-row__num">01</span>
+          <span class="service-row__name">Tuinaanleg</span>
           
-          <p class="service-item__desc">Professioneel tuinaanleg uitgevoerd met oog voor kwaliteit en detail.</p>
+          <span class="service-row__price">vanaf €500</span>
+          
+          
+          <p class="service-row__desc">Wij leggen uw tuin van A tot Z aan, precies zoals u het voor ogen heeft. Of het nu gaat om een voor- of achtertuin, wij zorgen voor een prachtig eindresultaat.</p>
           
         </div>
         
-        <div class="service-item reveal">
-          <div class="service-item__row">
-            <span class="service-item__name">Tuinonderhoud</span>
-            <span class="service-item__dots"></span>
-            
-          </div>
+        <div class="service-row reveal">
+          <span class="service-row__num">02</span>
+          <span class="service-row__name">Tuinonderhoud</span>
           
-          <p class="service-item__desc">Professioneel tuinonderhoud uitgevoerd met oog voor kwaliteit en detail.</p>
+          <span class="service-row__price">vanaf €45</span>
           
-        </div>
-        
-        <div class="service-item reveal">
-          <div class="service-item__row">
-            <span class="service-item__name">Snoeien</span>
-            <span class="service-item__dots"></span>
-            
-          </div>
           
-          <p class="service-item__desc">Professioneel snoeien uitgevoerd met oog voor kwaliteit en detail.</p>
+          <p class="service-row__desc">Uw tuin het hele jaar door in topconditie houden? Wij nemen het onderhoud graag van u over zodat u kunt genieten zonder zorgen.</p>
           
         </div>
         
-        <div class="service-item reveal">
-          <div class="service-item__row">
-            <span class="service-item__name">Bestrating</span>
-            <span class="service-item__dots"></span>
-            
-          </div>
+        <div class="service-row reveal">
+          <span class="service-row__num">03</span>
+          <span class="service-row__name">Snoeien</span>
           
-          <p class="service-item__desc">Professioneel bestrating uitgevoerd met oog voor kwaliteit en detail.</p>
+          <span class="service-row__price">vanaf €55</span>
           
-        </div>
-        
-        <div class="service-item reveal">
-          <div class="service-item__row">
-            <span class="service-item__name">Gazononderhoud</span>
-            <span class="service-item__dots"></span>
-            
-          </div>
           
-          <p class="service-item__desc">Professioneel gazononderhoud uitgevoerd met oog voor kwaliteit en detail.</p>
+          <p class="service-row__desc">Wij snoeien uw hagen, struiken en bomen vakkundig en op het juiste moment van het jaar. Zo blijft uw groen gezond en in vorm.</p>
           
         </div>
         
-        <div class="service-item reveal">
-          <div class="service-item__row">
-            <span class="service-item__name">Tuinontwerp</span>
-            <span class="service-item__dots"></span>
-            
-          </div>
+        <div class="service-row reveal">
+          <span class="service-row__num">04</span>
+          <span class="service-row__name">Bestrating</span>
           
-          <p class="service-item__desc">Professioneel tuinontwerp uitgevoerd met oog voor kwaliteit en detail.</p>
+          <span class="service-row__price">vanaf €35</span>
+          
+          
+          <p class="service-row__desc">Van een strak terras tot een functioneel pad, wij verzorgen de bestrating in uw tuin met oog voor detail en duurzaamheid.</p>
+          
+        </div>
+        
+        <div class="service-row reveal">
+          <span class="service-row__num">05</span>
+          <span class="service-row__name">Gazononderhoud</span>
+          
+          <span class="service-row__price">vanaf €40</span>
+          
+          
+          <p class="service-row__desc">Een mooi groen gazon vraagt de juiste zorg. Wij zorgen voor maaien, verticuteren en bemesten zodat uw gras er altijd goed bij staat.</p>
+          
+        </div>
+        
+        <div class="service-row reveal">
+          <span class="service-row__num">06</span>
+          <span class="service-row__name">Tuinontwerp</span>
+          
+          <span class="service-row__price">vanaf €150</span>
+          
+          
+          <p class="service-row__desc">Samen met u maken wij een doordacht tuinontwerp dat past bij uw wensen, stijl en beschikbare ruimte.</p>
           
         </div>
         
@@ -1062,24 +1145,23 @@
 
   <!-- --- PHOTO GALLERY --- -->
   
-  <section class="section section--sand" id="portfolio">
+  <section class="section section--linen" id="portfolio">
     <div class="container">
-      <div style="text-align:center;margin-bottom:56px;" class="reveal">
-        <div class="section__leaf" style="margin-left:auto;margin-right:auto;"></div>
+      <div style="text-align:center;margin-bottom:64px;" class="reveal">
         <span class="section__eyebrow">Ons werk</span>
         <h2 class="section__title">Recente projecten</h2>
       </div>
-      <div class="gallery__grid">
+      <div class="gallery__mosaic">
         
-        <div class="gallery__item reveal">
+        <div class="gallery__cell reveal-zoom">
           <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEEoOq8xbtwG4-wrPO9WpjnWPCM-y38l4u5KUwBvhHdDU3KUP2BZEVycJ-A_S2T7TINs8dxPm5w44xA4jChpEyywRQS0W250yK8cMfWyTujSKr5gdPvUOghkM7CqogYQwvz2jTCa1smyzmR_F_ozbChbsqXr3GoBYVEfnUV5SGFddm3P4_xu61idvs2SxAlFLCPi00HwFOH0FOwldA1jtYNyPFhHfZK_k7Y-xamiz9eZTRz9fCmrlI99JOTk-Ooy3PupU6D_zx408AJHE2HkCN3uAlix722DUiPT9wdIR-UQPg&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Tuinaanleg Haarlemmermeer project" loading="lazy" />
         </div>
         
-        <div class="gallery__item reveal">
+        <div class="gallery__cell reveal-zoom">
           <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEERMtOX9IVhYSd1lkBZ5p6uwj_IA50Xk53muB31DutgzPC9-dZ7M79IMvFxp-JLCryRAaq0h9FyDB9iaLJfNQnkKqfQMQpv5h1V600ZBsyjInwfm6fVa2HCGl-zG3GuKyq0a5VLPmVwQILBbY6rdScHcXxU8ZW0mKOtHZWSBYQItp2fySJ-nweqhwa-F2q1U4ug2KiR_90YW4Nf0rfXAZqKoqa0nGlL-0rc9NgYGWVFrvUJLQYiA0gZYkI5DJrDXVvDwW6EsU2PmSZ6W9LkWspLL42Snj3e2Midie_52-F9QA&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Tuinaanleg Haarlemmermeer project" loading="lazy" />
         </div>
         
-        <div class="gallery__item reveal">
+        <div class="gallery__cell reveal-zoom">
           <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEEBiwfADicjJFcxKhjtpCRSl39XX9QLPX-V9yyItX-Epdua0WFWZx9mIPDO_ZOAhxHLutNj931fz4ATDljFBi9ZOa_QdaWTri_CWpsraFWuzVaTSAFxYMvDyqoeqAnRaMnA7ACESaAH-P4lnGuybqJQnbeim4swMduUSZjY09hQepUXgK7pHAFyBuxcMozClwEY2VvoyFc-LapF-PKXlHnNzdufmykW5zmoqwiD8y_386bER1x-rRJYLw1LMEcBdhcBg_IEJiF1T8TJOmVzYj2q5WrTp2VvrA-qgVZwDl18xA&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Tuinaanleg Haarlemmermeer project" loading="lazy" />
         </div>
         
@@ -1088,14 +1170,18 @@
   </section>
   
 
+  <!-- --- PHOTO DIVIDER --- -->
+  
+  <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEERMtOX9IVhYSd1lkBZ5p6uwj_IA50Xk53muB31DutgzPC9-dZ7M79IMvFxp-JLCryRAaq0h9FyDB9iaLJfNQnkKqfQMQpv5h1V600ZBsyjInwfm6fVa2HCGl-zG3GuKyq0a5VLPmVwQILBbY6rdScHcXxU8ZW0mKOtHZWSBYQItp2fySJ-nweqhwa-F2q1U4ug2KiR_90YW4Nf0rfXAZqKoqa0nGlL-0rc9NgYGWVFrvUJLQYiA0gZYkI5DJrDXVvDwW6EsU2PmSZ6W9LkWspLL42Snj3e2Midie_52-F9QA&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="Tuinaanleg Haarlemmermeer" class="photo-divider" />
+  
+
   <!-- --- REVIEWS --- -->
   
-  <section class="section section--forest" id="reviews">
+  <section class="section section--olive" id="reviews">
     <div class="container">
-      <div style="text-align:center;margin-bottom:56px;" class="reveal">
+      <div class="reviews__intro reveal">
         <span class="section__eyebrow">Ervaringen</span>
         <h2 class="section__title">Wat onze klanten zeggen</h2>
-        <div class="section__leaf" style="margin-left:auto;margin-right:auto;"></div>
       </div>
       <div class="reviews__grid">
         
@@ -1129,23 +1215,25 @@ Bedankt mannen!</p>
   </section>
   
 
-  <!-- --- CTA --- -->
-  <section class="cta reveal">
-    <div class="cta__blob"></div>
-    <h2 class="cta__title">Klaar om te beginnen?</h2>
-    <p class="cta__sub">Neem vandaag nog contact op voor een vrijblijvend gesprek.</p>
-    <a href="tel:06 20471046" class="cta__btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      Bel 06 20471046
-    </a>
+  <!-- --- CTA (Split layout) --- -->
+  <section class="cta-split reveal">
+    <div class="cta-split__image"></div>
+    <div class="cta-split__content">
+      <h2 class="cta-split__title">Klaar voor een mooiere tuin in Haarlemmermeer?</h2>
+      <p class="cta-split__sub">Neem vandaag nog contact op voor een vrijblijvende offerte op maat.</p>
+      <a href="tel:06 20471046" class="cta-split__btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Bel 06 20471046
+      </a>
+    </div>
   </section>
 
   <!-- --- CONTACT & HOURS --- -->
-  <section class="section section--white" id="contact">
+  <section class="section section--linen" id="contact">
     <div class="container">
       <div class="contact__grid reveal">
         <div>
-          <h3 class="contact__title">Neem contact op</h3>
+          <h3 class="contact__heading">Neem contact op</h3>
           <ul class="contact__info">
             
             <li>
@@ -1169,7 +1257,7 @@ Bedankt mannen!</p>
         </div>
         <div>
           
-          <h3 class="contact__title">Bereikbaarheid</h3>
+          <h3 class="contact__heading">Bereikbaarheid</h3>
           <ul class="hours-list">
             
             <li>maandag: 07:00–18:00</li>
@@ -1220,7 +1308,7 @@ Bedankt mannen!</p>
 
     /* --- Scroll reveal --- */
     (function() {
-      var reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+      var reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom');
       var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting) {
