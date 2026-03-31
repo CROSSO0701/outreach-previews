@@ -3,859 +3,1364 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Betrouwbaar, vakkundig en altijd persoonlijk." />
-  <title>L den Hartog Wandafwerking — Dordrecht</title>
+  <meta name="description" content="Geef uw wanden een strakke uitstraling met L den Hartog Wandafwerking." />
+  <title>L den Hartog Wandafwerking - Schilder in Dordrecht</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ═══════════════════════════════════════════
-       DESIGN TOKENS
-    ═══════════════════════════════════════════ */
     :root {
-      --primary:       #cd7f32;
-      --primary-dark:  #995f25;
-      --primary-rgb:   205,127,50;
-      --accent:        #FCD34D;
-      --bg:            #F5F8FF;
-      --text:          #0A1628;
-      --text-muted:    #6B7280;
-      --white:         #FFFFFF;
-      --surface:       #FFFFFF;
-      --border:        rgba(0,0,0,0.08);
-      --shadow-sm:     0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-      --shadow-md:     0 4px 16px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
-      --shadow-lg:     0 20px 40px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.08);
-      --radius-sm:     8px;
-      --radius-md:     14px;
-      --radius-lg:     20px;
-      --radius-xl:     28px;
-      --font-display:  'Bodoni Moda', Georgia, serif;
-      --font-body:     'Jost', system-ui, sans-serif;
-      --transition:    0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      --primary:      #cd7f32;
+      --primary-dark: #995f25;
+      --primary-rgb:  205,127,50;
+      --accent:       #FCD34D;
+      --bg:           #F5F8FF;
+      --text:         #0A1628;
+      --white:        #FFFFFF;
+      --snow:         #FAFAFA;
+      --pearl:        #F3F1EE;
+      --graphite:     #2A2D32;
+      --charcoal:     #1A1C20;
+      --slate:        #474B52;
+      --silver:       #9CA3AF;
+      --warm-gray:    #6B6E74;
+      --border:       rgba(42,45,50,0.08);
+      --border-bold:  rgba(42,45,50,0.14);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Manrope', system-ui, sans-serif;
+      --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-out:     cubic-bezier(0.0, 0, 0.2, 1);
+      --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font-body);
       font-size: 16px;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.65;
+      color: var(--graphite);
+      background: var(--white);
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
 
     img { max-width: 100%; height: auto; display: block; }
     a { color: inherit; text-decoration: none; }
 
-    /* ═══════════════════════════════════════════
-       ANNOUNCEMENT BANNER
-    ═══════════════════════════════════════════ */
-    .banner {
-      background: var(--primary-dark);
-      color: rgba(255,255,255,0.92);
-      text-align: center;
-      padding: 10px 20px;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
+    /* --- REVEAL ANIMATIONS --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
     }
-    .banner a { color: var(--accent); font-weight: 600; }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.93);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-spring);
+    }
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .stagger-1 { transition-delay: 0.05s; }
+    .stagger-2 { transition-delay: 0.1s; }
+    .stagger-3 { transition-delay: 0.15s; }
+    .stagger-4 { transition-delay: 0.2s; }
 
-    /* ═══════════════════════════════════════════
-       NAVIGATION
-    ═══════════════════════════════════════════ */
-    .nav {
-      position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      background: rgba(255,255,255,0.82);
-      border-bottom: 1px solid var(--border);
-      padding: 0 clamp(20px, 5vw, 80px);
-      height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-      letter-spacing: -0.01em;
-    }
-    .nav-links {
-      display: flex; gap: 32px; list-style: none;
-      align-items: center;
-    }
-    .nav-links a {
-      font-size: 14px; font-weight: 500;
-      color: var(--text-muted);
-      transition: color var(--transition);
-    }
-    .nav-links a:hover { color: var(--primary); }
-    .nav-cta {
-      background: var(--primary) !important;
-      color: var(--white) !important;
-      padding: 10px 22px;
-      border-radius: var(--radius-sm);
-      font-weight: 600 !important;
-      font-size: 14px !important;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition) !important;
-      box-shadow: 0 2px 8px rgba(var(--primary-rgb),0.3);
-    }
-    .nav-cta:hover {
-      background: var(--primary-dark) !important;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(var(--primary-rgb),0.35) !important;
-    }
-
-    /* ═══════════════════════════════════════════
-       HERO
-    ═══════════════════════════════════════════ */
-    .hero {
+    /* --- PAINT BRUSH ACCENT (De Betere Schilder-style) --- */
+    .brush-underline {
       position: relative;
-      min-height: 92vh;
-      display: flex; align-items: center;
-      overflow: hidden;
+      display: inline;
     }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-size: cover;
-      background-position: center;
-      background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AU_ZVEHtmGYTEqD_Ovb2exdz4u54YI1gMYfsz5URlRZKh96K69_BDkzr9JmX1x9Lt6kxTvwGNpwR1-Vn4szBZQOuNDgkq9q63qMxfimnm4yH5GVr5SabEKmfUV0ubQ0qRykS8BMrQOQshj9c9MtTAS6vZeyMdEr4IPS0fpu1T-Db8s6SVhtDm63qTW-8qHBrF9Ojpd0BdgAS-uVYvrzFC_AdNMg-5ATyQHrjJT1J5Y8E7hVNAcSdur6CGlRQ5z5E30Tnvqhg9BFElQKeSngnEmLsV0yMXfTrS01_NG7FJSnCPE1GIQ&key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14);
-      transform: scale(1.04);
-      transition: transform 8s ease;
-    }
-    .hero-bg::after {
+    .brush-underline::after {
       content: '';
-      position: absolute; inset: 0;
-      background: rgba(102,63,25,0.65);
+      position: absolute;
+      left: -6px;
+      right: -6px;
+      bottom: 4px;
+      height: 30%;
+      background: rgba(var(--primary-rgb), 0.12);
+      z-index: -1;
+      transform: skewX(-4deg) rotate(-0.5deg);
+      border-radius: 2px 6px 3px 4px;
     }
-    .hero:hover .hero-bg { transform: scale(1.0); }
-
-    .hero-content {
-      position: relative; z-index: 2;
-      max-width: 760px;
-      padding: clamp(40px, 8vw, 100px) clamp(20px, 6vw, 100px);
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25);
-      backdrop-filter: blur(8px);
-      color: rgba(255,255,255,0.92);
-      padding: 6px 16px;
-      border-radius: 100px;
-      font-size: 13px; font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 28px;
-    }
-    .hero-eyebrow svg { width: 14px; height: 14px; }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+    .color-swatch {
+      display: inline-block;
+      width: 44px;
+      height: 4px;
+      background: linear-gradient(135deg, #7b4c1e 0%, #cd7f32 60%, #d7985b 100%);
+      border-radius: 2px;
       margin-bottom: 20px;
     }
-    .hero h1 em {
+
+    /* --- NAVIGATION (Modern, minimal, centered logo option) --- */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 48px;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.5s var(--ease), box-shadow 0.5s var(--ease);
+    }
+    .nav--solid {
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 1px 20px rgba(0,0,0,0.05);
+      backdrop-filter: blur(14px);
+    }
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav__logo img {
+      height: 38px;
+      width: auto;
+    }
+    .nav__logo-text {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: #fff;
+      transition: color 0.4s var(--ease);
+    }
+    .nav--solid .nav__logo-text { color: var(--charcoal); }
+
+    .nav__links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav__links a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s var(--ease);
+      position: relative;
+    }
+    .nav__links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.35s var(--ease), left 0.35s var(--ease);
+      border-radius: 1px;
+    }
+    .nav__links a:hover::after { width: 100%; left: 0; }
+    .nav--solid .nav__links a { color: var(--graphite); }
+
+    .nav__cta {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 28px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 6px;
+      transition: all 0.3s var(--ease);
+    }
+    .nav__cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.3);
+    }
+
+    /* Hamburger */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 110;
+    }
+    .nav__hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      border-radius: 1px;
+      transition: all 0.3s var(--ease);
+    }
+    .nav--solid .nav__hamburger span { background: var(--charcoal); }
+    .nav__hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav__hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav__hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .nav__mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--charcoal);
+      z-index: 105;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: #fff;
+      font-weight: 400;
+    }
+    .nav__mobile a:hover { color: var(--primary); }
+
+    /* --- HERO (Centered, modern, badge-driven) --- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 660px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AU_ZVEHtmGYTEqD_Ovb2exdz4u54YI1gMYfsz5URlRZKh96K69_BDkzr9JmX1x9Lt6kxTvwGNpwR1-Vn4szBZQOuNDgkq9q63qMxfimnm4yH5GVr5SabEKmfUV0ubQ0qRykS8BMrQOQshj9c9MtTAS6vZeyMdEr4IPS0fpu1T-Db8s6SVhtDm63qTW-8qHBrF9Ojpd0BdgAS-uVYvrzFC_AdNMg-5ATyQHrjJT1J5Y8E7hVNAcSdur6CGlRQ5z5E30Tnvqhg9BFElQKeSngnEmLsV0yMXfTrS01_NG7FJSnCPE1GIQ&key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14) center/cover no-repeat;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(102,63,25,0.65);
+    }
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 24px;
+    }
+    .hero__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 9px 22px;
+      border-radius: 50px;
+      margin-bottom: 32px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero__pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.8); }
+    }
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 700;
+      line-height: 1.08;
+      color: #fff;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .hero__title em {
       font-style: italic;
-      color: var(--accent);
+      font-weight: 400;
     }
-    .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(255,255,255,0.82);
-      max-width: 520px;
-      line-height: 1.65;
-      margin-bottom: 40px;
-      font-weight: 300;
+    .hero__sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.65);
+      font-weight: 400;
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 44px;
     }
-    .hero-actions {
-      display: flex; gap: 14px; flex-wrap: wrap;
+    .hero__actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--accent);
-      color: var(--text) !important;
-      padding: 16px 32px;
-      border-radius: var(--radius-md);
-      font-weight: 700; font-size: 15px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-      transition: transform var(--transition), box-shadow var(--transition);
+    .btn-solid {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 15px 38px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 8px;
+      transition: all 0.3s var(--ease);
+      border: none;
       cursor: pointer;
     }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    .btn-solid:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(var(--primary-rgb), 0.4);
     }
     .btn-ghost {
-      display: inline-flex; align-items: center; gap: 10px;
-      border: 2px solid rgba(255,255,255,0.55);
-      color: var(--white);
-      padding: 14px 28px;
-      border-radius: var(--radius-md);
-      font-weight: 600; font-size: 15px;
-      transition: border-color var(--transition), background var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 14px 34px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 8px;
+      transition: all 0.3s var(--ease);
+      cursor: pointer;
     }
     .btn-ghost:hover {
-      border-color: rgba(255,255,255,0.9);
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.3);
     }
-    .btn-primary svg, .btn-ghost svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-    /* ═══════════════════════════════════════════
-       USP STRIP
-    ═══════════════════════════════════════════ */
-    .usp-strip {
+    .hero__scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+    .hero__scroll-arrow {
+      width: 20px;
+      height: 20px;
+      color: rgba(255,255,255,0.35);
+      animation: bounceDown 2s ease-in-out infinite;
+    }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); opacity: 0.35; }
+      50% { transform: translateY(8px); opacity: 0.7; }
+    }
+
+    /* --- SECTION UTILITIES --- */
+    .section {
+      padding: 108px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .section--white { background: var(--white); }
+    .section--snow  { background: var(--snow); }
+    .section--pearl { background: var(--pearl); }
+    .section--dark  {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.85);
+    }
+    .section--primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .section__header {
+      margin-bottom: 56px;
+    }
+    .section__header--center {
+      text-align: center;
+    }
+    .section__header--center .section__subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .section__header--center .color-swatch {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .section__eyebrow {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .section--dark .section__eyebrow { color: var(--accent); }
+    .section__title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 3.6vw, 48px);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .section--dark .section__title { color: #fff; }
+    .section__subtitle {
+      font-size: 16px;
+      color: var(--warm-gray);
+      line-height: 1.7;
+      max-width: 520px;
+    }
+    .section--dark .section__subtitle { color: rgba(255,255,255,0.5); }
+
+    /* --- STATS BAR (Horizontal with dividers, white bg) --- */
+    .stats-bar {
       background: var(--white);
       border-bottom: 1px solid var(--border);
-      padding: 20px clamp(20px, 5vw, 80px);
-      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+      padding: 0 24px;
     }
-    .usp-item {
-      display: flex; align-items: center; gap: 10px;
-      padding: 12px 28px;
-      border-right: 1px solid var(--border);
-      font-weight: 500; font-size: 14px; color: var(--text);
+    .stats-bar__inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
     }
-    .usp-item:last-child { border-right: none; }
-    .usp-icon {
-      width: 36px; height: 36px;
-      background: rgba(var(--primary-rgb),0.1);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
+    .stat-cell {
+      flex: 1;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
     }
-    .usp-icon svg { width: 18px; height: 18px; color: var(--primary); }
-
-    /* ═══════════════════════════════════════════
-       SECTION SHARED
-    ═══════════════════════════════════════════ */
-    section { padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 80px); }
-    .container { max-width: 1160px; margin: 0 auto; }
-    .section-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      color: var(--primary); font-weight: 700; font-size: 12px;
-      text-transform: uppercase; letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-    .section-tag::before {
+    .stat-cell + .stat-cell::before {
       content: '';
-      width: 20px; height: 2px;
-      background: var(--primary); border-radius: 2px;
+      position: absolute;
+      left: 0;
+      top: 25%;
+      height: 50%;
+      width: 1px;
+      background: var(--border-bold);
     }
-    h2 {
+    .stat-cell__value {
       font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-size: 36px;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.18;
-      color: var(--text);
-      margin-bottom: 14px;
+      color: var(--primary);
+      line-height: 1;
     }
-    .section-sub {
-      font-size: 17px; color: var(--text-muted);
-      max-width: 520px; line-height: 1.7;
-      margin-bottom: 52px;
+    .stat-cell__label {
+      font-size: 12px;
+      color: var(--silver);
+      margin-top: 6px;
+      font-weight: 500;
     }
 
-    /* ═══════════════════════════════════════════
-       SERVICES
-    ═══════════════════════════════════════════ */
-    #diensten { background: var(--bg); }
-    .services-grid {
+    /* --- ABOUT (Image right, content left, floating card) --- */
+    .about__grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: 1fr 1.15fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about__content { order: 1; }
+    .about__visual  { order: 2; position: relative; }
+    .about__image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.1);
+    }
+    .about__float-card {
+      position: absolute;
+      bottom: -24px;
+      left: -28px;
+      background: var(--white);
+      padding: 22px 28px;
+      border-radius: 10px;
+      box-shadow: 0 8px 36px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .about__float-rating {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .about__float-info {
+      font-size: 12px;
+      color: var(--silver);
+      line-height: 1.4;
+    }
+    .about__float-info strong {
+      display: block;
+      color: var(--graphite);
+      font-size: 13px;
+    }
+    .about__text {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--warm-gray);
+    }
+
+    /* --- USPs (Compact grid, icon-first) --- */
+    .usps {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .usp {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--snow);
+      border-radius: 8px;
+      transition: background 0.3s var(--ease);
+    }
+    .usp:hover { background: var(--pearl); }
+    .usp__icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      color: var(--primary);
+    }
+    .usp__text {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--graphite);
+    }
+
+    /* --- SERVICES (Cards with gradient top bar, 3-col grid) --- */
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
     }
     .service-card {
       background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      transition: transform var(--transition), box-shadow var(--transition);
+      border-radius: 10px;
+      padding: 36px 28px;
       position: relative;
       overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
     }
     .service-card::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 3px;
-      background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 60%, #3B82F6 100%);
-      opacity: 0;
-      transition: opacity var(--transition);
+      background: linear-gradient(135deg, #7b4c1e 0%, #cd7f32 60%, #d7985b 100%);
     }
-    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-    .service-card:hover::before { opacity: 1; }
-    .service-card-icon {
-      width: 52px; height: 52px;
-      background: rgba(var(--primary-rgb),0.1);
-      border-radius: var(--radius-md);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
-    }
-    .service-card-icon svg { width: 26px; height: 26px; color: var(--primary); }
-    .service-card h3 {
+    .service-card__name {
       font-family: var(--font-display);
-      font-size: 1.2rem; font-weight: 600;
-      margin-bottom: 10px; color: var(--text);
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--charcoal);
     }
-    .service-card p { color: var(--text-muted); font-size: 15px; line-height: 1.6; }
+    .service-card__desc {
+      font-size: 14px;
+      color: var(--warm-gray);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+    .service-card__price {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+    }
 
-    /* ═══════════════════════════════════════════
-       ABOUT
-    ═══════════════════════════════════════════ */
-    #over-ons { background: var(--white); }
-    .about-grid {
+    /* --- PHOTO GALLERY (Grid with featured large tile) --- */
+    .gallery__grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
-    .about-image {
-      border-radius: var(--radius-xl);
+    .gallery__item {
+      border-radius: 8px;
       overflow: hidden;
-      aspect-ratio: 4/5;
       position: relative;
-      box-shadow: var(--shadow-lg);
+      aspect-ratio: 4/3;
+      cursor: pointer;
     }
-    .about-image img {
-      width: 100%; height: 100%;
+    .gallery__item:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+    .gallery__item img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      transition: transform 0.6s var(--ease);
     }
-    .about-image-placeholder {
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 60%, #3B82F6 100%);
-      display: flex; align-items: center; justify-content: center;
+    .gallery__item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,28,32,0.35) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.4s var(--ease);
     }
-    .about-image-placeholder svg {
-      width: 80px; height: 80px;
-      color: rgba(255,255,255,0.5);
+    .gallery__item:hover img {
+      transform: scale(1.06);
     }
-    .about-image-badge {
-      position: absolute; bottom: 24px; left: 24px;
-      background: var(--white);
-      border-radius: var(--radius-md);
-      padding: 14px 20px;
-      box-shadow: var(--shadow-md);
-      display: flex; align-items: center; gap: 12px;
+    .gallery__item:hover::after {
+      opacity: 1;
     }
-    .badge-icon {
-      width: 40px; height: 40px;
-      background: rgba(var(--primary-rgb),0.1);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
+    .gallery__item-icon {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      z-index: 2;
+      width: 34px;
+      height: 34px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.3s var(--ease);
     }
-    .badge-icon svg { width: 22px; height: 22px; color: var(--primary); }
-    .badge-text { font-size: 12px; color: var(--text-muted); font-weight: 500; }
-    .badge-value { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1; }
+    .gallery__item:hover .gallery__item-icon {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .gallery__item-icon svg {
+      width: 14px;
+      height: 14px;
+      color: var(--charcoal);
+    }
 
-    .about-content h2 { margin-bottom: 20px; }
-    .about-content p { color: var(--text-muted); font-size: 16px; line-height: 1.75; margin-bottom: 24px; }
-    .stats-row {
-      display: flex; gap: 32px; flex-wrap: wrap;
-      margin: 32px 0;
-      padding: 28px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .stat-item { }
-    .stat-number {
-      font-family: var(--font-display);
-      font-size: 2.4rem; font-weight: 700;
-      color: var(--primary); line-height: 1;
-      margin-bottom: 4px;
-    }
-    .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-    .about-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--primary);
-      color: var(--white);
-      padding: 15px 30px;
-      border-radius: var(--radius-md);
-      font-weight: 600; font-size: 15px;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-      box-shadow: 0 4px 16px rgba(var(--primary-rgb),0.3);
-    }
-    .about-cta:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(var(--primary-rgb),0.4);
-    }
-    .about-cta svg { width: 18px; height: 18px; }
-
-    /* ═══════════════════════════════════════════
-       REVIEWS
-    ═══════════════════════════════════════════ */
-    #reviews { background: var(--bg); }
-    .reviews-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 48px; flex-wrap: wrap; gap: 20px;
-    }
-    .rating-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 12px 20px;
-      box-shadow: var(--shadow-sm);
-    }
-    .rating-stars svg { width: 18px; height: 18px; color: #F59E0B; }
-    .rating-number {
-      font-family: var(--font-display);
-      font-size: 1.6rem; font-weight: 700; color: var(--text);
-    }
-    .rating-count { font-size: 13px; color: var(--text-muted); }
-    .reviews-grid {
+    /* --- REVIEWS (Dark section, quote cards with avatar initial) --- */
+    .reviews__grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+      gap: 24px;
+      margin-top: 48px;
     }
     .review-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition);
+      padding: 36px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      position: relative;
     }
-    .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .review-header {
-      display: flex; justify-content: space-between;
-      align-items: center; margin-bottom: 16px;
+    .review-card__stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 18px;
     }
-    .review-stars { display: flex; gap: 2px; }
-    .review-stars svg { width: 16px; height: 16px; color: #F59E0B; }
-    .review-quote-icon { color: rgba(var(--primary-rgb),0.15); }
-    .review-quote-icon svg { width: 28px; height: 28px; }
-    .review-text {
-      font-size: 15px; line-height: 1.7;
-      color: var(--text); margin-bottom: 20px;
+    .review-card__star {
+      width: 15px;
+      height: 15px;
+      color: #FBBF24;
+    }
+    .review-card__text {
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 24px;
       font-style: italic;
+      font-family: var(--font-display);
+      font-weight: 400;
     }
-    .review-author {
-      font-weight: 600; font-size: 13px; color: var(--text-muted);
+    .review-card__footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .review-card__avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(var(--primary-rgb), 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--accent);
+    }
+    .review-card__author {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .reviews__summary {
+      text-align: center;
+      margin-top: 44px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.4);
+    }
+    .reviews__summary strong {
+      color: #fff;
+      font-weight: 700;
     }
 
-    /* ═══════════════════════════════════════════
-       CONTACT / CTA
-    ═══════════════════════════════════════════ */
-    #contact {
-      background: var(--primary-dark);
+    /* --- CTA (Primary color bg, bold centered) --- */
+    .cta {
+      text-align: center;
+      padding: 108px 24px;
+      background: var(--primary);
+      color: #fff;
       position: relative;
       overflow: hidden;
     }
-    #contact::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='2' fill='rgba(255,255,255,0.05)'/%3E%3C/g%3E%3C/svg%3E");
+    .cta__ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.06);
+      pointer-events: none;
     }
-    .contact-inner {
-      position: relative; z-index: 2;
-      text-align: center;
-      max-width: 700px; margin: 0 auto;
+    .cta__ring--1 { width: 500px; height: 500px; top: -250px; left: -100px; }
+    .cta__ring--2 { width: 350px; height: 350px; bottom: -175px; right: -50px; }
+    .cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4.2vw, 52px);
+      font-weight: 700;
+      position: relative;
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
     }
-    #contact .section-tag { color: var(--accent); }
-    #contact .section-tag::before { background: var(--accent); }
-    #contact h2 { color: var(--white); margin-bottom: 16px; }
-    #contact .section-sub { color: rgba(255,255,255,0.7); margin: 0 auto 48px; }
-    .contact-cards {
-      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    .cta__sub {
+      font-size: 16px;
+      opacity: 0.65;
       margin-bottom: 40px;
+      position: relative;
     }
-    .contact-card {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
-      backdrop-filter: blur(12px);
-      border-radius: var(--radius-lg);
-      padding: 24px 28px;
-      min-width: 180px;
-      text-align: center;
-      transition: background var(--transition), transform var(--transition);
+    .cta__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 16px 48px;
+      background: #fff;
+      color: var(--primary);
+      border-radius: 8px;
+      transition: all 0.3s var(--ease);
     }
-    .contact-card:hover {
-      background: rgba(255,255,255,0.16);
-      transform: translateY(-3px);
+    .cta__btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.2);
     }
-    .contact-card-icon {
-      width: 44px; height: 44px;
-      background: rgba(255,255,255,0.12);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 12px;
-    }
-    .contact-card-icon svg { width: 22px; height: 22px; color: var(--accent); }
-    .contact-card-label { font-size: 12px; color: rgba(255,255,255,0.55); font-weight: 500; margin-bottom: 4px; }
-    .contact-card-value { font-size: 15px; font-weight: 600; color: var(--white); }
-    .contact-card-value a { color: var(--white); }
-    .btn-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--white);
-      color: var(--primary-dark);
-      padding: 18px 40px;
-      border-radius: var(--radius-md);
-      font-weight: 700; font-size: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
-    .btn-cta svg { width: 20px; height: 20px; }
 
-    /* ═══════════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════════ */
-    footer {
-      background: #0A0A0A;
-      color: rgba(255,255,255,0.4);
-      padding: 28px clamp(20px, 5vw, 80px);
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    /* --- CONTACT / HOURS --- */
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+    }
+    .contact__title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 28px;
+      color: var(--charcoal);
+    }
+    .contact__info {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .contact__info li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15px;
+      color: var(--warm-gray);
+    }
+    .contact__info svg {
+      width: 18px;
+      height: 18px;
+      color: var(--primary);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .contact__info a:hover {
+      color: var(--primary);
+    }
+
+    .hours-list {
+      list-style: none;
+    }
+    .hours-list li {
+      padding: 13px 0;
+      font-size: 15px;
+      color: var(--warm-gray);
+      border-bottom: 1px solid var(--border);
+    }
+    .hours-list li:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    /* --- PHOTO BREAK --- */
+    .photo-break {
+      width: 100%;
+      height: 46vh;
+      min-height: 300px;
+      object-fit: cover;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.35);
+      padding: 48px 24px;
       font-size: 13px;
     }
-    footer strong { color: rgba(255,255,255,0.7); }
-    footer a { color: rgba(255,255,255,0.4); transition: color var(--transition); }
-    footer a:hover { color: rgba(255,255,255,0.7); }
+    .footer__inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer a {
+      color: rgba(255,255,255,0.55);
+      transition: color 0.3s var(--ease);
+    }
+    .footer a:hover { color: #fff; }
 
-    /* ═══════════════════════════════════════════
-       SCROLL REVEAL ANIMATION
-    ═══════════════════════════════════════════ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1), transform 0.5s cubic-bezier(0.4,0,0.2,1);
-    }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-delay-1 { transition-delay: 0.08s; }
-    .reveal-delay-2 { transition-delay: 0.16s; }
-    .reveal-delay-3 { transition-delay: 0.24s; }
-    .reveal-delay-4 { transition-delay: 0.32s; }
-    .reveal-delay-5 { transition-delay: 0.40s; }
+    /* --- RESPONSIVE --- */
+    @media (max-width: 900px) {
+      .nav { padding: 0 24px; }
+      .nav__links,
+      .nav__cta { display: none; }
+      .nav__hamburger { display: flex; }
 
-    /* ═══════════════════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════════════════ */
-    @media (max-width: 1024px) {
-      .about-grid { grid-template-columns: 1fr; gap: 48px; }
-      .about-image { aspect-ratio: 16/9; }
+      .section { padding: 72px 24px; }
+
+      .about__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .about__content { order: 2; }
+      .about__visual { order: 1; }
+      .about__float-card {
+        bottom: -14px;
+        left: 14px;
+      }
+
+      .hero__actions { flex-direction: column; align-items: center; }
+
+      .contact__grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .gallery__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gallery__item:first-child {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+
+      .reviews__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .usps {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-bar__inner {
+        flex-wrap: wrap;
+      }
+      .stat-cell {
+        flex-basis: 50%;
+      }
+      .stat-cell + .stat-cell::before { display: none; }
+
+      .footer__inner {
+        flex-direction: column;
+        text-align: center;
+      }
     }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .usp-item { padding: 10px 16px; border-right: none; border-bottom: 1px solid var(--border); }
-      .usp-item:last-child { border-bottom: none; }
-      .usp-strip { flex-direction: column; align-items: center; padding: 12px 20px; }
-      footer { flex-direction: column; text-align: center; }
-    }
+
     @media (max-width: 480px) {
-      .hero h1 { font-size: 2rem; }
-      .hero-actions { flex-direction: column; }
-      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-      .hero-bg { transform: none !important; }
+      .hero__title { font-size: 34px; }
+      .hero__sub { font-size: 15px; }
+      .gallery__grid { grid-template-columns: 1fr; }
+      .gallery__item:first-child { grid-column: span 1; }
+      .stat-cell { flex-basis: 100%; }
     }
   </style>
 </head>
 <body>
 
-<!-- Announcement Banner -->
-<div class="banner">
-  Dit is een gratis website concept voor <strong>L den Hartog Wandafwerking</strong> — gemaakt door Solidmotion.
-  Interesse? <a href="mailto:michiel@solidmotion.nl">Stuur ons een bericht</a>
-</div>
-
-<!-- Navigation -->
-<nav class="nav">
-  <a class="nav-logo" href="#">L den Hartog Wandafwerking</a>
-  <ul class="nav-links">
-    <li><a href="#diensten">Diensten</a></li>
-    <li><a href="#over-ons">Over ons</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li>
-      <a class="nav-cta" href="#contact">
-        Bel 06 40837590
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<!-- Hero -->
-<header class="hero">
-  <div class="hero-bg" style="background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEHtmGYTEqD_Ovb2exdz4u54YI1gMYfsz5URlRZKh96K69_BDkzr9JmX1x9Lt6kxTvwGNpwR1-Vn4szBZQOuNDgkq9q63qMxfimnm4yH5GVr5SabEKmfUV0ubQ0qRykS8BMrQOQshj9c9MtTAS6vZeyMdEr4IPS0fpu1T-Db8s6SVhtDm63qTW-8qHBrF9Ojpd0BdgAS-uVYvrzFC_AdNMg-5ATyQHrjJT1J5Y8E7hVNAcSdur6CGlRQ5z5E30Tnvqhg9BFElQKeSngnEmLsV0yMXfTrS01_NG7FJSnCPE1GIQ&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14);"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Schilder &middot; Dordrecht
-    </div>
-    <h1>De schilder van Dordrecht</h1>
-    <p class="hero-sub">Betrouwbaar, vakkundig en altijd persoonlijk.</p>
-    <div class="hero-actions">
-      
-      <a class="btn-primary" href="tel:06 40837590">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-        06 40837590
-      </a>
-      
-      <a class="btn-ghost" href="#diensten">
-        Bekijk diensten
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </div>
-  </div>
-</header>
-
-<!-- USP Strip -->
-<div class="usp-strip">
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-    <span>Netjes &amp; stofvrij</span>
-  </div>
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.37 2.63L14 7l-1.59-1.59-2.83 2.84 1.59 1.58L7 14l-1.59-1.58L2.58 15.25l1.59 1.58L2 19l2 2 2.17-2.17 1.59 1.58 2.84-2.83-1.58-1.59L13 13l1.58 1.59 2.84-2.83L15.83 10l4.37-4.37c.78-.79.78-2.05 0-2.83a2 2 0 00-1.83-.17z"/></svg></div>
-    <span>Kleuradvies gratis</span>
-  </div>
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
-    <span>Garantie op werk</span>
-  </div>
-  
-  <div class="usp-item">
-    <div class="usp-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-    <span>Op afspraak</span>
-  </div>
-  
-</div>
-
-<!-- Services -->
-<section id="diensten">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-tag">Wat wij doen</span>
-      <h2>Onze diensten</h2>
-      <p class="section-sub">Wat kunnen we voor u betekenen?</p>
-    </div>
-    <div class="services-grid">
-      
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.37 2.63L14 7l-1.59-1.59-2.83 2.84 1.59 1.58L7 14l-1.59-1.58L2.58 15.25l1.59 1.58L2 19l2 2 2.17-2.17 1.59 1.58 2.84-2.83-1.58-1.59L13 13l1.58 1.59 2.84-2.83L15.83 10l4.37-4.37c.78-.79.78-2.05 0-2.83a2 2 0 00-1.83-.17z"/></svg></div>
-        <h3>Behang</h3>
-        <p>Professioneel behang uitgevoerd met oog voor kwaliteit en detail.</p>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-<!-- About -->
-<section id="over-ons">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-image reveal">
-        
-        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEF2U92Npy1Ca57b3Ap9tfR8X8_pm2fPwqha-dPgjDdRJGBtDISmYI3lmy2qmxtNzESfxplEElsPGFtnqs8I44UzPDz50aAKhAJcEjU1wGghJjPOanZVfdWccvAjYaC65EjeSzCXiQ1E_P_J9ZZ7_ObmDWwYk0GBldZQdTYnPiNdqQKphQ5kvUxsmBnvqvbaeDHlfuh6uhG4koDqoadUKpbJYf47SH5aoZbqHV5TrY9VYgUxfkGp_ssC5QgdUcrM5Xu2zIzTJ38XJGAu7Z9PSj9zdTu6pyw55m24oYFs2BSKpg&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="L den Hartog Wandafwerking — Dordrecht" loading="lazy" width="600" height="750" />
-        
-        
-        <div class="about-image-badge">
-          <div class="badge-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-          </div>
-          <div>
-            <div class="badge-value">5</div>
-            <div class="badge-text">6 beoordelingen</div>
-          </div>
-        </div>
-        
-      </div>
-      <div class="about-content reveal reveal-delay-2">
-        <span class="section-tag">Ons verhaal</span>
-        <h2>Over L den Hartog Wandafwerking</h2>
-        <p>Professional painting and wallpapering services for residential and commercial properties. High-quality craftsmanship, attention to detail, and customer satisfaction guaranteed.</p>
-        <div class="stats-row">
-          
-          <div class="stat-item">
-            <div class="stat-number">10+</div>
-            <div class="stat-label">Jaar ervaring</div>
-          </div>
-          
-          <div class="stat-item">
-            <div class="stat-number">500+</div>
-            <div class="stat-label">Tevreden klanten</div>
-          </div>
-          
-          <div class="stat-item">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Kwaliteitsgarantie</div>
-          </div>
-          
-        </div>
-        
-        <a class="about-cta" href="tel:06 40837590">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-          Direct bellen
-        </a>
-        
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Reviews -->
-
-<section id="reviews">
-  <div class="container">
-    <div class="reviews-header reveal">
-      <div>
-        <span class="section-tag">Klantbeoordelingen</span>
-        <h2>Wat onze klanten zeggen</h2>
-      </div>
-      
-      <div class="rating-badge">
-        <div class="rating-stars">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        </div>
-        <span class="rating-number">5</span>
-        <span class="rating-count">(6 reviews)</span>
-      </div>
-      
-    </div>
-    <div class="reviews-grid">
-      
-      <div class="review-card reveal reveal-delay-1">
-        <div class="review-header">
-          <div class="review-stars">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-          </div>
-          <div class="review-quote-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          </div>
-        </div>
-        <p class="review-text">"Ik heb een zeer goede ervaring met L den Hartog Wandafwerking in Rotterdam. Het team werkt professioneel, levert strak en netjes werk en komt afspraken na. De wandafwerking in mijn"</p>
-        <div class="review-author">— Kees Willems</div>
-      </div>
-      
-      <div class="review-card reveal reveal-delay-2">
-        <div class="review-header">
-          <div class="review-stars">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-          </div>
-          <div class="review-quote-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          </div>
-        </div>
-        <p class="review-text">"Wij zijn erg tevreden met het eindresultaat van de wanden. De communicatie verloopt prettig en L. Den Hartog houdt zich aan de afspraak. Echt een aanrader."</p>
-        <div class="review-author">— Emmy Noorlander</div>
-      </div>
-      
-      <div class="review-card reveal reveal-delay-3">
-        <div class="review-header">
-          <div class="review-stars">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            
-          </div>
-          <div class="review-quote-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          </div>
-        </div>
-        <p class="review-text">"Erg fijne en soepele samenwerking met L den Hartog Wandafwerking. Werkt netjes en zeer professionele houding, met een luchtige karakter die ook samen met je mee denkt."</p>
-        <div class="review-author">— Kamjar Rafat</div>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-
-<!-- Contact / CTA -->
-<section id="contact">
-  <div class="contact-inner">
-    <span class="section-tag">Neem contact op</span>
-    <h2>Klaar om te beginnen?</h2>
-    <p class="section-sub">Neem vandaag nog contact op voor een vrijblijvend gesprek.</p>
-    <div class="contact-cards">
-      
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-        </div>
-        <div class="contact-card-label">Telefoon</div>
-        <div class="contact-card-value"><a href="tel:06 40837590">06 40837590</a></div>
-      </div>
-      
-      
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <div class="contact-card-label">E-mail</div>
-        <div class="contact-card-value"><a href="mailto:info@dhwandafwerking.nl">info@dhwandafwerking.nl</a></div>
-      </div>
-      
-      
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div class="contact-card-label">Adres</div>
-        <div class="contact-card-value">Planetenlaan 406, 3318 JS Dordrecht, Nederland</div>
-      </div>
-      
-    </div>
-    
-    <a class="btn-cta" href="tel:06 40837590">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.9-1.01a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.7 15.5l-.78 1.42z"/></svg>
-      Nu bellen: 06 40837590
+  <!-- --- NAVIGATION --- -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav__logo">
+      <img src="https://dhwandafwerking.nl/paintbrush-icon.svg" alt="L den Hartog Wandafwerking">
     </a>
-    
+    <ul class="nav__links">
+      <li><a href="#over-ons">Over ons</a></li>
+      <li><a href="#diensten">Diensten</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="tel:06 40837590" class="nav__cta">Offerte aanvragen</a>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu openen">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="#over-ons" onclick="closeMobile()">Over ons</a>
+    <a href="#diensten" onclick="closeMobile()">Diensten</a>
+    <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
+    <a href="#reviews" onclick="closeMobile()">Reviews</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <a href="tel:06 40837590" onclick="closeMobile()">Bel ons</a>
   </div>
-</section>
 
-<!-- Footer -->
-<footer>
-  <span>&copy; 2025 <strong>L den Hartog Wandafwerking</strong> &mdash; Dordrecht</span>
-  <span>Website concept door <strong>Solidmotion</strong> &middot; <a href="mailto:michiel@solidmotion.nl">michiel@solidmotion.nl</a></span>
-</footer>
+  <!-- --- HERO --- -->
+  <section class="hero">
+    <div class="hero__content">
+      <div class="hero__pill">
+        <span class="hero__pill-dot"></span>
+        Schilder in Dordrecht
+      </div>
+      <h1 class="hero__title">Vakkundige Behangspecialist in Dordrecht</h1>
+      <p class="hero__sub">Geef uw wanden een strakke uitstraling met L den Hartog Wandafwerking.</p>
+      <div class="hero__actions">
+        <a href="tel:06 40837590" class="btn-solid">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Vraag een offerte aan
+        </a>
+        <a href="#portfolio" class="btn-ghost">Bekijk ons werk</a>
+      </div>
+    </div>
+    <div class="hero__scroll">
+      <svg class="hero__scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 13 12 18 17 13"/><line x1="12" y1="6" x2="12" y2="18"/></svg>
+    </div>
+  </section>
 
-<script>
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+  <!-- --- STATS BAR --- -->
+  
+  <div class="stats-bar reveal">
+    <div class="stats-bar__inner">
+      
+      <div class="stat-cell">
+        <div class="stat-cell__value">10+</div>
+        <div class="stat-cell__label">Jaar ervaring</div>
+      </div>
+      
+      <div class="stat-cell">
+        <div class="stat-cell__value">5.0</div>
+        <div class="stat-cell__label">Google-beoordeling</div>
+      </div>
+      
+      <div class="stat-cell">
+        <div class="stat-cell__value">200+</div>
+        <div class="stat-cell__label">Tevreden klanten</div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  <!-- --- ABOUT --- -->
+  <section class="section section--white" id="over-ons">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__content reveal">
+          <div class="color-swatch"></div>
+          <span class="section__eyebrow">Over ons</span>
+          <h2 class="section__title">Over L den Hartog Wandafwerking</h2>
+          <p class="about__text">L den Hartog Wandafwerking is uw betrouwbare vakman voor professionele wandafwerking in Dordrecht en omgeving. Met jarenlare ervaring in het behangen van woningen en bedrijfspanden staat kwaliteit, netheid en klanttevredenheid centraal. Wij werken nauwkeurig, communiceren helder en leveren altijd een resultaat waar u trots op kunt zijn. Onze klanten waarderen onze prettige samenwerking en professionele aanpak. Dat zien we ook terug in onze 5-sterren Google-beoordeling.</p>
+
+          
+          <div class="usps">
+            
+            <div class="usp">
+              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.37 2.63L14 7l-1.59-1.59-2.83 2.84 1.59 1.58L7 14l-1.59-1.58L2.58 15.25l1.59 1.58L2 19l2 2 2.17-2.17 1.59 1.58 2.84-2.83-1.58-1.59L13 13l1.58 1.59 2.84-2.83L15.83 10l4.37-4.37c.78-.79.78-2.05 0-2.83a2 2 0 00-1.83-.17z"/></svg></div>
+              <span class="usp__text">Strak behangwerk met oog voor elk detail, ook in lastige hoeken en naden</span>
+            </div>
+            
+            <div class="usp">
+              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <span class="usp__text">Prettige en heldere communicatie tijdens het hele project</span>
+            </div>
+            
+            <div class="usp">
+              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+              <span class="usp__text">Nette en respectvolle werkwijze in uw woning of bedrijfspand</span>
+            </div>
+            
+            <div class="usp">
+              <div class="usp__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div>
+              <span class="usp__text">Betrouwbare vakman met een 5-sterren beoordeling van tevreden klanten</span>
+            </div>
+            
+          </div>
+          
+        </div>
+        <div class="about__visual reveal-scale">
+          
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEF2U92Npy1Ca57b3Ap9tfR8X8_pm2fPwqha-dPgjDdRJGBtDISmYI3lmy2qmxtNzESfxplEElsPGFtnqs8I44UzPDz50aAKhAJcEjU1wGghJjPOanZVfdWccvAjYaC65EjeSzCXiQ1E_P_J9ZZ7_ObmDWwYk0GBldZQdTYnPiNdqQKphQ5kvUxsmBnvqvbaeDHlfuh6uhG4koDqoadUKpbJYf47SH5aoZbqHV5TrY9VYgUxfkGp_ssC5QgdUcrM5Xu2zIzTJ38XJGAu7Z9PSj9zdTu6pyw55m24oYFs2BSKpg&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="L den Hartog Wandafwerking" class="about__image" />
+          
+          
+          <div class="about__float-card">
+            <span class="about__float-rating">5</span>
+            <div class="about__float-info">
+              <strong>Uitstekend beoordeeld</strong>
+              6 beoordelingen
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- SERVICES --- -->
+  <section class="section section--snow" id="diensten">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="color-swatch"></div>
+        <span class="section__eyebrow">Onze diensten</span>
+        <h2 class="section__title">Onze Diensten</h2>
+        
+        <p class="section__subtitle">Professionele wandafwerking voor thuis en zakelijk, met oog voor detail en kwaliteit.</p>
+        
+      </div>
+
+      
+      <div class="services__grid">
+        
+        <div class="service-card reveal stagger-1">
+          <h3 class="service-card__name">Behang</h3>
+          
+          <p class="service-card__desc">Wij hangen behang met precisie en vakmanschap, voor een strak en duurzaam eindresultaat. Of het nu gaat om een woonkamer, slaapkamer of kantoorruimte, wij zorgen voor een perfecte afwerking.</p>
+          
+          
+          <span class="service-card__price">vanaf €35</span>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- --- PHOTO GALLERY --- -->
+  
+  <section class="section section--white" id="portfolio">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="color-swatch"></div>
+        <span class="section__eyebrow">Portfolio</span>
+        <h2 class="section__title">Recente projecten</h2>
+      </div>
+      <div class="gallery__grid">
+        
+        <div class="gallery__item reveal-scale">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEHtmGYTEqD_Ovb2exdz4u54YI1gMYfsz5URlRZKh96K69_BDkzr9JmX1x9Lt6kxTvwGNpwR1-Vn4szBZQOuNDgkq9q63qMxfimnm4yH5GVr5SabEKmfUV0ubQ0qRykS8BMrQOQshj9c9MtTAS6vZeyMdEr4IPS0fpu1T-Db8s6SVhtDm63qTW-8qHBrF9Ojpd0BdgAS-uVYvrzFC_AdNMg-5ATyQHrjJT1J5Y8E7hVNAcSdur6CGlRQ5z5E30Tnvqhg9BFElQKeSngnEmLsV0yMXfTrS01_NG7FJSnCPE1GIQ&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="L den Hartog Wandafwerking project" loading="lazy" />
+          <div class="gallery__item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        
+        <div class="gallery__item reveal-scale">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEF2U92Npy1Ca57b3Ap9tfR8X8_pm2fPwqha-dPgjDdRJGBtDISmYI3lmy2qmxtNzESfxplEElsPGFtnqs8I44UzPDz50aAKhAJcEjU1wGghJjPOanZVfdWccvAjYaC65EjeSzCXiQ1E_P_J9ZZ7_ObmDWwYk0GBldZQdTYnPiNdqQKphQ5kvUxsmBnvqvbaeDHlfuh6uhG4koDqoadUKpbJYf47SH5aoZbqHV5TrY9VYgUxfkGp_ssC5QgdUcrM5Xu2zIzTJ38XJGAu7Z9PSj9zdTu6pyw55m24oYFs2BSKpg&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="L den Hartog Wandafwerking project" loading="lazy" />
+          <div class="gallery__item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        
+        <div class="gallery__item reveal-scale">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEEPDBsZriHfAynCcJ6JkFYaR__E244iafzH2JyUVLYQPj7dXCI9Pphd8tn6pN5_FMqoVQtdb1QgvdvRd0xH1wQ_6izIw_IlJLGDVw_BKKvwiqu5A_i2oGF_X7Xc5yqhYeAyZooN-21UTvoRiXy7rIDRTlMt8QOOhhFamK0nlKHX-5xbEQ6p-Zq1zeV3CeAxApWEM1c-PhDGDdlmRsGu-uBZB3T_5dP3z4nECT68EU9ae4cjAXxqFdYkA2-SOJYAzwGPnSq76OIcacYwtF664mheLcKILXOZyv_kxJT1ZmFIwg&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="L den Hartog Wandafwerking project" loading="lazy" />
+          <div class="gallery__item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- --- PHOTO BREAK --- -->
+  
+  <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&amp;photoreference=AU_ZVEF2U92Npy1Ca57b3Ap9tfR8X8_pm2fPwqha-dPgjDdRJGBtDISmYI3lmy2qmxtNzESfxplEElsPGFtnqs8I44UzPDz50aAKhAJcEjU1wGghJjPOanZVfdWccvAjYaC65EjeSzCXiQ1E_P_J9ZZ7_ObmDWwYk0GBldZQdTYnPiNdqQKphQ5kvUxsmBnvqvbaeDHlfuh6uhG4koDqoadUKpbJYf47SH5aoZbqHV5TrY9VYgUxfkGp_ssC5QgdUcrM5Xu2zIzTJ38XJGAu7Z9PSj9zdTu6pyw55m24oYFs2BSKpg&amp;key=AIzaSyBI1hEbto8gAkHk29SMlMHC76xCyaDhZ14" alt="L den Hartog Wandafwerking" class="photo-break" />
+  
+
+  <!-- --- REVIEWS --- -->
+  
+  <section class="section section--dark" id="reviews">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <span class="section__eyebrow">Klantbeoordelingen</span>
+        <h2 class="section__title">Wat Onze Klanten Zeggen</h2>
+      </div>
+      <div class="reviews__grid">
+        
+        <div class="review-card reveal">
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+          </div>
+          <p class="review-card__text">Ik heb een zeer goede ervaring met L den Hartog Wandafwerking in Rotterdam. Het team werkt professioneel, levert strak en netjes werk en komt afspraken na. De wandafwerking in mijn woning is perfect uitgevoerd en alles werd schoon en netjes opgeleverd. Zoek je een betrouwbaar bedrijf voor wandafwerking in Rotterdam, dan kan ik L den Hartog Wandafwerking zeker aanbevele</p>
+          <div class="review-card__footer">
+            <div class="review-card__avatar">K</div>
+            <span class="review-card__author">Kees Willems</span>
+          </div>
+        </div>
+        
+        <div class="review-card reveal">
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+          </div>
+          <p class="review-card__text">Wij zijn erg tevreden met het eindresultaat van de wanden. De communicatie verloopt prettig en L. Den Hartog houdt zich aan de afspraak. Echt een aanrader.</p>
+          <div class="review-card__footer">
+            <div class="review-card__avatar">E</div>
+            <span class="review-card__author">Emmy Noorlander</span>
+          </div>
+        </div>
+        
+        <div class="review-card reveal">
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+          </div>
+          <p class="review-card__text">Erg fijne en soepele samenwerking met L den Hartog Wandafwerking. Werkt netjes en zeer professionele houding, met een luchtige karakter die ook samen met je mee denkt.</p>
+          <div class="review-card__footer">
+            <div class="review-card__avatar">K</div>
+            <span class="review-card__author">Kamjar Rafat</span>
+          </div>
+        </div>
+        
+        <div class="review-card reveal">
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+          </div>
+          <p class="review-card__text">Heel tevreden met het super strakke eindresulaat! Werkt snel, maar heel netjes en secuur. Is duidelijk in de communicatie en handelt hier naar.</p>
+          <div class="review-card__footer">
+            <div class="review-card__avatar">M</div>
+            <span class="review-card__author">Melanie Klop</span>
+          </div>
+        </div>
+        
+        <div class="review-card reveal">
+          <div class="review-card__stars">
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+            <svg class="review-card__star" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z"/></svg>
+            
+          </div>
+          <p class="review-card__text">Zeer tevreden over het werk! Hij is zijn afspraken netjes nagekomen en heeft mij echt uit de brand geholpen. Het glasvliesbehang is strak aangebracht en alles is netjes gesaust. Daarnaast dacht hij zelf mee en kwam hij met goede ideeën om het resultaat nog mooier te maken. Echt een topper en zeker een aanrader!</p>
+          <div class="review-card__footer">
+            <div class="review-card__avatar">E</div>
+            <span class="review-card__author">erdal denizli</span>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="reviews__summary reveal">
+        Gemiddeld <strong>5</strong> sterren uit <strong>6</strong> beoordelingen
+      </div>
+      
+    </div>
+  </section>
+  
+
+  <!-- --- CTA --- -->
+  <section class="cta reveal">
+    <div class="cta__ring cta__ring--1"></div>
+    <div class="cta__ring cta__ring--2"></div>
+    <h2 class="cta__title">Klaar voor Prachtige Wanden?</h2>
+    <p class="cta__sub">Neem vandaag nog contact op voor een vrijblijvende offerte en ontdek wat wij voor u kunnen doen.</p>
+    <a href="tel:06 40837590" class="cta__btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Bel 06 40837590
+    </a>
+  </section>
+
+  <!-- --- CONTACT & HOURS --- -->
+  <section class="section section--white" id="contact">
+    <div class="container">
+      <div class="contact__grid reveal">
+        <div>
+          <h3 class="contact__title">Neem contact op</h3>
+          <ul class="contact__info">
+            
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Planetenlaan 406, 3318 JS Dordrecht, Nederland</span>
+            </li>
+            
+            
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <a href="tel:06 40837590">06 40837590</a>
+            </li>
+            
+            
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:info@dhwandafwerking.nl">info@dhwandafwerking.nl</a>
+            </li>
+            
+          </ul>
+        </div>
+        <div>
+          
+          <h3 class="contact__title">Bereikbaarheid</h3>
+          <ul class="hours-list">
+            
+            <li>maandag: 08:00–18:00</li>
+            
+            <li>dinsdag: 08:00–18:00</li>
+            
+            <li>woensdag: 08:00–18:00</li>
+            
+            <li>donderdag: 08:00–18:00</li>
+            
+            <li>vrijdag: 08:00–18:00</li>
+            
+            <li>zaterdag: 09:00–17:00</li>
+            
+            <li>zondag: Gesloten</li>
+            
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- FOOTER --- -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p>&copy; L den Hartog Wandafwerking &middot; Dordrecht</p>
+      <p>Website ontworpen door <a href="mailto:michiel@solidmotion.nl">Solidmotion</a></p>
+    </div>
+  </footer>
+
+  <script>
+    /* --- Transparent-to-solid nav --- */
+    (function() {
+      var nav = document.getElementById('nav');
+      var hero = document.querySelector('.hero');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            nav.classList.remove('nav--solid');
+          } else {
+            nav.classList.add('nav--solid');
+          }
+        });
+      }, { threshold: 0.05 });
+      observer.observe(hero);
+    })();
+
+    /* --- Scroll reveal --- */
+    (function() {
+      var reveals = document.querySelectorAll('.reveal, .reveal-scale');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(function(el) { observer.observe(el); });
+    })();
+
+    /* --- Mobile menu --- */
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    function closeMobile() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  </script>
 </body>
 </html>
